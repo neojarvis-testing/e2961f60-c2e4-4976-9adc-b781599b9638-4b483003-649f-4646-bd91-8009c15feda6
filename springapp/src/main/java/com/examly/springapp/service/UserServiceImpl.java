@@ -1,4 +1,5 @@
-public class UserServiceImpl {
+package com.examly.springapp.service;
 
-    
+public class UserServiceImpl implements UserService {
+
 }
