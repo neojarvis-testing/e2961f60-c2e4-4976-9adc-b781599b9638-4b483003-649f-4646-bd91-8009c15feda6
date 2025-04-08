@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+
 import { AdminaddfoodComponent } from './components/adminaddfood/adminaddfood.component';
 import { AdminnavComponent } from './components/adminnav/adminnav.component';
 import { AdminorderschartComponent } from './components/adminorderschart/adminorderschart.component';
@@ -48,6 +49,7 @@ import { UserviewordersComponent } from './components/uservieworders/uservieword
     UserviewfeedbackComponent,
     UserviewfoodComponent,
     UserviewordersComponent
+
 
   ],
   imports: [
