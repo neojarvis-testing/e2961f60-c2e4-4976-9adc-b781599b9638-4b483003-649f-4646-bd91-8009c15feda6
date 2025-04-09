@@ -17,7 +17,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Setter
 @Getter
-@ToString
+@ToString 
 public class Food {
 
     @Id
