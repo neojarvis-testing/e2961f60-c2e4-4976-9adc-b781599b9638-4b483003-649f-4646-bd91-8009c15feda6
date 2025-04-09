@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.examly.springapp.model.User;
@@ -20,6 +21,7 @@ public class UserPrinciple implements UserDetails{
     public UserPrinciple(User user){
         this.username = user.getEmail();
         this.password = user.getPassword();
+        authorities.add(new SimpleGrantedAuthority("ROLE_"+user.getUserRole()));
     }
     
 

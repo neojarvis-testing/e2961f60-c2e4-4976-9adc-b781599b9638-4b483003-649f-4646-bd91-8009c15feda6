@@ -1,5 +1,4 @@
 package com.examly.springapp.model;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,14 +6,15 @@ import lombok.Setter;
 import lombok.ToString;
 
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
-public class LoginDTO {
-    
-    private String email;
-    private String password;
-    
+public class AuthUser {
+    private int userId;
+    private String userName;
+    private String jwtToken;
+    private String role;
+    private String name;
 }

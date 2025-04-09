@@ -2,6 +2,7 @@ package com.examly.springapp.config;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -23,16 +24,21 @@ public class MyUserDetailsService implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepo.findByEmail(email);
+        Optional<User> opt = userRepo.findByEmail(email);
 
-        if(user==null){
+        if(opt.isEmpty()){
             throw new UsernameNotFoundException("Invalid User");
         }
+        User user = opt.get();
+
 
         List<GrantedAuthority> auths = new ArrayList<>();
-        auths.add(new SimpleGrantedAuthority(user.getUserRole()));
-        return new UserPrinciple(user);
-        
+        if(user.getUserRole()!=null){
+            auths.add(new SimpleGrantedAuthority(user.getUserRole()));
+            return new UserPrinciple(user);
+        }else{
+            throw new IllegalStateException("User role is null");
+        }
     }
 
 }
