@@ -45,13 +45,17 @@ public class FeedbackServiceImpl implements FeedbackService{
         {
             throw new EntityNotFoundException("Feedback not found with ID: " + id);
         }
-
         feedbackRepo.deleteById(id);
     }
 
     @Override
     public List<Feedback> getFeedbacksByUserId(Long userId) {
-        return feedbackRepo.findByUserUserId(userId);
+        if(feedbackRepo.existsById(userId))
+        {
+            return feedbackRepo.findByUserUserId(userId);
+        }
+        return null;
+        
     }
 
 

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.examly.springapp.model.Feedback;
 import com.examly.springapp.service.FeedbackService;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @RestController
 public class FeedbackController {
 
@@ -28,27 +30,44 @@ public class FeedbackController {
 
     @GetMapping("/api/feedback/{id}")
     public ResponseEntity<?> getFeedbackById(@PathVariable Long id) {
-        Feedback feedback = feedbackService.getFeedbackById(id);
-        return ResponseEntity.status(200).body(feedback);
+        try {
+            Feedback feedback = feedbackService.getFeedbackById(id);
+            return ResponseEntity.status(200).body(feedback);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
+       
     }
-
 
     @GetMapping("/api/feedback")
     public ResponseEntity<?> getAllFeedbacks() {
         List<Feedback> feedbacks = feedbackService.getAllFeedbacks();
+        if (feedbacks.isEmpty()) {
+            return ResponseEntity.status(204).body(null);
+        }
         return ResponseEntity.status(200).body(feedbacks);
+       
     }
 
     @DeleteMapping("/api/feedback/{id}")
     public ResponseEntity<?> deleteFeedback(@PathVariable Long id) {
-        feedbackService.deleteFeedback(id);
-        return ResponseEntity.status(200).body("Feedback deleted successfully!");
+        try {
+            feedbackService.deleteFeedback(id);
+            return ResponseEntity.status(200).body("Feedback deleted successfully!");
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        }   
+       
     }
 
     @GetMapping("/api/feedback/user/{userId}")
     public ResponseEntity<?> getFeedbacksByUserId(@PathVariable Long userId) {
         List<Feedback> feedbacks = feedbackService.getFeedbacksByUserId(userId);
-        return ResponseEntity.status(200).body(feedbacks);
+        if(feedbacks!=null)
+        {
+            return ResponseEntity.status(200).body(feedbacks);
+        }
+        return ResponseEntity.status(204).body(null);
     }
     
 }
