@@ -1,1 +1,44 @@
-<p>adminaddfood works!</p>
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h2 class="text-center text-primary">Add Food</h2>
+        <form [formGroup]="foodForm" (ngSubmit)="addFood()">
+            <div class="mb-3">
+                <label for="foodName" class="form-label">Food Name:</label>
+                <input type="text" class="form-control" id="foodName" formControlName="foodName">
+                <div *ngIf="foodName.invalid && foodName.touched" class="text-danger">
+                    <span *ngIf="foodName.errors['required']">Food Name is required.</span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="price" class="form-label">Price:</label>
+                <input type="number" class="form-control" id="price" formControlName="price">
+                <div *ngIf="price.invalid && price.touched" class="text-danger">
+                    <span *ngIf="price.errors['required']">Price is required.</span>
+                    <span *ngIf="price.errors['min']">Price must be at least 1.</span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="stockQuantity" class="form-label">Stock Quantity:</label>
+                <input type="number" class="form-control" id="stockQuantity" formControlName="stockQuantity">
+                <div *ngIf="stockQuantity.invalid && stockQuantity.touched" class="text-danger">
+                    <span *ngIf="stockQuantity.errors['required']">Stock Quantity is required.</span>
+                    <span *ngIf="stockQuantity.errors['min']">Stock Quantity must be at least 1.</span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="photo" class="form-label">Upload Photo:</label>
+                <input type="file" class="form-control" id="photo" (change)="handleFileChange($event)">
+            </div>
+
+            <button type="submit" class="btn btn-success w-100" >Submit</button>
+        </form>
+
+        <div *ngIf="successMessage" class="alert alert-success mt-4 text-center">
+            <p>{{successMessage}}</p>
+            <button (click)="closePopUp()" class="btn btn-primary btn-sm">OK</button>
+        </div>
+    </div>
+</div>
