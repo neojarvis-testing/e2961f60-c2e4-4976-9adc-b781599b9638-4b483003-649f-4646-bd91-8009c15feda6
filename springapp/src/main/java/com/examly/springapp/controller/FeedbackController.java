@@ -24,12 +24,14 @@ public class FeedbackController {
     private FeedbackService feedbackService;
 
     @PostMapping("/api/feedback")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> createFeedback(@RequestBody Feedback feedback) {
         Feedback createdFeedback = feedbackService.createFeedback(feedback);
         return ResponseEntity.status(201).body(createdFeedback);
     }
 
     @GetMapping("/api/feedback/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getFeedbackById(@PathVariable Long id) {
         try {
             Feedback feedback = feedbackService.getFeedbackById(id);
@@ -41,6 +43,7 @@ public class FeedbackController {
     }
 
     @GetMapping("/api/feedback")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getAllFeedbacks() {
         List<Feedback> feedbacks = feedbackService.getAllFeedbacks();
         if (feedbacks.isEmpty()) {
@@ -63,6 +66,7 @@ public class FeedbackController {
     }
 
     @GetMapping("/api/feedback/user/{userId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getFeedbacksByUserId(@PathVariable Long userId) {
         List<Feedback> feedbacks = feedbackService.getFeedbacksByUserId(userId);
         if(feedbacks!=null)

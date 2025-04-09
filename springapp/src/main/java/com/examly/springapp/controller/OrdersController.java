@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,12 +25,14 @@ public class OrdersController {
     private OrderService orderService;
 
     @PostMapping("/api/orders")
+    @PreAuthorize("hasRole('USER')")
     ResponseEntity<?> addOrder(@RequestBody Orders order) {
         Orders newOrder = orderService.addOrder(order);
         return ResponseEntity.status(201).body(newOrder);
     }
 
     @GetMapping("/api/orders/{orderId}")
+    @PreAuthorize("hasRole('ADMIN')")
     ResponseEntity<?> viewOrderById(@PathVariable int orderId) {
         try {
             Optional<Orders> order = orderService.getOrderById(orderId);
@@ -40,6 +43,7 @@ public class OrdersController {
     }
 
     @GetMapping("/api/orders/user/{userId}")
+    @PreAuthorize("hasRole('USER')")
     ResponseEntity<?> viewOrdersByUserId(@PathVariable int userId) {
         try {
             List<Orders> orders = orderService.getOrdersByUserId(userId);
@@ -50,6 +54,7 @@ public class OrdersController {
     }
 
     @GetMapping("/api/orders")
+    @PreAuthorize("hasRole('ADMIN')")
     ResponseEntity<?> viewAllOrders() {
 
         List<Orders> orderList = orderService.getAllOrders();
@@ -61,6 +66,7 @@ public class OrdersController {
     }
 
     @PutMapping("/api/orders/{orderId}")
+    @PreAuthorize("hasRole('USER')")
     ResponseEntity<?> updateOrder(@PathVariable int orderId, @RequestBody Orders order) {
         try {
             Orders updatedOrders = orderService.updateOrder(orderId, order);
@@ -71,6 +77,7 @@ public class OrdersController {
     }
 
     @DeleteMapping("/api/orders/{orderId}")
+    @PreAuthorize("hasRole('USER')")
     ResponseEntity<?> deleteOrder(@PathVariable int orderId) {
         try {
             orderService.deleteOrder(orderId);
