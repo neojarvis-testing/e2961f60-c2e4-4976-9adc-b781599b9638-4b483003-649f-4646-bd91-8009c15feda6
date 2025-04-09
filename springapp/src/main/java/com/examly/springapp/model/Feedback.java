@@ -24,7 +24,7 @@ public class Feedback {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int feedbackId;
+    private Long feedbackId;
     private String feedbackText;
     private LocalDate date;
     private int rating;
