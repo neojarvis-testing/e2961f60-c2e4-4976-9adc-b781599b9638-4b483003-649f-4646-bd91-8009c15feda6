@@ -3,7 +3,6 @@ package com.examly.springapp.controller;
 import java.util.List;
 import java.util.Optional;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,54 +24,58 @@ public class OrdersController {
     private OrderService orderService;
 
     @PostMapping("/api/orders")
-    ResponseEntity<?> addOrder(@RequestBody Orders order){
+    ResponseEntity<?> addOrder(@RequestBody Orders order) {
         Orders newOrder = orderService.addOrder(order);
         return ResponseEntity.status(201).body(newOrder);
     }
 
     @GetMapping("/api/orders/{orderId}")
-    ResponseEntity<?> viewOrderById(@PathVariable int orderId){
-        try{
+    ResponseEntity<?> viewOrderById(@PathVariable int orderId) {
+        try {
             Optional<Orders> order = orderService.getOrderById(orderId);
             return ResponseEntity.status(200).body(order);
-        }catch(EntityNotFoundException e){
+        } catch (EntityNotFoundException e) {
             return ResponseEntity.status(404).body(e.getMessage());
         }
     }
 
     @GetMapping("/api/orders/user/{userId}")
-    ResponseEntity<?> viewOrdersByUserId(@PathVariable int userId){
-        try{
+    ResponseEntity<?> viewOrdersByUserId(@PathVariable int userId) {
+        try {
             List<Orders> orders = orderService.getOrdersByUserId(userId);
             return ResponseEntity.status(200).body(orders);
-        }catch(EntityNotFoundException e){
+        } catch (EntityNotFoundException e) {
             return ResponseEntity.status(404).body(e.getMessage());
         }
     }
 
-
     @GetMapping("/api/orders")
-    ResponseEntity<?> viewAllOrders(){
+    ResponseEntity<?> viewAllOrders() {
+
         List<Orders> orderList = orderService.getAllOrders();
+        if (orderList.isEmpty()) {
+            return ResponseEntity.status(204).body(null);
+        }
         return ResponseEntity.status(200).body(orderList);
+
     }
 
     @PutMapping("/api/orders/{orderId}")
-    ResponseEntity<?> updateOrder(@PathVariable int orderId , @RequestBody Orders order){
-        try{
+    ResponseEntity<?> updateOrder(@PathVariable int orderId, @RequestBody Orders order) {
+        try {
             Orders updatedOrders = orderService.updateOrder(orderId, order);
             return ResponseEntity.status(200).body(updatedOrders);
-        }catch(EntityNotFoundException e){
+        } catch (EntityNotFoundException e) {
             return ResponseEntity.status(404).body(e.getMessage());
         }
     }
 
     @DeleteMapping("/api/orders/{orderId}")
-    ResponseEntity<?> deleteOrder(@PathVariable int orderId){
-        try{
+    ResponseEntity<?> deleteOrder(@PathVariable int orderId) {
+        try {
             orderService.deleteOrder(orderId);
             return ResponseEntity.status(200).body(true);
-        }catch(EntityNotFoundException e){
+        } catch (EntityNotFoundException e) {
             return ResponseEntity.status(404).body(e.getMessage());
         }
     }

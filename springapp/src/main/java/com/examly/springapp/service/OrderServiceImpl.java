@@ -25,7 +25,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Orders> getAllOrders() {
-
         return orderRepo.findAll();
     }
 
@@ -33,7 +32,7 @@ public class OrderServiceImpl implements OrderService {
     public Optional<Orders> getOrderById(int id) {
         Optional<Orders> opt = orderRepo.findById(id);
         if (opt.isEmpty()) {
-            throw new EntityNotFoundException("Order with ID" + id + " not found!");
+            throw new EntityNotFoundException("Order with ID " + id + " not found!");
         }
 
         return opt;
@@ -44,7 +43,7 @@ public class OrderServiceImpl implements OrderService {
         orderDetails.setOrderId(id);
         Optional<Orders> opt = orderRepo.findById(id);
         if (opt.isEmpty()) {
-            throw new EntityNotFoundException("Order with ID" + id + " not found!");
+            throw new EntityNotFoundException("Order with ID " + id + " not found!");
         }
 
         Orders existingOrders = opt.get();
@@ -65,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
             orderRepo.deleteById(id);
             return true;
         } else {
-            throw new EntityNotFoundException("Order with ID" + id + " not found!");
+            throw new EntityNotFoundException("Order with ID " + id + " not found!");
         }
 
     }
@@ -74,7 +73,7 @@ public class OrderServiceImpl implements OrderService {
     public List<Orders> getOrdersByUserId(int userId) {
         List<Orders> ordersList = orderRepo.findOrdersByUserId(userId);
         if(ordersList.isEmpty()){
-            throw new EntityNotFoundException("Order with ID" + userId + " not found!");
+            throw new EntityNotFoundException("Order with ID " + userId + " not found!");
         }
 
         return ordersList;
