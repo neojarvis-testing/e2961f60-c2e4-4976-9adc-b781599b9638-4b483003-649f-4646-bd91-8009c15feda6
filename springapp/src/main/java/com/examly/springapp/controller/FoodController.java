@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,7 @@ public class FoodController {
     private FoodService foodService;
 
     @PostMapping("api/food")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> addFood(@RequestBody Food food) {
         try{
             food = foodService.addFood(food);
@@ -36,6 +38,7 @@ public class FoodController {
     }
 
     @GetMapping("/api/food/{foodId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getFoodById(@PathVariable int foodId)  {
         try{
             Optional<Food> food = foodService.getFoodById(foodId);
@@ -52,6 +55,7 @@ public class FoodController {
     }
 
     @GetMapping("/api/food")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')" )
     public ResponseEntity<?> viewAllFoods(){
         try{
             List<Food> allFoods = foodService.getAllFoods();
@@ -63,6 +67,7 @@ public class FoodController {
     }
 
     @PutMapping("/api/food/{foodId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> editFood(@PathVariable int foodId, @RequestBody Food foodDetails) {
         try{
             Food updatedFood = foodService.updateFood(foodId, foodDetails);

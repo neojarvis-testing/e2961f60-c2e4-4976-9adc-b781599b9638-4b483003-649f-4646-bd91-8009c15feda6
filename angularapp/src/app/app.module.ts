@@ -24,8 +24,10 @@ import { UsernavComponent } from './components/usernav/usernav.component';
 import { UserviewfeedbackComponent } from './components/userviewfeedback/userviewfeedback.component';
 import { UserviewfoodComponent } from './components/userviewfood/userviewfood.component';
 import { UserviewordersComponent } from './components/uservieworders/uservieworders.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import { AuthInterceptor } from './interceptor/auth.interceptor';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -40,6 +42,7 @@ import {HttpClientModule} from '@angular/common/http';
     AuthguardComponent,
     ErrorComponent,
     AdminviewfoodComponent,
+    LoginComponent,
   
 
     HomeComponent,
@@ -57,11 +60,13 @@ import {HttpClientModule} from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
+    HttpClientModule,
     FormsModule,
-    HttpClientModule
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,12 +24,14 @@ public class FeedbackController {
     private FeedbackService feedbackService;
 
     @PostMapping("/api/feedback")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> createFeedback(@RequestBody Feedback feedback) {
         Feedback createdFeedback = feedbackService.createFeedback(feedback);
         return ResponseEntity.status(201).body(createdFeedback);
     }
 
     @GetMapping("/api/feedback/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getFeedbackById(@PathVariable Long id) {
         try {
             Feedback feedback = feedbackService.getFeedbackById(id);
@@ -40,6 +43,7 @@ public class FeedbackController {
     }
 
     @GetMapping("/api/feedback")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getAllFeedbacks() {
         List<Feedback> feedbacks = feedbackService.getAllFeedbacks();
         if (feedbacks.isEmpty()) {
@@ -50,6 +54,7 @@ public class FeedbackController {
     }
 
     @DeleteMapping("/api/feedback/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> deleteFeedback(@PathVariable Long id) {
         try {
             feedbackService.deleteFeedback(id);
@@ -61,6 +66,7 @@ public class FeedbackController {
     }
 
     @GetMapping("/api/feedback/user/{userId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getFeedbacksByUserId(@PathVariable Long userId) {
         List<Feedback> feedbacks = feedbackService.getFeedbacksByUserId(userId);
         if(feedbacks!=null)
