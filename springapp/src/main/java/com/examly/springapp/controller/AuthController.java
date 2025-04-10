@@ -51,7 +51,7 @@ public class AuthController {
     public ResponseEntity<?> loginUser(@RequestBody LoginDTO u){
         try{    
                 AuthUser loginUser = userServiceImpl.loginUser(u);
-                return ResponseEntity.status(201).body(loginUser);
+                return ResponseEntity.status(200).body(loginUser);
 
         }catch(InvalidCredentialsException e){
             return ResponseEntity.status(401).body(e.getMessage());

@@ -14,7 +14,7 @@ import lombok.ToString;
 public class AuthUser {
     private int userId;
     private String userName;
-    private String jwtToken;
+    private String token;
     private String role;
     private String name;
 }

@@ -8,5 +8,4 @@ public interface UserService {
     public User registerUser(User user);
     public User getUserById(int id);
     public AuthUser loginUser(LoginDTO user);
-
 }
