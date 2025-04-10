@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Orders } from 'src/app/models/orders.model';
+import { orders } from 'src/app/models/orders.model';
 import { User } from 'src/app/models/user.model';
 import { OrderService } from 'src/app/services/order.service';
 
@@ -10,7 +10,7 @@ import { OrderService } from 'src/app/services/order.service';
 })
 export class AdminviewordersComponent implements OnInit {
 
-  orders: Orders[] = [];
+  orders: orders[] = [];
   selectedUser: any = null;
   changeStatus : string = '';
 

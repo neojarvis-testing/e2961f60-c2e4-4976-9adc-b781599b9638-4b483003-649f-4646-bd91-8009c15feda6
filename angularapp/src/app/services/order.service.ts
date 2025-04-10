@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Orders } from '../models/orders.model';
+import { orders } from '../models/orders.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class OrderService {
 
   constructor(private httpClient:HttpClient) { }
 
-  placeOrder(order:Orders):Observable<any>{
+  placeOrder(order:orders):Observable<any>{
     return this.httpClient.post(this.apiUrl,order);
   }
 
@@ -28,7 +28,7 @@ export class OrderService {
     return this.httpClient.get(this.apiUrl+'/'+userId);
   }
 
-  updateOrder(orderId:number,order:Orders):Observable<any>{
+  updateOrder(orderId:number,order:orders):Observable<any>{
     return this.httpClient.put(this.apiUrl+'/'+orderId,order);
   }
 
