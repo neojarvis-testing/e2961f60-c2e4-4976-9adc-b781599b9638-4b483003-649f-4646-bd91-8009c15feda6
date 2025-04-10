@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserviewfoodComponent } from './components/userviewfood/userviewfood.component';
+
 import { AdminaddfoodComponent } from './components/adminaddfood/adminaddfood.component';
 import { AdminviewfeedbackComponent } from './components/adminviewfeedback/adminviewfeedback.component';
 import { ErrorComponent } from './components/error/error.component';
@@ -17,7 +18,10 @@ import { UsermakeorderComponent } from './components/usermakeorder/usermakeorder
 import { UserviewfeedbackComponent } from './components/userviewfeedback/userviewfeedback.component';
 import { UserviewordersComponent } from './components/uservieworders/uservieworders.component';
 
+
+
 const routes: Routes = [
+  
   {
     path:"**",
     component:HomeComponent
@@ -73,7 +77,7 @@ const routes: Routes = [
   {
     path:'register',
     component:RegistrationComponent
-  },
+  }
 ];
 
 @NgModule({

@@ -20,12 +20,13 @@ export class FeedbackService {
 
   getAllFeedbacksByUserId(userId:number):Observable<any>
   {
+    console.log("get all feedbacks");
     return this.httpClient.get(this.apiUrl+"/user/"+userId);
   }
 
   deleteFeedback(feedbackId:number):Observable<any>
   {
-    return this.httpClient.delete(this.apiUrl+"/"+feedbackId);
+    return this.httpClient.delete(this.apiUrl+"/"+feedbackId,{ responseType: 'text' });
   }
 
   getFeedbacks():Observable<any>

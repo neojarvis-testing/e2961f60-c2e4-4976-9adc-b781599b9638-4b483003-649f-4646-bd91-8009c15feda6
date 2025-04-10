@@ -2,21 +2,16 @@
   <h2>Add Feedback</h2>
 
   <form [formGroup]="userFeedbackForm" (ngSubmit)="createFeedback()">
-    <!-- Food Dropdown -->
     <div class="form-group">
-      <label for="food">Select Food:</label>
-      <select id="food" formControlName="food">
-        <option value="" disabled>Select Food</option>
-        <option *ngFor="let foodItem of foodOptions" [value]="foodItem">
-          {{ foodItem.foodName }}
-        </option>
-      </select>
+
+        <label for="food">Food:</label>
+        <input id="food" formControlName="food" readonly />
+
       <div *ngIf="userFeedbackForm.get('food')?.invalid && userFeedbackForm.get('food')?.touched">
         <span class="error">Please select a food item.</span>
       </div>
     </div>
 
-    <!-- Feedback Textarea -->
     <div class="form-group">
       <label for="feedbackText">Feedback:</label>
       <textarea
