@@ -1,1 +1,50 @@
-<p>adminvieworders works!</p>
+<div *ngIf="orders.length === 0">
+  <h3>Oops! No records found.</h3>
+</div>
+
+<table *ngIf="orders.length > 0" class="orders-table">
+  <thead>
+    <tr>
+      <th>Sr No</th>
+      <th>Food Name</th>
+      <th>Quantity</th>
+      <th>Total Price</th>
+      <th>User Profile</th>
+      <th>Order Status</th>
+      <th>Change Order Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ order.foodName }}</td>
+      <td>{{ order.quantity }}</td>
+      <td>{{ order.totalPrice | currency }}</td>
+      <td>
+        <button class="profile-btn" (click)="selectUser(order.user)">Show Profile</button>
+      </td>
+      <td>{{ order.status }}</td>
+      <td>
+        <button class="status-btn" (click)="updatedStatus(order.id, 'Making Food')">Making Food</button>
+        <button class="status-btn" (click)="updatedStatus(order.id, 'On the way')">On the way</button>
+        <button class="status-btn" (click)="updatedStatus(order.id, 'Delivered')">Delivered</button>
+      </td>
+      <td>
+        <button class="delete-btn" (click)="deleteOrder(order.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Popup for Selected User Details -->
+<div *ngIf="selectedUser" class="popup">
+  <div class="popup-content">
+    <h3>Selected User Details</h3>
+    <p><strong>Username:</strong> {{ selectedUser.username }}</p>
+    <p><strong>Email:</strong> {{ selectedUser.email }}</p>
+    <p><strong>Phone:</strong> {{ selectedUser.mobileNumber }}</p>
+    <p><strong>Role:</strong> {{ selectedUser.userRole }}</p>
+    <button class="close-btn" (click)="closeUser()">Close</button>
+  </div>
+</div>
