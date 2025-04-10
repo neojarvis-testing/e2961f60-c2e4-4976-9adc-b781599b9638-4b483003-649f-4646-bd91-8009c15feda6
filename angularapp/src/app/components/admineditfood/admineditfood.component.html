@@ -1,0 +1,39 @@
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <h2>Edit Food Item</h2>
+    <div>
+      <label for="name">Food Name:</label>
+      <input id="name" formControlName="name" />
+      <div *ngIf="editForm.get('name')?.invalid && editForm.get('name')?.touched">
+        Name is required.
+      </div>
+    </div>
+  
+    <div>
+      <label for="price">Price:</label>
+      <input id="price" formControlName="price" />
+      <div *ngIf="editForm.get('price')?.invalid && editForm.get('price')?.touched">
+        Enter a valid price.
+      </div>
+    </div>
+  
+    <div>
+      <label for="stockQuantity">Stock Quantity:</label>
+      <textarea id="stockQuantity" formControlName="stockQuantity"></textarea>
+      <div
+        *ngIf="editForm.get('stockQuantity')?.invalid && editForm.get('stockQuantity')?.touched">
+      Stock Quantity is required.
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="editForm.invalid">Save</button>
+    <button type="button" (click)="onBack()">Cancel</button>
+  </form> 
+  
+
+
+
+
+
+  
+
+
