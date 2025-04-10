@@ -36,9 +36,9 @@ export class UseraddfeedbackComponent implements OnInit {
       const feedback: Feedback = {
         feedbackText: this.userFeedbackForm.value.feedbackText,
         date: new Date(),
-        food: this.userFeedbackForm.value.food,
+        foodId: this.userFeedbackForm.value.food,
         rating: this.userFeedbackForm.value.rating,
-        user: this.currentUser }; // Creating Feedback object
+        userId: 8 }; // Creating Feedback object
       console.log(feedback);
       this.feedbackService.sendFeedback(feedback).subscribe(
         (data) => {

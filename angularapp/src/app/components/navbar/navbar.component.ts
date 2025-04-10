@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserStoreService } from 'src/app/helpers/user-store.service';
+import { AuthUser } from 'src/app/models/auth-user.model';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  constructor() { }
+  userName:string="";
+  userRole:string="";
+  constructor(private userStore :UserStoreService) { }
 
   ngOnInit(): void {
+    localStorage.getItem("authUser")
+    this.userStore.user$.subscribe((user:AuthUser)=>{
+      if(user){
+        this.userName = user.userName;
+        this.userRole = user.role
+      }
+    })
   }
+
 
 }
