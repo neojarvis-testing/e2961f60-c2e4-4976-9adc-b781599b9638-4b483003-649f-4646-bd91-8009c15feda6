@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
         String role=roleList.get(0);
         AuthUser authUser=new AuthUser();
         authUser.setUserName(user.getEmail());
-        authUser.setJwtToken(jwtUtils.generateToken(user.getEmail()));
+        authUser.setToken(jwtUtils.generateToken(user.getEmail()));
         authUser.setRole(role);
         authUser.setUserId(userRepo.findUserIdByEmail(user.getEmail()));
         authUser.setName(userRepo.findUserRoleByEmail(user.getEmail()));
