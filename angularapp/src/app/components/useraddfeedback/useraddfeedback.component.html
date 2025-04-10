@@ -1,1 +1,65 @@
-<p>useraddfeedback works!</p>
+<div class="feedback-form-container">
+  <h2>Add Feedback</h2>
+
+  <form [formGroup]="userFeedbackForm" (ngSubmit)="createFeedback()">
+    <!-- Food Dropdown -->
+    <div class="form-group">
+      <label for="food">Select Food:</label>
+      <select id="food" formControlName="food">
+        <option value="" disabled>Select Food</option>
+        <option *ngFor="let foodItem of foodOptions" [value]="foodItem">
+          {{ foodItem.foodName }}
+        </option>
+      </select>
+      <div *ngIf="userFeedbackForm.get('food')?.invalid && userFeedbackForm.get('food')?.touched">
+        <span class="error">Please select a food item.</span>
+      </div>
+    </div>
+
+    <!-- Feedback Textarea -->
+    <div class="form-group">
+      <label for="feedbackText">Feedback:</label>
+      <textarea
+        id="feedbackText"
+        formControlName="feedbackText"
+        rows="4"
+        placeholder="Write your feedback here..."
+      ></textarea>
+      <div *ngIf="userFeedbackForm.get('feedbackText')?.invalid && userFeedbackForm.get('feedbackText')?.touched">
+        <span class="error">Feedback is required.</span>
+      </div>
+    </div>
+
+    <!-- Rating Input -->
+    <div class="form-group">
+      <label for="rating">Rating (1 to 5):</label>
+      <div class="stars">
+        <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+          <input
+            type="radio"
+            id="star{{ star }}"
+            formControlName="rating"
+            [value]="star"
+          />
+          <label for="star{{ star }}">&#9733;</label>
+        </ng-container>
+      </div>
+      <div *ngIf="userFeedbackForm.get('rating')?.invalid && userFeedbackForm.get('rating')?.touched">
+        <span class="error">Please give a rating between 1 and 5 stars.</span>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="userFeedbackForm.invalid" class="btn-submit">
+      Submit Feedback
+    </button>
+  </form>
+
+  <!-- Popup -->
+  <div *ngIf="showPopup" class="popup-container">
+    <div class="popup">
+      <p>Feedback Successfully Added!</p>
+      <button (click)="closePopup()">Ok</button>
+    </div>
+  </div>
+</div>

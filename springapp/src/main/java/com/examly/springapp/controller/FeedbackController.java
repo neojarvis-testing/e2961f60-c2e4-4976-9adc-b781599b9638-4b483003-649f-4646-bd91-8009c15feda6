@@ -69,7 +69,7 @@ public class FeedbackController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getFeedbacksByUserId(@PathVariable Long userId) {
         List<Feedback> feedbacks = feedbackService.getFeedbacksByUserId(userId);
-        if(feedbacks!=null)
+        if(!feedbacks.isEmpty())
         {
             return ResponseEntity.status(200).body(feedbacks);
         }
