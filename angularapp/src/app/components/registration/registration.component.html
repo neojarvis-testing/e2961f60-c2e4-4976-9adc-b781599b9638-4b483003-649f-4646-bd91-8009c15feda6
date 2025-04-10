@@ -1,1 +1,47 @@
-<p>registration works!</p>
+<div class="container mt-5">
+    <div class="card shadow p-4">
+      <h2 class="text-center text-primary">Register</h2>
+
+      <form [formGroup]="registrationForm" (ngSubmit)="addRegister()">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email:</label>
+          <input type="email" class="form-control" id="email" formControlName="email">
+          
+          <div>
+
+          </div>
+          
+        </div>
+  
+        <div class="mb-3">
+          <label for="password" class="form-label">Password:</label>
+          <input type="password" class="form-control" id="password" formControlName="password">
+          
+        </div>
+  
+        <div class="mb-3">
+          <label for="username" class="form-label">Username:</label>
+          <input type="text" class="form-control" id="username" formControlName="username">
+          
+        </div>
+  
+        <div class="mb-3">
+          <label for="mobileNumber" class="form-label">Mobile Number:</label>
+          <input type="text" class="form-control" id="mobileNumber" formControlName="mobileNumber">
+          
+        </div>
+
+  
+        <div class="mb-3">
+          <label for="userRole" class="form-label">User Role:</label>
+          <input type="text" class="form-control" id="userRole" formControlName="userRole">
+          
+          
+        </div>
+
+        <button type="submit" class="btn btn-success w-100"   [disabled]="registrationForm.invalid">Register</button>
+      </form>
+
+  
+    </div>
+  </div>
