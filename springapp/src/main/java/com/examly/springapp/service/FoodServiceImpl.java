@@ -1,5 +1,6 @@
 package com.examly.springapp.service;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,7 @@ public class FoodServiceImpl implements FoodService{
         if (food == null) {
             throw new FoodNotFoundException("Food cannot be null.");
         }
+        food.setPhoto(Base64.getDecoder().decode(food.getPhoto()));
         Food savedFood = foodRepo.save(food);
         return savedFood;
     } 
