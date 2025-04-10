@@ -1,1 +1,28 @@
-<p>adminviewfeedback works!</p>
+<div class="container">
+    <h2>All FeedBacks</h2>
+
+    <div *ngIf="feedbacks.length===0">
+        No Records found
+    </div>
+
+    <table *ngIf="feedbacks?.length > 0" class="feedback-table">
+        <thead>
+            <tr>
+                <th>Feedback ID</th>
+                <th>Food Name</th>
+                <th>Rating</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let feedback of feedbacks">
+                <td>{{feedback.feedbackId}}</td>
+                <td>{{feedback.food?.foodName}}</td>
+                <td>{{feedback.rating}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
