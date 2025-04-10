@@ -1,28 +1,48 @@
-<div class="container">
-    <h2>All FeedBacks</h2>
-
-    <div *ngIf="feedbacks.length===0">
-        No Records found
+<div class="feedback-container">
+    <h2>My Feedback</h2>
+  
+    <div *ngIf="feedbacks.length === 0">
+      <p>Oops! No records Found</p>
     </div>
-
-    <table *ngIf="feedbacks?.length > 0" class="feedback-table">
-        <thead>
-            <tr>
-                <th>Feedback ID</th>
-                <th>Food Name</th>
-                <th>Rating</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let feedback of feedbacks">
-                <td>{{feedback.feedbackId}}</td>
-                <td>{{feedback.food?.foodName}}</td>
-                <td>{{feedback.rating}}</td>
-            </tr>
-        </tbody>
+  
+    <table *ngIf="feedbacks.length > 0">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Feedback</th>
+          <th>Food Name</th>
+          <th>Rating</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let feedback of feedbacks; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ feedback.feedbackText }}</td>
+          <td>{{ feedback.food?.foodName }}</td>
+          <td>{{ feedback.rating }}</td>
+          <td>
+            <button (click)="triggerDelete(feedback.feedbackId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
     </table>
-</div>
-
+  </div>
+  
+  <div *ngIf="showDeletePopup" class="popup-overlay">
+    <div class="popup">
+      <p>Are you sure you want to delete this feedback?</p>
+      <button (click)="confirmDelete()">Yes, Delete</button>
+      <button (click)="closeDeletePopup()">Cancel</button>
+    </div>
+  </div>
+  
+  <div *ngIf="showLogoutPopup" class="popup-overlay">
+    <div class="popup">
+      <p>Are you sure you want to logout?</p>
+      <button (click)="confirmLogout()">Yes, Logout</button>
+      <button (click)="cancelLogout()">Cancel</button>
+    </div>
+  </div>
 
 
