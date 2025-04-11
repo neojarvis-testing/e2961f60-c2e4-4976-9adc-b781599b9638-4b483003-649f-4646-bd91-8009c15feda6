@@ -23,10 +23,6 @@ import { UserviewordersComponent } from './components/uservieworders/uservieword
 const routes: Routes = [
   
   {
-    path:"**",
-    component:HomeComponent
-  },
-  {
     path:"admin/addFood",
     component:AdminaddfoodComponent
   },
@@ -77,6 +73,10 @@ const routes: Routes = [
   {
     path:'register',
     component:RegistrationComponent
+  },
+  {
+    path:"**",
+    component:HomeComponent
   }
 ];
 

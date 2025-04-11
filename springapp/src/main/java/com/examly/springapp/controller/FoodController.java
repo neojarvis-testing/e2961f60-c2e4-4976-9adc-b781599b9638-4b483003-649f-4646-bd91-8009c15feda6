@@ -40,7 +40,7 @@ public class FoodController {
     }
 
     @GetMapping("/api/food/{foodId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<?> getFoodById(@PathVariable int foodId)  {
         try{
             Optional<Food> food = foodService.getFoodById(foodId);
@@ -103,7 +103,7 @@ public class FoodController {
         }  
     }
 
-    @GetMapping("/api/food/{userId}")
+    @GetMapping("/api/food/user/{userId}")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> getFoodsByUserId (@PathVariable int userId){
         try{

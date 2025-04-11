@@ -2,13 +2,13 @@
     <h2>Confirm Your Order</h2>
   
     <label>Food Name:</label>
-    <input type="text" [value]="food.foodName" disabled>
+    <input type="text" [value]="food?.foodName" disabled>
   
     <label>Quantity:</label>
     <div class="quantity-controls">
       <button (click)="decreaseQuantity()" [disabled]="quantity<=1">-</button>
       <span>{{ quantity }}</span>
-      <button (click)="increaseQuantity()" [disabled]="quantity>=food.stockQuantity">+</button>
+      <button (click)="increaseQuantity()" [disabled]="quantity>=food?.stockQuantity">+</button>
     </div>
   
     <label>Total Price:</label>

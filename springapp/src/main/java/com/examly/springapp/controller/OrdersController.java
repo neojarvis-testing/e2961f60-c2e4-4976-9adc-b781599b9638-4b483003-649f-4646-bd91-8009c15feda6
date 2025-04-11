@@ -32,7 +32,7 @@ public class OrdersController {
     }
 
     @GetMapping("/api/orders/{orderId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     ResponseEntity<?> viewOrderById(@PathVariable int orderId) {
         try {
             Optional<Orders> order = orderService.getOrderById(orderId);
@@ -66,7 +66,7 @@ public class OrdersController {
     }
 
     @PutMapping("/api/orders/{orderId}")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('ADMIN')")
     ResponseEntity<?> updateOrder(@PathVariable int orderId, @RequestBody Orders order) {
         try {
             Orders updatedOrders = orderService.updateOrder(orderId, order);
@@ -84,5 +84,6 @@ public class OrdersController {
             return ResponseEntity.status(200).body(true);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(404).body(e.getMessage());
-
+        }
+    }
 }

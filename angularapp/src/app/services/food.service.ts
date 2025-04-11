@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Food } from '../models/food.model';
+import { url } from '../Global/global';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FoodService {
 
-  private apiUrl : string = "https://ide-fadccfabbbedbdefbbddcfebfcdbbfbdcfeda.premiumproject.examly.io/proxy/8080/api/food"
+  public apiUrl = url.apiUrl+"/api/food"
   constructor(private htppClient : HttpClient) { }
 
   public getAllFoods() : Observable<any>{
