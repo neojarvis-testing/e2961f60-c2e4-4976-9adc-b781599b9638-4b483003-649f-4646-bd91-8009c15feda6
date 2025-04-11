@@ -1,0 +1,151 @@
+/* General Reset */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa; /* Light background for subtle contrast */
+    color: #333; /* Neutral text color */
+  }
+  
+  /* Navbar Container */
+  .navbar {
+    background-color: #0056b3; /* Rich blue for navbar background */
+    padding: 15px 30px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Navbar List */
+  .navbar-list {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between items */
+  }
+  
+  /* Welcome Section */
+  .navbar-welcome {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff; /* Bright white for standout text */
+  }
+  
+  /* Dropdown Section */
+  .navbar-dropdown {
+    position: relative;
+  }
+  
+  .dropdown-toggle {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff; /* White text for dropdown toggle */
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dropdown-toggle:hover {
+    background-color: #003d99; /* Slightly darker blue for hover effect */
+  }
+  
+  /* Dropdown List */
+  .dropdown-list {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff; /* White for dropdown background */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    z-index: 10;
+  }
+  
+  .dropdown-item {
+    margin: 0;
+  }
+  
+  .dropdown-link {
+    text-decoration: none;
+    font-size: 14px;
+    color: #333; /* Neutral text color */
+    padding: 10px 20px;
+    display: block;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dropdown-link:hover {
+    background-color: #f0f0f0; /* Light gray hover effect */
+  }
+  
+  /* Show Dropdown on Hover */
+  .navbar-dropdown:hover .dropdown-list {
+    display: block; /* Reveal dropdown */
+  }
+  
+  /* Navbar Items */
+  .navbar-item {
+    font-size: 16px;
+  }
+  
+  .navbar-link {
+    text-decoration: none;
+    font-weight: 500;
+    color: #ffffff; /* White text for links */
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar-link:hover {
+    background-color: #003d99; /* Slightly darker blue for hover effect */
+  }
+  
+  /* Logout Button */
+  .logout-button {
+    background-color: #e63946; /* Vibrant red for logout button */
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff; /* White for text visibility */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-button:hover {
+    background-color: #cc2936; /* Slightly darker red hover effect */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .navbar-list {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .dropdown-list {
+      position: static;
+      box-shadow: none;
+      border: none;
+      background-color: #f8f9fa; /* Matching background for mobile */
+    }
+  
+    .dropdown-link {
+      color: #0056b3; /* Blue for mobile dropdown links */
+    }
+  
+    .dropdown-link:hover {
+      background-color: #e8f0ff; /* Soft blue for hover effect */
+    }
+  }
+  
