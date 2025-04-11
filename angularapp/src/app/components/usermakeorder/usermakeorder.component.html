@@ -1,1 +1,22 @@
-<p>usermakeorder works!</p>
+<div class="order-form">
+    <h2>Confirm Your Order</h2>
+  
+    <label>Food Name:</label>
+    <input type="text" [value]="food.foodName" disabled>
+  
+    <label>Quantity:</label>
+    <div class="quantity-controls">
+      <button (click)="decreaseQuantity()" [disabled]="quantity<=1">-</button>
+      <span>{{ quantity }}</span>
+      <button (click)="increaseQuantity()" [disabled]="quantity>=food.stockQuantity">+</button>
+    </div>
+  
+    <label>Total Price:</label>
+    <input type="text" [value]="totalAmount | currency" disabled>
+  
+    <div class="btn-group">
+      <button class="confirm-btn" (click)="createOrder()">Confirm Order</button>
+      <button class="cancel-btn" (click)="cancelOrder()">Cancel</button>
+    </div>
+  </div>
+  
