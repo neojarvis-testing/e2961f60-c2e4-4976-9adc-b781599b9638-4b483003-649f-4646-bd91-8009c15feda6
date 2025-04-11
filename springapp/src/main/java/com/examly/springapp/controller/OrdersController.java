@@ -77,14 +77,12 @@ public class OrdersController {
     }
 
     @DeleteMapping("/api/orders/{orderId}")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     ResponseEntity<?> deleteOrder(@PathVariable int orderId) {
         try {
             orderService.deleteOrder(orderId);
             return ResponseEntity.status(200).body(true);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(404).body(e.getMessage());
-        }
-    }
 
 }

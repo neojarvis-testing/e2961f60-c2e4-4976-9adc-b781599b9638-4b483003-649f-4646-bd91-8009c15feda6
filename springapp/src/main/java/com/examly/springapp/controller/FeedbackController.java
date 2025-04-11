@@ -54,7 +54,7 @@ public class FeedbackController {
     }
 
     @DeleteMapping("/api/feedback/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<?> deleteFeedback(@PathVariable Long id) {
         try {
             feedbackService.deleteFeedback(id);
@@ -66,7 +66,7 @@ public class FeedbackController {
     }
 
     @GetMapping("/api/feedback/user/{userId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<?> getFeedbacksByUserId(@PathVariable Long userId) {
         List<Feedback> feedbacks = feedbackService.getFeedbacksByUserId(userId);
         if(!feedbacks.isEmpty())

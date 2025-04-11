@@ -10,16 +10,74 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { HomeComponent } from './components/home/home.component';
 import { UserviewfoodComponent } from './components/userviewfood/userviewfood.component';
 
-const routes: Routes = [
-  {path:'adminvieworders',component:AdminviewordersComponent},
-  
-  { path: 'adminviewfood', component: AdminviewfoodComponent },
-  {path:'login',component:LoginComponent},
-  {path:'register',component:RegistrationComponent},
-  {path:'home',component:HomeComponent},
-  {path:'admin/view/foods',component:AdminviewfoodComponent},
-  {path:'user/view/foods',component:UserviewfoodComponent}
+import { AdminaddfoodComponent } from './components/adminaddfood/adminaddfood.component';
+import { AdminviewfeedbackComponent } from './components/adminviewfeedback/adminviewfeedback.component';
+import { ErrorComponent } from './components/error/error.component';
+import { UseraddfeedbackComponent } from './components/useraddfeedback/useraddfeedback.component';
+import { UsermakeorderComponent } from './components/usermakeorder/usermakeorder.component';
+import { UserviewfeedbackComponent } from './components/userviewfeedback/userviewfeedback.component';
+import { UserviewordersComponent } from './components/uservieworders/uservieworders.component';
 
+
+
+const routes: Routes = [
+  
+  {
+    path:"**",
+    component:HomeComponent
+  },
+  {
+    path:"admin/addFood",
+    component:AdminaddfoodComponent
+  },
+  {
+    path:"admin/ordersChart",
+    component:AdminviewordersComponent
+  },
+  {
+    path:"admin/view/feedBack",
+    component:AdminviewfeedbackComponent
+  },
+  {
+    path:"admin/view/food",
+    component:AdminviewfoodComponent
+  },
+  {
+    path:'admin/view/orders',
+    component:AdminviewordersComponent
+  },
+  {
+    path:"error",
+    component:ErrorComponent
+  },
+  {
+    path:"user/add/feedBack",
+    component:UseraddfeedbackComponent
+  },
+  {
+    path:"user/addOrder",
+    component:UsermakeorderComponent
+  },
+  {
+    path:"user/view/feedBack",
+    component:UserviewfeedbackComponent
+  },
+  {
+    path:"user/view/foods",
+    component:UserviewfoodComponent
+  },
+  {
+    path:"user/view/orders",
+    component:UserviewordersComponent
+  },
+  {
+    path:'login',
+    component:LoginComponent
+  },
+  {
+    path:'register',
+    component:RegistrationComponent
+  }
 ];
 
 @NgModule({

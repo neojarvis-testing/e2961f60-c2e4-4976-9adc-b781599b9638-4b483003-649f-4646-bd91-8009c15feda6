@@ -32,10 +32,23 @@ export class AdminaddfoodComponent implements OnInit {
   }
 
   handleFileChange(event:any){
-    let file = event.target.files[0];
-    this.foodForm.patchValue({photo:file});
-  }
 
+
+    let file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64result = reader.result?.toString().split(',')[1];
+        this.foodForm.patchValue({ photo: base64result });
+        console.log('Base64 String:', base64result);
+      };
+
+      reader.readAsDataURL(file); 
+    } else {
+      console.error('No file selected');
+    }
+  }
+  
   addFood(){
     console.log(this.foodForm.value)
     if(this.foodForm.valid){
