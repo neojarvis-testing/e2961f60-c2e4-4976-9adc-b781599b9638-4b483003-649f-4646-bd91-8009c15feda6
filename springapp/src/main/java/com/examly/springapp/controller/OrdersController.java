@@ -32,7 +32,7 @@ public class OrdersController {
     }
 
     @GetMapping("/api/orders/{orderId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     ResponseEntity<?> viewOrderById(@PathVariable int orderId) {
         try {
             Optional<Orders> order = orderService.getOrderById(orderId);
@@ -84,5 +84,7 @@ public class OrdersController {
             return ResponseEntity.status(200).body(true);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(404).body(e.getMessage());
+
+        }
 
 }

@@ -31,15 +31,14 @@ public class FeedbackController {
     }
 
     @GetMapping("/api/feedback/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<?> getFeedbackById(@PathVariable Long id) {
         try {
             Feedback feedback = feedbackService.getFeedbackById(id);
             return ResponseEntity.status(200).body(feedback);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(404).body(e.getMessage());
-        }
-       
+        } 
     }
 
     @GetMapping("/api/feedback")

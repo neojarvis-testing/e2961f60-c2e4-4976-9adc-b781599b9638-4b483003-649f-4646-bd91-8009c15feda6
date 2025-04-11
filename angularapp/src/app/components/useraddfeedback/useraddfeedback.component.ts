@@ -22,16 +22,17 @@ export class UseraddfeedbackComponent implements OnInit {
   orderDetails: orders | null = null;
   foodDetails:Food|null = null;
   currentUser: any = null;
-  orderId:number = 2;
+  orderId:number = 1;///// change
 
 
   constructor( private fb: FormBuilder,
     private feedbackService: FeedbackService,
     private orderService: OrderService,
     private foodService:FoodService,
-    private userStore:UserStoreService) {
+    private userStore:UserStoreService,
+    private activatedRoute:ActivatedRoute) {
     this.userFeedbackForm = fb.group({
-      food: fb.control('', [Validators.required]),
+      food: fb.control(''),
       feedbackText: fb.control('', [Validators.required]),
       rating: fb.control('', [Validators.required, Validators.min(1), Validators.max(5)])
     });
@@ -39,30 +40,55 @@ export class UseraddfeedbackComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.userStore.authUser.userId;
+    console.log(this.currentUser+"current user id")
+    // this.activatedRoute.paramMap.subscribe(data=>{
+    //   this.orderId = parseInt(data.get('id'))
+    // })
     this.getOrderDetails(this.orderId);
    }
 
    getOrderDetails(orderId:number)
    {
-      this.orderService.getOrderById(orderId).subscribe(data=>{
+      this.orderService.getOrderById(orderId).subscribe((data : orders) =>{
       this.orderDetails=data;
-      this.foodService.getFoodById(this.orderDetails.foodId).subscribe(data=>{
-        this.userFeedbackForm.patchValue({ food: this.foodDetails.foodName});
+      console.log(this.orderDetails)
+      this.foodService.getFoodById(this.orderDetails.food.foodId).subscribe((data: Food)=>{
+        this.foodDetails = data;
+        this.userFeedbackForm.patchValue({ food: data.foodName});
+        console.log(this.foodDetails)
       })
      });
    }
 
   createFeedback() {
-    if (this.userFeedbackForm.valid && this.currentUser) {
-      const feedback: Feedback = {
+    if (this.userFeedbackForm.valid) {
+      const feedback :Feedback = {
         feedbackText: this.userFeedbackForm.value.feedbackText,
-        date: new Date(), 
-        foodId: this.foodDetails.foodId, 
+        date: new Date(),
+        userId: this.currentUser,
+        user:{
+          userId: this.currentUser,
+          email: '',
+          password: '',
+          username: '',
+          mobileNumber: '',
+          userRole: ''
+        },
         rating: this.userFeedbackForm.value.rating,
-        userId: 3 
+        foodId: this.foodDetails.foodId,
+        food:{
+          foodId: this.foodDetails.foodId,
+          foodName: '',
+          price: 0,
+          stockQuantity: 0,
+          userId: 0
+        }
       };
+      
+      console.log(feedback);
       this.feedbackService.sendFeedback(feedback).subscribe(
         (data) => {
+          console.log("inside send feedback")
           this.showPopup = true; 
           this.userFeedbackForm.reset(); 
         },
