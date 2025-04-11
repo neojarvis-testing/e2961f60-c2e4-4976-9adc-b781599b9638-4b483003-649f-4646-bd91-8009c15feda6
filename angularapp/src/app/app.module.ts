@@ -28,6 +28,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { LoginComponent } from './components/login/login.component';
+import { AdmineditfoodComponent } from './components/admineditfood/admineditfood.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { LoginComponent } from './components/login/login.component';
     UsernavComponent,
     UserviewfeedbackComponent,
     UserviewfoodComponent,
-    UserviewordersComponent
+    UserviewordersComponent,
+    AdmineditfoodComponent
 
 
   ],
@@ -63,6 +65,7 @@ import { LoginComponent } from './components/login/login.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
+   
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

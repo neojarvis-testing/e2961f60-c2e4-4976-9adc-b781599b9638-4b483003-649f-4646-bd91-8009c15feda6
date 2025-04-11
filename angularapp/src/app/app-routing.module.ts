@@ -17,15 +17,12 @@ import { UseraddfeedbackComponent } from './components/useraddfeedback/useraddfe
 import { UsermakeorderComponent } from './components/usermakeorder/usermakeorder.component';
 import { UserviewfeedbackComponent } from './components/userviewfeedback/userviewfeedback.component';
 import { UserviewordersComponent } from './components/uservieworders/uservieworders.component';
+import { AdmineditfoodComponent } from './components/admineditfood/admineditfood.component';
 
 
 
 const routes: Routes = [
   
-  {
-    path:"**",
-    component:HomeComponent
-  },
   {
     path:"admin/addFood",
     component:AdminaddfoodComponent
@@ -46,6 +43,11 @@ const routes: Routes = [
     path:'admin/view/orders',
     component:AdminviewordersComponent
   },
+  {
+    path:'admin/edit/food',
+    component:AdmineditfoodComponent
+  },
+
   {
     path:"error",
     component:ErrorComponent
@@ -77,6 +79,10 @@ const routes: Routes = [
   {
     path:'register',
     component:RegistrationComponent
+  },
+  {
+    path:"**",
+    component:HomeComponent
   }
 ];
 

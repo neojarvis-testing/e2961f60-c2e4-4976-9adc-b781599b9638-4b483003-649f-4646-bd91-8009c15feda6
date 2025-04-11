@@ -1,4 +1,5 @@
-<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+<div class="container">
+  <form  [formGroup]="editForm" (ngSubmit)="onSubmit()" >
     <h2>Edit Food Item</h2>
     <div>
       <label for="name">Food Name:</label>
@@ -18,7 +19,7 @@
   
     <div>
       <label for="stockQuantity">Stock Quantity:</label>
-      <textarea id="stockQuantity" formControlName="stockQuantity"></textarea>
+      <input id="stockQuantity" formControlName="stockQuantity">
       <div
         *ngIf="editForm.get('stockQuantity')?.invalid && editForm.get('stockQuantity')?.touched">
       Stock Quantity is required.
@@ -28,6 +29,8 @@
     <button type="submit" [disabled]="editForm.invalid">Save</button>
     <button type="button" (click)="onBack()">Cancel</button>
   </form> 
+</div>
+
   
 
 
