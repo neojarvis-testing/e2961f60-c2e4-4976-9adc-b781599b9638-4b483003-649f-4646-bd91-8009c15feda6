@@ -6,26 +6,54 @@
       <div class="input-group">
         <label for="email" class="input-label">Email:</label>
         <input type="email" class="input-field" id="email" formControlName="email">
+        
+
+        <div *ngIf="registrationForm.get('email').touched && registrationForm.get('email').invalid" class="error-message">
+        <span *ngIf="registrationForm.get('email').errors?.required">Email is required.</span>
+        <span *ngIf="registrationForm.get('email').errors?.email">Please enter a valid email address.</span>
+        </div>
+          
+
       </div>
 
       <div class="input-group">
         <label for="password" class="input-label">Password:</label>
         <input type="password" class="input-field" id="password" formControlName="password">
+
+        
+        <div *ngIf="registrationForm.get('password').touched && registrationForm.get('password').invalid" class="error-message">
+          <span *ngIf="registrationForm.get('password').errors?.required">Password is required.</span>
+          <span *ngIf="registrationForm.get('password').errors?.minlength">Password must be at least 8 characters long.</span>
+        </div>
+
       </div>
 
       <div class="input-group">
         <label for="username" class="input-label">Username:</label>
-        <input type="text" class="input-field" id="username" formControlName="username">    
+        <input type="text" class="input-field" id="username" formControlName="username">
+              
+      <div *ngIf="registrationForm.get('username').touched && registrationForm.get('username').invalid" class="error-message">
+      <span *ngIf="registrationForm.get('username').errors?.required">Username is required.</span>
+      </div>
+  
+
       </div>
 
       <div class="input-group">
         <label for="mobileNumber" class="input-label">Mobile Number:</label>
         <input type="text" class="input-field" id="mobileNumber" formControlName="mobileNumber">
+
+        <div *ngIf="registrationForm.get('mobileNumber').touched && registrationForm.get('mobileNumber').invalid" class="error-message">
+         <span *ngIf="registrationForm.get('mobileNumber').errors?.required">Mobile number is required.</span>
+         <span *ngIf="registrationForm.get('mobileNumber').errors?.pattern">Please enter a Minimum 10 </span>
+        </div>
+        
       </div>
 
       <div class="input-group">
         <label for="userRole" class="input-label">User Role:</label>
         <select class="input-field" formControlName="userRole" id="userRole">
+          <option value="" disabled selected>Select a role</option>
           <option value="USER">USER</option>
           <option value="ADMIN">ADMIN</option>
         </select>

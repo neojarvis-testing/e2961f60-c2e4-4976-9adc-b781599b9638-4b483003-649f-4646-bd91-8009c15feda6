@@ -86,13 +86,13 @@ public class FoodController {
 
     @DeleteMapping("/api/food/{foodId}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> deleteFood (@PathVariable int id){
+    public ResponseEntity<?> deleteFood (@PathVariable int foodId){
         try{
-            boolean isDeleted=foodService.deleteFood(id);
+            boolean isDeleted=foodService.deleteFood(foodId);
             if(isDeleted) {
-                return ResponseEntity.status(200).body("Food with ID " + id + " deleted successfully.");
+                return ResponseEntity.status(200).body(true);
             }else {
-                return ResponseEntity.status(500).body("Failed to delete food with ID " + id);
+                return ResponseEntity.status(500).body("Failed to delete food with ID " + foodId);
             }
         }
         catch(FoodNotFoundException e){

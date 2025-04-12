@@ -13,6 +13,7 @@
                 <th>Food Name</th>
                 <th>Price</th>
                 <th>Stock</th> 
+                <th>Action</th> 
             </tr>
         </thead>
         <tbody>
@@ -21,7 +22,7 @@
                 <td>{{ food.price }}</td>
                 <td>{{ food.stockQuantity }}</td>
                 <td>
-                    <button [routerLink]="['/admin/edit/food']">Edit</button>
+                    <button [routerLink]="['/admin/edit/food',food.foodId]">Edit</button>
                     <button (click)="confirmDelete(food.foodId)">Delete</button>
                 </td>
             </tr>

@@ -1,4 +1,7 @@
 /* General Reset */
+.error-message{
+  color:red;
+}
 body {
     margin: 0;
     padding: 0;
@@ -106,5 +109,6 @@ body {
       font-size: 14px;
       padding: 10px;
     }
+    
   }
   

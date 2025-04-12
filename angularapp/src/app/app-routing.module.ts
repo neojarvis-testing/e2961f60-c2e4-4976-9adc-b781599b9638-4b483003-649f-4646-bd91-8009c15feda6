@@ -45,7 +45,7 @@ const routes: Routes = [
     component:AdminviewordersComponent
   },
   {
-    path:'admin/edit/food',
+    path:'admin/edit/food/:id',
     component:AdmineditfoodComponent
   },
 
@@ -54,11 +54,11 @@ const routes: Routes = [
     component:ErrorComponent
   },
   {
-    path:"user/add/feedBack",
+    path:"user/add/feedback/:id",
     component:UseraddfeedbackComponent
   },
   {
-    path:"user/addOrder",
+    path:"user/makeOrder/:id",
     component:UsermakeorderComponent
   },
   {

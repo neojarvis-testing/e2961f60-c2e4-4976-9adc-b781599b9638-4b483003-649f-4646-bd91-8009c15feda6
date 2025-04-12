@@ -32,7 +32,7 @@ public class OrdersController {
     }
 
     @GetMapping("/api/orders/{orderId}")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     ResponseEntity<?> viewOrderById(@PathVariable int orderId) {
         try {
             Optional<Orders> order = orderService.getOrderById(orderId);
@@ -87,5 +87,6 @@ public class OrdersController {
 
         }
     }
+
 
 }
