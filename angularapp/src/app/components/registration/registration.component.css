@@ -1,114 +1,115 @@
 /* General Reset */
-.error-message{
-  color:red;
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  font-family: 'Arial', sans-serif;
 }
-body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9; /* Subtle background */
-    color: #333; /* Default text color */
-  }
-  
-  /* Registration Container */
-  .registration-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-  
-  /* Registration Card */
+
+/* Error Message */
+.error-message {
+  color: red;
+}
+
+/* Registration Container */
+.registration-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('/assets/login2.jpg') no-repeat center center;
+  background-size: cover; /* Ensures image covers entire page */
+}
+
+/* Registration Card */
+.registration-card {
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5); /* Adds depth to the form */
+  padding: 30px;
+  max-width: 500px;
+  width: 100%;
+}
+
+/* Registration Title */
+.registration-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffcc00; /* Bright yellow */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Form Groups */
+.input-group {
+  margin-bottom: 20px;
+}
+
+/* Labels */
+.input-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #d0b23b; /* Bright yellow */
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Input Fields */
+.input-field {
+  width: 94%;
+  padding: 12px;
+  border: 5px solid #ffcc00; /* Bright yellow border */
+  border-radius: 5px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+  border-color: #ff9900; /* Orange focus effect */
+  outline: none;
+}
+
+/* Dropdown Field */
+select.input-field {
+  background-color: #ffffff;
+}
+
+/* Submit Button */
+.submit-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000000; /* Black text */
+  background-color: #ffcc00; /* Bright yellow */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #ff9900; /* Slightly darker orange */
+}
+
+.submit-button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .registration-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    max-width: 500px;
-    width: 100%;
+    padding: 20px;
   }
-  
-  /* Registration Title */
+
   .registration-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: #0056b3; /* Vibrant blue */
-    text-align: center;
-    margin-bottom: 20px;
+    font-size: 20px;
   }
-  
-  /* Form Groups */
-  .input-group {
-    margin-bottom: 20px;
-  }
-  
-  /* Labels */
-  .input-label {
-    font-size: 14px;
-    font-weight: bold;
-    color: #555; /* Neutral gray */
-    margin-bottom: 8px;
-    display: block;
-  }
-  
-  /* Input Fields */
-  .input-field {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: border-color 0.3s ease;
-  }
-  
-  .input-field:focus {
-    border-color: #0056b3; /* Focus effect */
-    outline: none;
-  }
-  
-  /* Dropdown Field */
-  select.input-field {
-    background-color: #ffffff;
-  }
-  
-  /* Submit Button */
+
   .submit-button {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #28a745; /* Green for register button */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 14px;
+    padding: 10px;
   }
-  
-  .submit-button:hover {
-    background-color: #218838; /* Slightly darker green */
-  }
-  
-  .submit-button:disabled {
-    background-color: #ddd;
-    cursor: not-allowed;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .registration-card {
-      padding: 20px;
-    }
-  
-    .registration-title {
-      font-size: 20px;
-    }
-  
-    .submit-button {
-      font-size: 14px;
-      padding: 10px;
-    }
-    
-  }
-  
+}
