@@ -1,1 +1,35 @@
-<p>home works!</p>
+<div class="container" style="background-image: url('/assets/img/italianpizza.jpg');">
+  <h1>Welcome to Food Mart App</h1>
+  <p class="p-main">Delicious meals on the go—order your favorites today!</p>
+  <button class="button" routerLink="/login">Order Now</button>
+</div>
+
+<div>
+  <div class="heading-container " >
+    <h2>Explore Variety of Foods</h2>
+  </div>
+  <div class="card-grid">
+    <div class="card">
+      <img src="/assets/img/biryani.jpg" alt="Feedback" class="card-image">
+      <h3>Biryani</h3>
+      <p>Indulge in the irresistible allure of biryani, a masterpiece of flavor and aroma. Each plate combines fragrant basmati rice, tender marinated meat or fresh vegetables, and a symphony of spices cooked to perfection.</p>
+      <button class="button" *ngIf="!isLoggedIn"  routerLink="/login">Login</button>
+      <button class="button" *ngIf="isLoggedIn"  routerLink="/user/view/foods" >Go</button>
+    </div>
+    <div class="card">
+      <img src="/assets/img/north.jpg" alt="Make Order" class="card-image">
+      <h3>North Indian</h3>
+      <p>Experience the vibrant flavors of North India with our exquisite variety of dishes.Our menu brings you the essence of North India's culinary heritage, prepared with love and authenticity.</p>
+      <button class="button" *ngIf="!isLoggedIn"  routerLink="/login">Login</button>
+      <button class="button" *ngIf="isLoggedIn"  routerLink="/user/view/foods" >Go</button>
+    </div>
+    <div class="card">
+      <img src="/assets/img/south.jpg" alt="View Order" class="card-image">
+      <h3>South Indian</h3>
+      <p>Delight in the vibrant and authentic flavors of South India with our delicious variety of dishes. From fluffy idlis and crispy dosas to tangy sambar and coconut-infused curries, each bite is a journey into the heart of tradition.</p>
+      <button class="button" *ngIf="!isLoggedIn"  routerLink="/login">Login</button>
+      <button class="button" *ngIf="isLoggedIn"  routerLink="/user/view/foods" >Go</button>
+    </div>
+
+  </div>
+</div>
