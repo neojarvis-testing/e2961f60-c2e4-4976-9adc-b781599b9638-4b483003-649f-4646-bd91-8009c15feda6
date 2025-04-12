@@ -32,7 +32,7 @@ export class UsermakeorderComponent implements OnInit {
     this.userId = this.userStoreService.authUser?.userId;
     // this.foodId = parseInt(this.activatedRoute.snapshot.paramMap.get("id"));
 
-    this.foodId = 3;
+    this.foodId = 1;
     
     this.loadFoodDetails();
 
