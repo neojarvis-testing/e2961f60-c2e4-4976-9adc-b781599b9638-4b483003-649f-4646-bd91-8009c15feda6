@@ -114,10 +114,7 @@ export class UsermakeorderComponent implements OnInit {
 
   }
   cancelOrder() {
-    this.router.navigate(['/userviewfood']);
+    this.router.navigate(['/user/view/foods']);
   }
-
-
-
 
 }

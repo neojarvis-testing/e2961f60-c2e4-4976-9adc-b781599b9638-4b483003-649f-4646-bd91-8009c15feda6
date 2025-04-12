@@ -22,7 +22,7 @@ export class UseraddfeedbackComponent implements OnInit {
   orderDetails: orders | null = null;
   foodDetails:Food|null = null;
   currentUser: any = null;
-  orderId:number = 1;///// change
+  orderId:number = 0
 
 
   constructor( private fb: FormBuilder,
@@ -41,18 +41,19 @@ export class UseraddfeedbackComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("first")
     this.currentUser = this.userStore.authUser.userId;
     console.log(this.currentUser+"current user id")
-    // this.activatedRoute.paramMap.subscribe(data=>{
-    //   this.orderId = parseInt(data.get('id'))
-    // })
+    this.activatedRoute.paramMap.subscribe(data=>{
+      this.orderId = parseInt(data.get('id'))
+    })
     this.getOrderDetails(this.orderId);
    }
 
    getOrderDetails(orderId:number)
    {
       this.orderService.getOrderById(orderId).subscribe((data : orders) =>{
-      this.orderDetails=data;
+          this.orderDetails=data;
       console.log(this.orderDetails)
       this.foodService.getFoodById(this.orderDetails.food.foodId).subscribe((data: Food)=>{
         this.foodDetails = data;

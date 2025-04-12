@@ -53,9 +53,9 @@ import { AdmineditfoodComponent } from './components/admineditfood/admineditfood
     UsermakeorderComponent,
     UsernavComponent,
     UserviewfeedbackComponent,
-    UserviewfoodComponent,
     UserviewordersComponent,
-    AdmineditfoodComponent
+    AdmineditfoodComponent,
+    UserviewfoodComponent
 
 
   ],
