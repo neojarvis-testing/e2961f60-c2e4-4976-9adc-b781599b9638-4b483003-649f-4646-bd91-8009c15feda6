@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserStoreService } from 'src/app/helpers/user-store.service';
 import { Feedback } from 'src/app/models/feedback.model';
 import { Food } from 'src/app/models/food.model';
@@ -30,7 +30,9 @@ export class UseraddfeedbackComponent implements OnInit {
     private orderService: OrderService,
     private foodService:FoodService,
     private userStore:UserStoreService,
-    private activatedRoute:ActivatedRoute) {
+    private activatedRoute:ActivatedRoute,
+    private router:Router) 
+    {
     this.userFeedbackForm = fb.group({
       food: fb.control(''),
       feedbackText: fb.control('', [Validators.required]),
@@ -101,5 +103,6 @@ export class UseraddfeedbackComponent implements OnInit {
 
   closePopup(): void {
     this.showPopup = false;
+    this.router.navigate(['user/view/feedBack']);
   }
 }
