@@ -1,19 +1,18 @@
 <div class="container">
-    <h1>Food Details</h1>
+    <h1 class="header">Food Details</h1>
     <div class="filters">
-        <input type="text" placeholder="Search food by name" [(ngModel)]="searchName" (input)="filterFoods()" />
-        <input type="number" placeholder="Min Price" [(ngModel)]="minPrice" (input)="filterFoods()" />
-        <input type="number" placeholder="Max Price" [(ngModel)]="maxPrice" (input)="filterFoods()" />
-
-        <button (click)="resetFilters()">Reset</button>
+        <input class="input" type="text" placeholder="Search food by name" [(ngModel)]="searchName" (input)="filterFoods()" />
+        <input class="input" type="number" placeholder="Min Price" [(ngModel)]="minPrice" (input)="filterFoods()" />
+        <input class="input" type="number" placeholder="Max Price" [(ngModel)]="maxPrice" (input)="filterFoods()" />
+        <button class="btn-reset" (click)="resetFilters()">Reset</button>
     </div>
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Food Name</th>
                 <th>Price</th>
-                <th>Stock</th> 
-                <th>Action</th> 
+                <th>Stock</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -22,8 +21,8 @@
                 <td>{{ food.price }}</td>
                 <td>{{ food.stockQuantity }}</td>
                 <td>
-                    <button [routerLink]="['/admin/edit/food',food.foodId]">Edit</button>
-                    <button (click)="confirmDelete(food.foodId)">Delete</button>
+                    <button class="btn-action" [routerLink]="['/admin/edit/food',food.foodId]">Edit</button>
+                    <button class="btn-action btn-delete" (click)="confirmDelete(food.foodId)">Delete</button>
                 </td>
             </tr>
         </tbody>
