@@ -26,7 +26,7 @@ public class Food {
     private String foodName;
     private Double price;
     private int stockQuantity;
-    private byte[] photo;
+    private String photo;
 
     @ManyToOne
     @JoinColumn(name = "userId", nullable=false)

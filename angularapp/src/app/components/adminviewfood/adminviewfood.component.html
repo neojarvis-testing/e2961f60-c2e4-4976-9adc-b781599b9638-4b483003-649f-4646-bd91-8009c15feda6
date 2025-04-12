@@ -22,7 +22,7 @@
                 <td>{{ food.price }}</td>
                 <td>{{ food.stockQuantity }}</td>
                 <td>
-                    <button [routerLink]="['/admin/edit/food']">Edit</button>
+                    <button [routerLink]="['/admin/edit/food',food.foodId]">Edit</button>
                     <button (click)="confirmDelete(food.foodId)">Delete</button>
                 </td>
             </tr>
