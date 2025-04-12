@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { orders } from '../models/orders.model';
 import { Observable } from 'rxjs';
+import { url } from '../Global/global';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
 
-  apiUrl:string = "https://ide-fbcaaeabbdebdefbbddcfebfcdbbfbdcfeda.premiumproject.examly.io/proxy/8080/api/orders"
+  public apiUrl = url.apiUrl+"/api/orders"
 
   constructor(private httpClient:HttpClient) { }
 
@@ -25,7 +26,7 @@ export class OrderService {
   }
 
   getAllOrdersByUserId(userId:number):Observable<any>{
-    return this.httpClient.get(this.apiUrl+'/'+userId);
+    return this.httpClient.get(this.apiUrl+'/user/'+userId);
   }
 
   updateOrder(orderId:number,order:orders):Observable<any>{

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserStoreService } from 'src/app/helpers/user-store.service';
 import { orders } from 'src/app/models/orders.model';
+import { FoodService } from 'src/app/services/food.service';
 import { OrderService } from 'src/app/services/order.service';
 
 @Component({
@@ -14,17 +15,19 @@ export class UserviewordersComponent implements OnInit {
   userId : number;
   errorMessage : string = '';
 
-  constructor(private orderService: OrderService , private userStoreService:UserStoreService) { }
+  constructor(private orderService: OrderService , private userStoreService:UserStoreService,private foodService:FoodService) { }
 
   ngOnInit(): void {
     this.userId = this.userStoreService.authUser?.userId;
     console.log("UID: " + this.userId);
+    this.loadOrdersByUser();
     
   }
 
   loadOrdersByUser(){
     this.orderService.getAllOrdersByUserId(this.userId).subscribe( {
       next:(data)=>{
+        console.log(data)
         this.orders=data;
       },
       error : (error)=>{

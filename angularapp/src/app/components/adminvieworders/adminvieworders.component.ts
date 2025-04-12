@@ -17,6 +17,7 @@ export class AdminviewordersComponent implements OnInit {
   constructor(private orderService: OrderService) { }
 
   ngOnInit(): void {
+    
     this.getAllOrders();
   }
 
@@ -29,11 +30,15 @@ export class AdminviewordersComponent implements OnInit {
   updatedStatus(orderId: number, newStatus: string) {
     // Find the order by id
     const order = this.orders.find(order => order.orderId === orderId);
-    
+    console.log(order);
     // Check if the order exists
     if (order) {
       order.orderStatus = newStatus;
-      console.log(`Order ${orderId} status updated to ${newStatus}`);
+      this.orderService.updateOrder(orderId,order).subscribe(data=>{
+        console.log(data);
+        console.log("hiiiii")
+      })
+      console.log(`Order ${orderId} status updated to ${newStatus}`); 
     } else {
       console.error(`Order with id ${orderId} not found.`);
     }

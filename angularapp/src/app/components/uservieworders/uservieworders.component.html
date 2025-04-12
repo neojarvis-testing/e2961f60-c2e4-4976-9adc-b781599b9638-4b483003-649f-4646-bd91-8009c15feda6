@@ -15,7 +15,7 @@
           <div class="card-body">
             <h3 class="card-title">Order ID: {{ order.orderId || 'N/A' }}</h3>
             <p class="card-text"><strong>User ID:</strong> {{ order.user.userId || 'N/A' }}</p>
-            <p class="card-text"><strong>Food Name:</strong> {{ order.food.name || 'N/A' }}</p>
+            <p class="card-text"><strong>Food Name:</strong> {{ order.food.foodName || 'N/A' }}</p>
             <p class="card-text"><strong>Quantity:</strong> {{ order.quantity || 'N/A' }}</p>
             <p class="card-text"><strong>Total Cost:</strong> ₹{{ order.totalAmount ? (order.totalAmount | number:'1.2-2') : 'N/A' }}</p>
             <p class="card-text"><strong>Order Status:</strong> {{ order.orderStatus || 'N/A' }}</p>

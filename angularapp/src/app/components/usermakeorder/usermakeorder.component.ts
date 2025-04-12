@@ -30,32 +30,21 @@ export class UsermakeorderComponent implements OnInit {
   ngOnInit(): void {
 
     this.userId = this.userStoreService.authUser?.userId;
-    this.foodId = parseInt(this.activatedRoute.snapshot.paramMap.get("id"));
+    // this.foodId = parseInt(this.activatedRoute.snapshot.paramMap.get("id"));
 
-    if (this.foodId) {
-      this.loadFoodDetails();
-    }
+    this.foodId = 3;
+    
+    this.loadFoodDetails();
 
-    this.userId = this.userStoreService.authUser?.userId ?? 1; // Default user ID for testing
-    this.foodId = 101; // Hardcoded food ID for testing
-
-    // Manually populate food details for testing
-    this.food = {
-      foodId: this.foodId,
-      foodName: "Test Pizza",
-      price: 250,
-      stockQuantity: 10,
-      photo: "dummy-image-url.jpg",
-      userId: 5
-    };
-
-    this.calaculateTotalCost();
 
   }
 
   loadFoodDetails() {
+    console.log("load food details")
     this.foodService.getFoodById(this.foodId).subscribe((data) => {
+      console.log(data);
       this.food = data;
+      this.totalAmount=this.food.price
     },
       (error) => {
         this.errorMessage = "Error Loading Food details";
@@ -95,12 +84,27 @@ export class UsermakeorderComponent implements OnInit {
       quantity: this.quantity,
       userId: this.userId,
       foodId: this.foodId,
-      orderDate: new Date().toISOString()
+      orderDate: new Date().toISOString(),
+      user: {
+        userId: this.userId,
+        email: '',
+        password: '',
+        username: '',
+        mobileNumber: '',
+        userRole: ''
+      },
+      food: {
+        foodId: this.foodId,
+        foodName: '',
+        price: 0,
+        stockQuantity: 0,
+        userId: 0
+      }
     };
 
     this.orderService.placeOrder(order).subscribe(data => {
       alert("Order Placed Successfully !");
-      this.router.navigate(['/uservieworders']);
+      this.router.navigate(['/user/view/orders']);
     },
       (error) => {
         this.errorMessage = 'Failed to placed order!!!';

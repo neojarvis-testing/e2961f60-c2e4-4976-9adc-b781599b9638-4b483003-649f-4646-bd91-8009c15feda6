@@ -5,13 +5,14 @@ import { Observable } from 'rxjs';
 import { Login } from '../models/login.model';
 import { tap } from 'rxjs/operators';
 import { UserStoreService } from '../helpers/user-store.service';
+import { url } from '../Global/global';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  public apiUrl = 'https://ide-ccccfbfebdefbbddcfebfcdbbfbdcfeda.premiumproject.examly.io/proxy/8080/api'
+  public apiUrl = url.apiUrl+"/api"
   constructor(private httpClient: HttpClient, private userStore: UserStoreService) {
   }
 
@@ -48,3 +49,4 @@ export class AuthService {
   }
 
 }
+

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Feedback } from '../models/feedback.model';
 import { Observable } from 'rxjs';
+import { url } from '../Global/global';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class FeedbackService {
 
   constructor(private httpClient:HttpClient) { }
 
-  public apiUrl:string = "https://ide-affbecdbcccfcdfbdefbbddcfebfcdbbfbdcfeda.premiumproject.examly.io/proxy/8080/api/feedback";
+  public apiUrl = url.apiUrl+"/api/feedback"
 
 
   sendFeedback(feedback:Feedback):Observable<any>

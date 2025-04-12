@@ -18,20 +18,20 @@
   <tbody>
     <tr *ngFor="let order of orders; let i = index">
       <td>{{ i + 1 }}</td>
-      <td>{{ order.foodName }}</td>
+      <td>{{ order.food.foodName }}</td>
       <td>{{ order.quantity }}</td>
-      <td>{{ order.totalPrice | currency }}</td>
+      <td>{{ order.totalAmount | currency }}</td>
       <td>
         <button class="profile-btn" (click)="selectUser(order.user)">Show Profile</button>
       </td>
-      <td>{{ order.status }}</td>
+      <td>{{ order.orderStatus }}</td>
       <td>
-        <button class="status-btn" (click)="updatedStatus(order.id, 'Making Food')">Making Food</button>
-        <button class="status-btn" (click)="updatedStatus(order.id, 'On the way')">On the way</button>
-        <button class="status-btn" (click)="updatedStatus(order.id, 'Delivered')">Delivered</button>
+        <button class="status-btn" (click)="updatedStatus(order.orderId, 'Making Food')">Making Food</button>
+        <button class="status-btn" (click)="updatedStatus(order.orderId, 'On the way')">On the way</button>
+        <button class="status-btn" (click)="updatedStatus(order.orderId, 'Delivered')">Delivered</button>
       </td>
       <td>
-        <button class="delete-btn" (click)="deleteOrder(order.id)">Delete</button>
+        <button class="delete-btn" (click)="deleteOrder(order.orderId)">Delete</button>
       </td>
     </tr>
   </tbody>
