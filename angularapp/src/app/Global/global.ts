@@ -1,3 +1,3 @@
 export class url{
-    public static apiUrl:string = "https://ide-affbecdbcccfcdfbdefbbddcfebfcdbbfbdcfeda.premiumproject.examly.io/proxy/8080"
+    public static apiUrl:string = "https://ide-fbcaaeabbdebdefbbddcfebfcdbbfbdcfeda.premiumproject.examly.io/proxy/8080"
 }
