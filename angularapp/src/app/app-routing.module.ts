@@ -53,11 +53,11 @@ const routes: Routes = [
     component:ErrorComponent
   },
   {
-    path:"user/add/feedBack",
+    path:"user/add/feedback/:id",
     component:UseraddfeedbackComponent
   },
   {
-    path:"user/addOrder",
+    path:"user/makeOrder/:id",
     component:UsermakeorderComponent
   },
   {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Food } from 'src/app/models/food.model';
 import { FoodService } from 'src/app/services/food.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { FoodService } from 'src/app/services/food.service';
 })
 
 export class UserviewfoodComponent implements OnInit {
-  foods: any[] = [];
+  foods: Food[] = [];
   searchData: string = '';
   minPrice: number = 0;
   maxPrice: number = Infinity;
@@ -22,27 +23,29 @@ export class UserviewfoodComponent implements OnInit {
   
   public loadFoods() {
     this.foodService.getAllFoods().subscribe((data) => {
+      console.log(data)
         this.foods = data; 
-      },
-      (error) => {
-        console.error('Error fetching food data:', error); 
-      }
+        console.log(this.foods)
+    },
+    (error) => {
+      console.error('Error fetching food data:', error); 
+    }
     );
   }
 
-  public resetFilters() {
-    this.searchData = '';
-    this.minPrice = 0;
-    this.maxPrice = Infinity;
-  }
+  // public resetFilters() {
+  //   this.searchData = '';
+  //   this.minPrice = 0;
+  //   this.maxPrice = Infinity;
+  // }
 
-  public  filteredFoods() {
-    return this.foods.filter(food =>
-      food.name.toLowerCase().includes(this.searchData.toLowerCase()) &&
-      food.price >= this.minPrice &&
-      food.price <= this.maxPrice
-    );
-  }
+  // public filteredFoods() {
+  //   return this.foods.filter(food =>
+  //     food.foodName.toLowerCase().includes(this.searchData.toLowerCase()) &&
+  //     food.price >= this.minPrice &&
+  //     food.price <= this.maxPrice
+  //   );
+  // }
 }
 
 
