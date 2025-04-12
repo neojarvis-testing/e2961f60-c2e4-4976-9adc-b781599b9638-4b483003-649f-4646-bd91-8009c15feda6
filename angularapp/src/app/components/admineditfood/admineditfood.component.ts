@@ -17,7 +17,7 @@ export class AdmineditfoodComponent implements OnInit {
 
   constructor(private foodService : FoodService, private fb: FormBuilder, private router:Router) { 
     this.editForm = this.fb.group({
-      name : this.fb.control("",Validators.required),
+      foodName : this.fb.control("",Validators.required),
       price: this.fb.control("",[Validators.required, Validators.pattern('^[0-9]*$')]),
       stockQuantity: this.fb.control("",[Validators.required, Validators.pattern('^[0-9]*$')])
     });
@@ -25,6 +25,7 @@ export class AdmineditfoodComponent implements OnInit {
 
   ngOnInit(): void {
       this.foodService.getFoodById(this.foodId).subscribe((data: any) => {
+        console.log(data);
         this.editForm.patchValue(data);
       });
     }
@@ -34,7 +35,9 @@ export class AdmineditfoodComponent implements OnInit {
      
       console.log('Form Submitted', this.editForm.value);
       this.foodService.updateFood(this.foodId,this.editForm.value).subscribe(data=>{
+        console.log("after update")
         this.successMessage = "Successfully updated!"
+        this.router.navigate(['/admin/view/food']);
       })
     } else {
       console.log('Form Invalid');

@@ -5,17 +5,21 @@
                 <nav>
                     <ul>
                         <li>Welcome</li>
-                        
+
                         <li>{{userName}}/{{userRole}}</li>
                         <li><a [routerLink]="['']">Home</a></li>
                         <li class="dropdown">
-                            <a [routerLink]="['user/view/foods']">Food</a> 
+                            <a [routerLink]="['user/view/foods']">Food</a>
                         </li>
+                        <li><a [routerLink]="['user/addOrder']">Make Order</a></li>
+
                         <li><a [routerLink]="['user/view/orders']"> MyOrder</a></li>
                         <li><a [routerLink]="['user/view/feedBack']">Feedbacks</a></li>
+
                         <li><a class="logout" (click)="logout()" type="button">Logout</a></li>
+
                     </ul>
-                </nav>  
+                </nav>
             </div>
         </div>
     </header>
