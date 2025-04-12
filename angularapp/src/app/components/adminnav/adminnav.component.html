@@ -1,1 +1,31 @@
-<p>adminnav works!</p>
+<nav class="navbar">
+    <div class="navbar-list">
+      <div class="navbar-welcome">
+        Welcome {{userName}}/{{userRole}}
+      </div>
+      <div class="navbar-dropdown">
+        <a class="dropdown-toggle" href="#">Food</a>
+        <div class="dropdown-list">
+          <div class="dropdown-item">
+            <a class="dropdown-link" [routerLink]="['admin/addFood']">Add Food</a>
+          </div>
+          <div class="dropdown-item">
+            <a class="dropdown-link" [routerLink]="['admin/view/food']">View Food</a>
+          </div>
+        </div>
+      </div>
+      <div class="navbar-item">
+        <a class="navbar-link" [routerLink]="['admin/view/orders']">Orders Details</a>
+      </div>
+      <div class="navbar-item">
+        <a class="navbar-link" [routerLink]="['admin/view/feedBack']">Feedbacks</a>
+      </div>
+      <div class="navbar-item">
+        <a class="navbar-link">Orders Chart</a>
+      </div>
+      <div class="navbar-item">
+        <a class="logout-button" (click)="logout()" type="button">Logout</a>
+      </div>
+    </div>
+  </nav>
+  
