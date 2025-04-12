@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserStoreService } from 'src/app/helpers/user-store.service';
 
 import { FoodService } from 'src/app/services/food.service';
@@ -14,7 +15,7 @@ export class AdminaddfoodComponent implements OnInit {
   foodForm: FormGroup;
   successMessage : string = '';
 
-  constructor(private foodService: FoodService, private fb: FormBuilder,private userStore : UserStoreService) {
+  constructor(private foodService: FoodService, private fb: FormBuilder,private userStore : UserStoreService,private router:Router) {
 
     
   }
@@ -49,9 +50,14 @@ export class AdminaddfoodComponent implements OnInit {
     this.foodForm.patchValue({photo:"this is my food photo"})
     if(this.foodForm.valid){
       console.log(this.foodForm.value)
+      setTimeout(() => {
+        this.router.navigate(['/admin/view/food'])
+      }, 2222);
+      
 
       this.foodService.addFood(this.foodForm.value).subscribe(data=>{
         this.successMessage = "Successfully Added!"
+
       })
     }else{
       alert("Failed to add food");

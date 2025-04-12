@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000000;
+    color: #FFD700;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    margin: auto;
+    margin-top: 4rem;
+}
+
+.card {
+    padding: 20px;
+    border: 2px solid #FFD700;
+    border-radius: 10px;
+}
+
+.header {
+    text-align: center;
+    color: #FFD700;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+form{
+    padding: 1rem 3rem;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.label {
+    display: block;
+    margin-bottom: 5px;
+    color: #FFD700;
+    font-weight: bold;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #FFD700;
+    border-radius: 5px;
+    background-color: #444444;
+    color: #FFD700;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #FFDD44;
+}
+
+.error-message {
+    color: #FF5555;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #FFD700;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #FFDD44;
+}
+
+.success-message {
+    text-align: center;
+    margin-top: 20px;
+    color: #00FF00;
+}
+
+.btn-ok {
+    padding: 5px 15px;
+    background-color: #FFD700;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-ok:hover {
+    background-color: #FFDD44;
+}
