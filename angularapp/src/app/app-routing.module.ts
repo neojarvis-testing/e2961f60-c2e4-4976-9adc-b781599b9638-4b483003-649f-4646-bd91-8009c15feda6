@@ -18,6 +18,7 @@ import { UsermakeorderComponent } from './components/usermakeorder/usermakeorder
 import { UserviewfeedbackComponent } from './components/userviewfeedback/userviewfeedback.component';
 import { UserviewordersComponent } from './components/uservieworders/uservieworders.component';
 import { AdmineditfoodComponent } from './components/admineditfood/admineditfood.component';
+import { AdminorderschartComponent } from './components/adminorderschart/adminorderschart.component';
 
 
 
@@ -29,7 +30,7 @@ const routes: Routes = [
   },
   {
     path:"admin/ordersChart",
-    component:AdminviewordersComponent
+    component:AdminorderschartComponent
   },
   {
     path:"admin/view/feedBack",
