@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,  FormGroup,  Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Food } from 'src/app/models/food.model';
 import { FoodService } from 'src/app/services/food.service';
 
@@ -12,24 +12,32 @@ import { FoodService } from 'src/app/services/food.service';
 export class AdmineditfoodComponent implements OnInit {
   editForm : FormGroup;
   successMessage : string = '';
-  foodId : number = 3;
-  food : Food = {foodName:"",price:0,stockQuantity:0,userId:1}
+  foodId : number = 0;
+  food : Food = {
+    foodName: "", price: 0, stockQuantity: 0, userId: 1,
+    user: undefined
+  }
 
-  constructor(private foodService : FoodService, private fb: FormBuilder, private router:Router) { 
+  constructor(private foodService : FoodService, private fb: FormBuilder, private router:Router,private activatedRouter : ActivatedRoute) { 
     this.editForm = this.fb.group({
       foodName : this.fb.control("",Validators.required),
       price: this.fb.control("",[Validators.required, Validators.pattern('^[0-9]*$')]),
       stockQuantity: this.fb.control("",[Validators.required, Validators.pattern('^[0-9]*$')])
     });
+    
   }
 
   ngOnInit(): void {
+
+      this.activatedRouter.paramMap.subscribe(data=>{
+        this.foodId = parseInt(data.get("id"));
+      })
+    
       this.foodService.getFoodById(this.foodId).subscribe((data: any) => {
         console.log(data);
         this.editForm.patchValue(data);
       });
     }
-
   onSubmit(): void {
     if (this.editForm.valid) {
      

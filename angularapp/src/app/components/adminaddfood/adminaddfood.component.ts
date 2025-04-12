@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserStoreService } from 'src/app/helpers/user-store.service';
 
 import { FoodService } from 'src/app/services/food.service';
 
@@ -13,7 +14,7 @@ export class AdminaddfoodComponent implements OnInit {
   foodForm: FormGroup;
   successMessage : string = '';
 
-  constructor(private foodService: FoodService, private fb: FormBuilder) {
+  constructor(private foodService: FoodService, private fb: FormBuilder,private userStore : UserStoreService) {
 
     
   }
@@ -26,7 +27,10 @@ export class AdminaddfoodComponent implements OnInit {
         foodName: this.fb.control("", [Validators.required]),
         price: this.fb.control("", [Validators.required, Validators.min(1)]),
         stockQuantity: this.fb.control("", [Validators.required, Validators.min(1)]),
-        photo: this.fb.control("")
+        photo: this.fb.control(""),
+        user:this.fb.group({
+          userId: this.fb.control("",Validators.required)
+        })
       }
     )
   }
@@ -34,25 +38,18 @@ export class AdminaddfoodComponent implements OnInit {
   handleFileChange(event:any){
 
 
-    let file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const base64result = reader.result?.toString().split(',')[1];
-        this.foodForm.patchValue({ photo: base64result });
-        console.log('Base64 String:', base64result);
-      };
+    let file = null;
 
-      reader.readAsDataURL(file); 
-    } else {
-      console.error('No file selected');
-    }
   }
   
   addFood(){
-    console.log(this.foodForm.value)
+    this.foodForm.patchValue({user:{
+      userId:this.userStore.authUser.userId
+    }})
+    this.foodForm.patchValue({photo:"this is my food photo"})
     if(this.foodForm.valid){
       console.log(this.foodForm.value)
+
       this.foodService.addFood(this.foodForm.value).subscribe(data=>{
         this.successMessage = "Successfully Added!"
       })

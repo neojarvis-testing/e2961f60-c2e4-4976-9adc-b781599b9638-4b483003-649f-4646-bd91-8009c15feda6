@@ -23,9 +23,7 @@ public class FoodServiceImpl implements FoodService{
         if (food == null) {
             throw new FoodNotFoundException("Food cannot be null.");
         }
-
-        byte[] photoBytes = Base64.getDecoder().decode(food.getPhoto());
-        food.setPhoto(photoBytes);
+  
         Food savedFood = foodRepo.save(food);
         return savedFood;
     } 

@@ -44,7 +44,7 @@ const routes: Routes = [
     component:AdminviewordersComponent
   },
   {
-    path:'admin/edit/food',
+    path:'admin/edit/food/:id',
     component:AdmineditfoodComponent
   },
 
