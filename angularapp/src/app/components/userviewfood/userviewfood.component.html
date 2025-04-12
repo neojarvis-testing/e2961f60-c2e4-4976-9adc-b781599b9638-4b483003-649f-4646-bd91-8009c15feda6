@@ -1,1 +1,19 @@
-<p>userviewfood works!</p>
+<div class="container">
+    <input type="text" [(ngModel)]="searchData" placeholder="Search food by name">
+<input type="number" [(ngModel)]="minPrice" placeholder="Minimum Price">
+<input type="number" [(ngModel)]="maxPrice" placeholder="Maximum Price">
+<button (click)="resetFilters()">Reset</button> 
+
+<div *ngIf="filteredFoods().length === 0">No foods are available.</div>
+
+<ul>
+  <li *ngFor="let food of filteredFoods()">
+    <p>{{ food.name }}</p>
+    <p>Price: ${{ food.price }}</p>
+    <p>Stock: {{ food.stock === 0 ? 'Out of Stock' : food.stock }}</p>
+    <button *ngIf="food.stock > 0" [routerLink]="['/usermakeorder']">Make Order</button>
+  </li>
+</ul>
+</div>
+
+

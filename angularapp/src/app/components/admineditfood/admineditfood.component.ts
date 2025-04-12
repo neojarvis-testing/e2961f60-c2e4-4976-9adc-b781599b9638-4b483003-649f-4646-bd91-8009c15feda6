@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder,  FormGroup,  Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Food } from 'src/app/models/food.model';
 import { FoodService } from 'src/app/services/food.service';
@@ -12,7 +12,7 @@ import { FoodService } from 'src/app/services/food.service';
 export class AdmineditfoodComponent implements OnInit {
   editForm : FormGroup;
   successMessage : string = '';
-  foodId : number = 0;
+  foodId : number = 3;
   food : Food = {foodName:"",price:0,stockQuantity:0,userId:1}
 
   constructor(private foodService : FoodService, private fb: FormBuilder, private router:Router) { 
@@ -33,7 +33,7 @@ export class AdmineditfoodComponent implements OnInit {
     if (this.editForm.valid) {
      
       console.log('Form Submitted', this.editForm.value);
-      this.foodService.updateFood(this.foodId,this.food).subscribe(data=>{
+      this.foodService.updateFood(this.foodId,this.editForm.value).subscribe(data=>{
         this.successMessage = "Successfully updated!"
       })
     } else {
@@ -43,7 +43,7 @@ export class AdmineditfoodComponent implements OnInit {
 
   
   onBack(): void {
-    this.router.navigate(['/adminviewfood']);
+    this.router.navigate(['/admin/view/food']);
   }
 
   public get foodName(){

@@ -7,9 +7,6 @@
         <label for="food">Food:</label>
         <input id="food" formControlName="food" readonly />
 
-      <div *ngIf="userFeedbackForm.get('food')?.invalid && userFeedbackForm.get('food')?.touched">
-        <span class="error">Please select a food item.</span>
-      </div>
     </div>
 
     <div class="form-group">
@@ -29,7 +26,7 @@
     <div class="form-group">
       <label for="rating">Rating (1 to 5):</label>
       <div class="stars">
-        <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+        <ng-container *ngFor="let star of [1,2,3,4,5]">
           <input
             type="radio"
             id="star{{ star }}"

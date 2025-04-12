@@ -1,3 +1,4 @@
+/* Container for the feedback form */
 .feedback-form-container {
   width: 100%;
   max-width: 600px;
@@ -8,21 +9,25 @@
   background-color: #f9f9f9;
 }
 
-h2 {
+/* Header */
+.feedback-form-container h2 {
   text-align: center;
   margin-bottom: 20px;
 }
 
+/* Form group styling */
 .form-group {
   margin-bottom: 15px;
 }
 
+/* Label styling */
 label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
+/* Readonly input styling */
 input[readonly] {
   background-color: #e9ecef;
   border: 1px solid #ccc;
@@ -31,6 +36,7 @@ input[readonly] {
   border-radius: 4px;
 }
 
+/* Textarea styling */
 textarea {
   width: 100%;
   padding: 10px;
@@ -40,19 +46,21 @@ textarea {
   resize: vertical;
 }
 
+/* Error text styling */
 .error {
   color: red;
   font-size: 12px;
   margin-top: 5px;
 }
 
+/* Submit button styling */
 .btn-submit {
   display: block;
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  color: #fff;
   background-color: #007bff;
+  color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -63,28 +71,37 @@ textarea {
   cursor: not-allowed;
 }
 
+/* Star rating container */
+/* Using flex-direction: row-reverse flips the order visually */
 .stars {
   display: flex;
+  flex-direction: row-reverse;
   gap: 5px;
+  justify-content: center; /* Centers the stars */
 }
 
+/* Hide the native radio inputs */
 .stars input {
   display: none;
 }
 
+/* Default star label styling */
 .stars label {
   font-size: 30px;
   color: #ccc;
   cursor: pointer;
 }
 
+/* When hovering or when a radio input is checked, alter the colors */
+/* The ~ sibling selector and reverse order ensure that clicking on a star colors all the stars to the left */
 .stars label:hover,
-.stars input:checked ~ label {
+.stars input:checked ~ label,
+.stars label:hover ~ label {
   color: #f39c12;
 }
 
-/* Popup Overlay Styles */
-.popup-overlay {
+/* Popup container styling */
+.popup-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -97,6 +114,7 @@ textarea {
   z-index: 1000;
 }
 
+/* Popup styling */
 .popup {
   background-color: #fff;
   padding: 20px 30px;
@@ -104,11 +122,13 @@ textarea {
   text-align: center;
 }
 
+/* Popup text styling */
 .popup p {
   font-size: 18px;
   margin-bottom: 20px;
 }
 
+/* Popup button styling */
 .popup button {
   background-color: #007bff;
   color: #fff;

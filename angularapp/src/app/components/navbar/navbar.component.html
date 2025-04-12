@@ -1,1 +1,21 @@
-<p>navbar works!</p>
+<div class="navbar">
+  <div class="navbar-header">
+    <h2 class="navbar-title">Food Mart</h2>
+  </div>
+  <div class="navbar-links">
+    <div class="navbar-menu" *ngIf="!isLoggedIn">
+      <a class="navbar-link" routerLink="/register">Register</a>
+      <a class="navbar-link" routerLink="/login">Login</a>
+    </div>
+    <div class="user-section" *ngIf="isLoggedIn">
+      <div class="user-nav">
+        <div class="user-item" *ngIf="userRole === 'ROLE_ADMIN'">
+          <app-adminnav></app-adminnav>
+        </div>
+        <div class="user-item" *ngIf="userRole === 'ROLE_USER'">
+          <app-usernav></app-usernav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

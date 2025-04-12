@@ -57,7 +57,7 @@ public class FoodController {
     }
 
     @GetMapping("/api/food")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')" )
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<?> viewAllFoods(){
         try{
             List<Food> allFoods = foodService.getAllFoods();

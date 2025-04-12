@@ -1,47 +1,37 @@
-<div class="container mt-5">
-    <div class="card shadow p-4">
-      <h2 class="text-center text-primary">Register</h2>
+<div class="registration-container">
+  <div class="registration-card">
+    <h2 class="registration-title">Register</h2>
 
-      <form [formGroup]="registrationForm" (ngSubmit)="addRegister()">
-        <div class="mb-3">
-          <label for="email" class="form-label">Email:</label>
-          <input type="email" class="form-control" id="email" formControlName="email">
-          
-          <div>
+    <form [formGroup]="registrationForm" (ngSubmit)="addRegister()" class="registration-form">
+      <div class="input-group">
+        <label for="email" class="input-label">Email:</label>
+        <input type="email" class="input-field" id="email" formControlName="email">
+      </div>
 
-          </div>
-          
-        </div>
-  
-        <div class="mb-3">
-          <label for="password" class="form-label">Password:</label>
-          <input type="password" class="form-control" id="password" formControlName="password">
-          
-        </div>
-  
-        <div class="mb-3">
-          <label for="username" class="form-label">Username:</label>
-          <input type="text" class="form-control" id="username" formControlName="username">
-          
-        </div>
-  
-        <div class="mb-3">
-          <label for="mobileNumber" class="form-label">Mobile Number:</label>
-          <input type="text" class="form-control" id="mobileNumber" formControlName="mobileNumber">
-          
-        </div>
+      <div class="input-group">
+        <label for="password" class="input-label">Password:</label>
+        <input type="password" class="input-field" id="password" formControlName="password">
+      </div>
 
-  
-        <div class="mb-3">
-          <label for="userRole" class="form-label">User Role:</label>
-          <input type="text" class="form-control" id="userRole" formControlName="userRole">
-          
-          
-        </div>
+      <div class="input-group">
+        <label for="username" class="input-label">Username:</label>
+        <input type="text" class="input-field" id="username" formControlName="username">    
+      </div>
 
-        <button type="submit" class="btn btn-success w-100"   [disabled]="registrationForm.invalid">Register</button>
-      </form>
+      <div class="input-group">
+        <label for="mobileNumber" class="input-label">Mobile Number:</label>
+        <input type="text" class="input-field" id="mobileNumber" formControlName="mobileNumber">
+      </div>
 
-  
-    </div>
+      <div class="input-group">
+        <label for="userRole" class="input-label">User Role:</label>
+        <select class="input-field" formControlName="userRole" id="userRole">
+          <option value="USER">USER</option>
+          <option value="ADMIN">ADMIN</option>
+        </select>
+      </div>
+
+      <button type="submit" class="submit-button" [disabled]="registrationForm.invalid">Register</button>
+    </form>
   </div>
+</div>

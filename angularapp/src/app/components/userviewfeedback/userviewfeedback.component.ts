@@ -58,9 +58,7 @@ export class UserviewfeedbackComponent implements OnInit {
               this.feedbacks = data ? data : [];
               this.closeDeletePopup();
             })
-          
         }
-
       );
     }
   }

@@ -1,0 +1,98 @@
+/* General Reset */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9; /* Subtle light background */
+    color: #333; /* Neutral text color */
+  }
+  
+  /* Login Form Container */
+  form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #ffffff; /* White background for the form */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  /* Login Title */
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #0056b3; /* Vibrant blue for the title */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Input Groups */
+  .mb-3 {
+    margin-bottom: 20px;
+  }
+  
+  /* Input Labels */
+  .form-label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555; /* Neutral dark gray for labels */
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  /* Input Fields */
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-control:focus {
+    border-color: #0056b3; /* Blue focus effect */
+    outline: none;
+  }
+  
+  /* Submit Button */
+  button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff; /* White text */
+    background-color: #28a745; /* Green for login button */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #218838; /* Darker green on hover */
+  }
+  
+  button:disabled {
+    background-color: #dddddd; /* Gray for disabled state */
+    cursor: not-allowed;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    form {
+      margin: 20px;
+      padding: 15px;
+    }
+  
+    h2 {
+      font-size: 20px;
+    }
+  
+    button {
+      font-size: 14px;
+      padding: 10px;
+    }
+  }
+  
