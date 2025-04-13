@@ -14,7 +14,8 @@ export class AdminviewfoodComponent implements OnInit {
   searchName: string = '';
   minPrice: number | null = null;
   maxPrice: number | null = null;
-  foodId: number = 1;
+  foodId: number ;
+  showPopup: boolean = false;
 
   constructor(private foodService: FoodService, private router: Router) { }
 
@@ -50,20 +51,44 @@ export class AdminviewfoodComponent implements OnInit {
     this.filteredFoods = [this.foods];
   }
 
-  confirmDelete(foodId: number): void {
-    const confirmation = window.confirm('Are you sure you want to delete this food item?');
+  // confirmDelete(foodId: number): void {
+  //   const confirmation = window.confirm('Are you sure you want to delete this food item?');
 
-    if (confirmation) {
-      this.foodService.deleteFood(foodId).subscribe(response => {
+  //   if (confirmation) {
+  //     this.foodService.deleteFood(foodId).subscribe(response => {
+  //       this.loadfood();
+  //     },
+  //       error => {
+  //         console.error('Error occurred while deleting food:', error);
+  //       }
+  //     );
+  //   } else {
+  //     console.log('Deletion cancelled');
+  //   }
+  // }
+
+  confirmDelete(id: number): void {
+    console.log("inside confirm delete")
+    this.showPopup = true; 
+    this.foodId = id;
+    console.log(this.foodId , this.showPopup);
+  }
+  
+  onConfirm(): void {
+    this.foodService.deleteFood(this.foodId).subscribe(
+      response => {
         this.loadfood();
+        this.showPopup = false;
       },
-        error => {
-          console.error('Error occurred while deleting food:', error);
-        }
-      );
-    } else {
-      console.log('Deletion cancelled');
-    }
+      error => {
+        console.error('Error occurred while deleting food:', error);
+      }
+    );
+  }
+  
+  onCancel(): void {
+    this.showPopup = false; 
+    console.log('Deletion cancelled');
   }
 
 }

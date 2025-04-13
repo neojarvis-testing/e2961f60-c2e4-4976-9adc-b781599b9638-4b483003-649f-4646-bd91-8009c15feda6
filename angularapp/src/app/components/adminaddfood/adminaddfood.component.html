@@ -36,9 +36,10 @@
             <button type="submit" class="btn btn-success w-100" >Submit</button>
         </form>
 
-        <div *ngIf="successMessage" class="alert alert-success mt-4 text-center">
+        <div *ngIf="successMessage" class="popup">
             <p>{{successMessage}}</p>
             <button (click)="closePopUp()" class="btn btn-primary btn-sm">OK</button>
         </div>
     </div>
 </div>
+
