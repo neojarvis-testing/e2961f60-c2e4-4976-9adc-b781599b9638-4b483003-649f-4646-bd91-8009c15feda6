@@ -22,7 +22,7 @@ public class Food {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int foodId;
+    private Integer foodId;
     private String foodName;
     private Double price;
     private int stockQuantity;

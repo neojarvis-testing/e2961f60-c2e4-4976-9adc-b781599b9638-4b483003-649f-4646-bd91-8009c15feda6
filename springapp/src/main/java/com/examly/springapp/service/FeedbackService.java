@@ -11,4 +11,6 @@ public interface FeedbackService {
     public void deleteFeedback(Long id);
     public List<Feedback> getFeedbacksByUserId(Long userId);
     Feedback updateFeedback(Long id, Feedback feedbackDetails);
+    boolean feedbackExistsForFood(Integer userId, Integer foodId);
+
 }

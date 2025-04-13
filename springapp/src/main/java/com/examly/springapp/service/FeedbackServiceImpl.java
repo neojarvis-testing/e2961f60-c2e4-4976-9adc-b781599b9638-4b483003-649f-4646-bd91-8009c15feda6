@@ -70,7 +70,11 @@ public class FeedbackServiceImpl implements FeedbackService{
 
         return feedbackRepo.save(existingFeedback);
     }
-
+    @Override
+    public boolean feedbackExistsForFood(Integer userId, Integer foodId) {
+        return feedbackRepo.existsFeedbackByUserAndFood(userId, foodId);
+    }
+    
 
 
 }

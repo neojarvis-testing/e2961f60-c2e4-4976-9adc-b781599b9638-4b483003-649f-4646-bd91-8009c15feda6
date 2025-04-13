@@ -128,7 +128,15 @@ export class UseraddfeedbackComponent implements OnInit {
 
           },
           (error) => {
-            console.error('Error adding feedback:', error);
+            if (
+              error.status === 400 &&
+              error.error === "Duplicate feedback for this food is not allowed."
+            ) {
+              alert("You have already submitted feedback for this food.");
+              this.router.navigate(['user/view/feedBack']);
+            } else {
+              console.error("Error adding feedback:", error);
+            }
           }
         );
       }

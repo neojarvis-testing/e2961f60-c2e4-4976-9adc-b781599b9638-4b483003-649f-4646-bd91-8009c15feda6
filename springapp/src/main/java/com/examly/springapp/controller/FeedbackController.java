@@ -27,6 +27,9 @@ public class FeedbackController {
     @PostMapping("/api/feedback")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> createFeedback(@RequestBody Feedback feedback) {
+        if (feedbackService.feedbackExistsForFood(feedback.getUser().getUserId(), feedback.getFood().getFoodId())) {
+            return ResponseEntity.status(400).body("Duplicate feedback for this food is not allowed.");
+        }
         Feedback createdFeedback = feedbackService.createFeedback(feedback);
         return ResponseEntity.status(201).body(createdFeedback);
     }
@@ -86,4 +89,6 @@ public class FeedbackController {
             return ResponseEntity.status(404).body(e.getMessage());
         }
     }
+
+    
 }
