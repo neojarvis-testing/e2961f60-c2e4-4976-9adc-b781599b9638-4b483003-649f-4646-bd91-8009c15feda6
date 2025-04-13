@@ -5,11 +5,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import com.examly.springapp.exceptions.JwtValidationException;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 
@@ -21,11 +25,17 @@ public class JwtUtils {
     private Date EXPIRATION_DATE = new Date((System.currentTimeMillis() + (24*60*60*1000)));
 
     private Claims extractAllClaims(String token){
-        return Jwts
-                .parser()
-                .setSigningKey(SECRET_KEY)
-                .parseClaimsJws(token)
-                .getBody();
+        try{
+            return Jwts
+            .parser()
+            .setSigningKey(SECRET_KEY)
+            .parseClaimsJws(token)
+            .getBody();
+
+        }catch(MalformedJwtException e){
+            throw new JwtValidationException("Jwt validation exception",HttpStatus.FORBIDDEN);
+        }
+       
     } 
 
     

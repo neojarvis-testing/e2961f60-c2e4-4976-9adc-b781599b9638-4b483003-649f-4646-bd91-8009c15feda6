@@ -27,7 +27,7 @@ public class AuthController {
     public ResponseEntity<?> registerUser(@RequestBody User user){
         try{
             User addNewUser = userServiceImpl.registerUser(user);
-            return ResponseEntity.status(201).body(addNewUser);
+            return ResponseEntity.status(201).body("Registered Successfully");
         }
         catch(EntityNotFoundException e ){
             return ResponseEntity.status(401).body(e.getMessage());

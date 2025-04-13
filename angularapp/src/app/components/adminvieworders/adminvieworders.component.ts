@@ -12,12 +12,12 @@ export class AdminviewordersComponent implements OnInit {
 
   orders: orders[] = [];
   selectedUser: any = null;
-  changeStatus : string = '';
+  changeStatus: boolean = false;
 
   constructor(private orderService: OrderService) { }
 
   ngOnInit(): void {
-    
+
     this.getAllOrders();
   }
 
@@ -34,11 +34,11 @@ export class AdminviewordersComponent implements OnInit {
     // Check if the order exists
     if (order) {
       order.orderStatus = newStatus;
-      this.orderService.updateOrder(orderId,order).subscribe(data=>{
+      this.orderService.updateOrder(orderId, order).subscribe(data => {
         console.log(data);
         console.log("hiiiii")
       })
-      console.log(`Order ${orderId} status updated to ${newStatus}`); 
+      console.log(`Order ${orderId} status updated to ${newStatus}`);
     } else {
       console.error(`Order with id ${orderId} not found.`);
     }
@@ -46,10 +46,18 @@ export class AdminviewordersComponent implements OnInit {
 
   deleteOrder(orderId: number) {
     console.log(orderId);
-    this.orderService.deleteOrder(orderId).subscribe(data => {
-      this.getAllOrders();
-    })
+    const order = this.orders.find(order => order.orderId === orderId);
+    if (order.orderStatus != 'Making Food' && order.orderStatus != 'On the way' && order.orderStatus != 'Delivered') {
+      this.changeStatus = true;
+      this.orderService.deleteOrder(orderId).subscribe(data => {
+        this.getAllOrders();
+      })
+    }else{
+      alert("Cant delete as Order status is "+ order.orderStatus);
+    }
   }
+
+  
 
   selectUser(user: User) {
     this.selectedUser = user;

@@ -11,6 +11,9 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import com.examly.springapp.exceptions.JwtValidationException;
+
+import io.jsonwebtoken.MalformedJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,14 +36,20 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-                boolean valid = checkUsername(request);
-                if (valid) {
-                    valid = validateUser();
+
+                try{
+                    boolean valid = checkUsername(request);
+                    if (valid) {
+                        valid = validateUser();
+                    }
+                    if (valid) {
+                        setCredentials(request);
+                    }
+                    filterChain.doFilter(request, response);     
+                }catch(JwtValidationException e){
+                    response.sendError(HttpServletResponse.SC_FORBIDDEN);
                 }
-                if (valid) {
-                    setCredentials(request);
-                }
-                filterChain.doFilter(request, response);        
+                  
     }
 
     private boolean checkUsername(HttpServletRequest request) {
