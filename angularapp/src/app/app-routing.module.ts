@@ -48,7 +48,10 @@ const routes: Routes = [
     path:'admin/edit/food/:id',
     component:AdmineditfoodComponent
   },
-
+  { 
+    path: 'user/edit/feedback/:feedbackId',
+    component: UseraddfeedbackComponent 
+  },
   {
     path:"error",
     component:ErrorComponent

@@ -1,3 +1,5 @@
+
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -23,9 +25,10 @@ export class UseraddfeedbackComponent implements OnInit {
   foodDetails:Food|null = null;
   currentUser: any = null;
   orderId:number = 0
+  feedbackId: number | null = null;
 
 
-  constructor( private fb: FormBuilder,
+  constructor(private fb: FormBuilder,
     private feedbackService: FeedbackService,
     private orderService: OrderService,
     private foodService:FoodService,
@@ -41,13 +44,19 @@ export class UseraddfeedbackComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("first")
     this.currentUser = this.userStore.authUser.userId;
-    console.log(this.currentUser+"current user id")
     this.activatedRoute.paramMap.subscribe(data=>{
       this.orderId = parseInt(data.get('id'))
+      this.feedbackId = data.has('feedbackId') ? parseInt(data.get('feedbackId') || '0', 10) : null;
     })
-    this.getOrderDetails(this.orderId);
+    if (this.feedbackId) {
+      // Load feedback for editing
+      this.getFeedbackDetails(this.feedbackId);
+    } else {
+      // Load order details for adding feedback
+      this.getOrderDetails(this.orderId);
+    }
+   // this.getOrderDetails(this.orderId);
    }
 
    getOrderDetails(orderId:number)
@@ -63,7 +72,18 @@ export class UseraddfeedbackComponent implements OnInit {
      });
    }
 
-  createFeedback() {
+   getFeedbackDetails(feedbackId: number): void {
+    this.feedbackService.getFeedbackById(feedbackId).subscribe((feedback: Feedback) => {
+      this.foodDetails = feedback.food; // Load food details for feedback
+      this.userFeedbackForm.patchValue({
+        food: feedback.food.foodName,
+        feedbackText: feedback.feedbackText,
+        rating: feedback.rating,
+      });
+    });
+  }
+
+  saveFeedback() {
     if (this.userFeedbackForm.valid) {
       const feedback :Feedback = {
         feedbackText: this.userFeedbackForm.value.feedbackText,
@@ -89,16 +109,29 @@ export class UseraddfeedbackComponent implements OnInit {
       };
       
       console.log(feedback);
-      this.feedbackService.sendFeedback(feedback).subscribe(
-        (data) => {
-          console.log("inside send feedback")
-          this.showPopup = true; 
-          this.userFeedbackForm.reset(); 
-        },
-        (error) => {
-          console.error('Error adding feedback:', error);
-        }
-      );
+      if (this.feedbackId) {
+        // Update feedback
+        this.feedbackService.updateFeedback(this.feedbackId, feedback).subscribe(
+          (data) => {
+            this.showPopup = true;
+
+          },
+          (error) => {
+            console.error('Error editing feedback:', error);
+          }
+        );
+      } else {
+        // Add feedback
+        this.feedbackService.sendFeedback(feedback).subscribe(
+          (data) => {
+            this.showPopup = true;
+
+          },
+          (error) => {
+            console.error('Error adding feedback:', error);
+          }
+        );
+      }
     }
   }
 
@@ -107,3 +140,4 @@ export class UseraddfeedbackComponent implements OnInit {
     this.router.navigate(['user/view/feedBack']);
   }
 }
+

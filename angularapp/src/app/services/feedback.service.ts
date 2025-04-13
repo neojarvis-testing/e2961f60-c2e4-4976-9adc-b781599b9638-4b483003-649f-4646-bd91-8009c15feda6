@@ -1,3 +1,4 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Feedback } from '../models/feedback.model';
@@ -29,6 +30,14 @@ export class FeedbackService {
   {
     return this.httpClient.delete(this.apiUrl+"/"+feedbackId,{ responseType: 'text' });
   }
+
+  getFeedbackById(feedbackId: number): Observable<Feedback> {
+    return this.httpClient.get<Feedback>(`${this.apiUrl}/${feedbackId}`);
+  }
+  
+  updateFeedback(feedbackId: number, feedback: Feedback): Observable<any> {
+    return this.httpClient.put(`${this.apiUrl}/${feedbackId}`, feedback);
+  }  
 
   getFeedbacks():Observable<any>
   {
