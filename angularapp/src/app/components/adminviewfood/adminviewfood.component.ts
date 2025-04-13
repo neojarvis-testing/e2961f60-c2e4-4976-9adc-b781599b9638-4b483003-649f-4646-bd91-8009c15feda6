@@ -36,7 +36,7 @@ export class AdminviewfoodComponent implements OnInit {
   }
   public filterFoods(): void {
     this.filteredFoods = this.foods.filter((food) => {
-      const matchesName = food.name.toLowerCase().includes(this.searchName.toLowerCase());
+      const matchesName = food.foodName.toLowerCase().includes(this.searchName.toLowerCase());
       const matchesPrice =
         (this.minPrice === null || food.price >= this.minPrice) &&
         (this.maxPrice === null || food.price <= this.maxPrice);
@@ -48,7 +48,7 @@ export class AdminviewfoodComponent implements OnInit {
     this.searchName = '';
     this.minPrice = null;
     this.maxPrice = null;
-    this.filteredFoods = [this.foods];
+    this.loadfood();
   }
 
   // confirmDelete(foodId: number): void {
