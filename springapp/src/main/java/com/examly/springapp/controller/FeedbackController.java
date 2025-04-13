@@ -65,7 +65,7 @@ public class FeedbackController {
     }
 
     @GetMapping("/api/feedback/user/{userId}")
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> getFeedbacksByUserId(@PathVariable Long userId) {
         List<Feedback> feedbacks = feedbackService.getFeedbacksByUserId(userId);
         if(!feedbacks.isEmpty())
