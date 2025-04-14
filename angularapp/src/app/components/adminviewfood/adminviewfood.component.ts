@@ -20,6 +20,7 @@ export class AdminviewfoodComponent implements OnInit {
 
   showPreview: boolean = false;
   selectedImage: any = null;
+  selectedFood: any = null;
 
   constructor(private foodService: FoodService, private router: Router, private sanitizer: DomSanitizer) { }
 
@@ -32,9 +33,11 @@ export class AdminviewfoodComponent implements OnInit {
       this.foods = data.map(food => ({
         ...food,
         photo: food.photo ? this.sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + food.photo) : null
+        
       }));
-      console.log("after deleting food updatingn filtered foods array")
+      console.log("after deleting food updating filtered foods array")
       this.filteredFoods = this.foods;
+      console.log(this.foods)
     }, error => {
       this.foods=[];
       this.filteredFoods = [];
@@ -88,10 +91,28 @@ onCancel(): void {
 }
 
   // Show preview for the selected food image
-  openPreview(image: any): void {
-    this.selectedImage = image;
+  // openPreview(image: any): void {
+  //   this.selectedImage = image;
+  //   this.showPreview = true;
+  // }
+
+  openPreview(food: any,image: any): void {
+    console.log(food)
+
+    this.selectedImage = food.photo;
+    this.selectedFood = {
+      foodName: food.foodName,
+      description: food.foodDescription.description,
+      proteins: food.foodDescription.proteins,
+      carbs: food.foodDescription.carbs,
+      fats: food.foodDescription.fats,
+      calories: food.foodDescription.calories,
+      type: food.foodDescription.type,
+      categories: food.foodDescription.categories
+    };
     this.showPreview = true;
   }
+  
 
   closePreview(): void {
     this.showPreview = false;

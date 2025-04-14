@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,5 +35,8 @@ public class Food {
     @ManyToOne
     @JoinColumn(name = "userId", nullable=false)
     private User user;
+
+    @OneToOne
+    private FoodDescription foodDescription;
 
 }
