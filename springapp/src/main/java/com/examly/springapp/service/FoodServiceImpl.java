@@ -11,29 +11,44 @@ import org.springframework.web.multipart.MultipartFile;
 import com.examly.springapp.exceptions.FoodNotFoundException;
 import com.examly.springapp.exceptions.UserNotFoundException;
 import com.examly.springapp.model.Food;
+import com.examly.springapp.model.FoodDescription;
+import com.examly.springapp.repository.FoodDescriptionRepo;
 import com.examly.springapp.repository.FoodRepo;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
-public class FoodServiceImpl implements FoodService{
+public class FoodServiceImpl implements FoodService {
 
     @Autowired
     private FoodRepo foodRepo;
 
-    @Override
-    public Food addFood(Food food,MultipartFile photo) throws FoodNotFoundException {
-        if (food == null) {
-            throw new FoodNotFoundException("Food cannot be null.");
-        }
-        try{
-            food.setPhoto(photo.getBytes());
-        }catch(Exception e){
-            throw new RuntimeException("Error uploading photo");
-        }
-        Food savedFood = foodRepo.save(food);
-        return savedFood;
-    } 
+    @Autowired
+    private FoodDescriptionRepo foodDescriptionRepo;
 
-    
+    @Override
+    public Food addFood(String foodJson, MultipartFile photo) throws Exception{
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            Food food = objectMapper.readValue(foodJson, Food.class);
+
+            if (photo != null && !photo.isEmpty()) {
+                food.setPhoto(photo.getBytes());
+            }
+
+            FoodDescription foodDescription = food.getFoodDescription();
+            foodDescription = foodDescriptionRepo.save(foodDescription);
+            food.setFoodDescription(foodDescription);
+
+            return foodRepo.save(food);
+        }catch (JsonProcessingException e) {
+            throw new Exception("Invalid JSON structure: " + e.getMessage());
+        }
+        catch (Exception e) {
+            throw new Exception("Failed to add food: " + e.getMessage());
+        }
+
+    }
 
     @Override
     public List<Food> getAllFoods() throws IllegalArgumentException, FoodNotFoundException {
@@ -58,23 +73,24 @@ public class FoodServiceImpl implements FoodService{
 
     @Override
     public Food updateFood(int id, Food foodDetails) throws FoodNotFoundException {
-        Food existingFood = foodRepo.findById(id).orElseThrow(() -> new FoodNotFoundException("Food with ID " + id + " not found."));
-      
+        Food existingFood = foodRepo.findById(id)
+                .orElseThrow(() -> new FoodNotFoundException("Food with ID " + id + " not found."));
+
         existingFood.setFoodName(foodDetails.getFoodName());
         existingFood.setPrice(foodDetails.getPrice());
         existingFood.setStockQuantity(foodDetails.getStockQuantity());
         existingFood.setPhoto(foodDetails.getPhoto());
-        
+
         return foodRepo.save(existingFood);
     }
 
     @Override
-    public boolean deleteFood(int id) throws IllegalArgumentException,FoodNotFoundException {
+    public boolean deleteFood(int id) throws IllegalArgumentException, FoodNotFoundException {
         if (id <= 0) {
             throw new IllegalArgumentException("Invalid food ID.");
         }
         if (!foodRepo.existsById(id)) {
-            throw new FoodNotFoundException("Food with ID " + id + " not found."); 
+            throw new FoodNotFoundException("Food with ID " + id + " not found.");
         }
         foodRepo.deleteById(id);
         return true;
@@ -91,11 +107,5 @@ public class FoodServiceImpl implements FoodService{
         }
         return foodsByUser;
     }
-   
+
 }
-
-    
-
-
-
- 

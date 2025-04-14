@@ -1,12 +1,12 @@
 package com.examly.springapp.model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,26 +17,25 @@ import lombok.ToString;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
 @Getter
-@ToString 
-public class Food {
+@Setter
+@ToString
+public class PasswordResetToken {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int foodId;
-    private String foodName;
-    private Double price;
-    private int stockQuantity;
-
-    @Lob
-    private byte[] photo;
-
-    @ManyToOne
-    @JoinColumn(name = "userId", nullable=false)
-    private User user;
+    private Long id;
+    private String token;
+    private LocalDateTime expiryDate;
 
     @OneToOne
-    private FoodDescription foodDescription;
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public PasswordResetToken(String token, LocalDateTime expiryDate, User user) {
+        this.token = token;
+        this.expiryDate = expiryDate;
+        this.user = user;
+    }
 
 }

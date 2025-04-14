@@ -15,6 +15,7 @@ export class AdminaddfoodComponent implements OnInit {
   foodForm: FormGroup;
   successMessage: string = '';
   selectedFile: File | null = null;
+  categoriesArray: string[] = ["Chineese", "Italian", "North Indian","South Indian","Gujarati","Punjabi","Bengali"]
 
   constructor(private foodService: FoodService, private fb: FormBuilder, private userStore: UserStoreService, private router: Router) {
 
@@ -32,7 +33,14 @@ export class AdminaddfoodComponent implements OnInit {
         photo: this.fb.control(""),
         user: this.fb.group({
           userId: this.fb.control("", Validators.required)
-        })
+        }),
+        description: this.fb.control("", [Validators.required]),
+        proteins: this.fb.control("", [Validators.required, Validators.min(0)]),
+        carbs: this.fb.control("", [Validators.required, Validators.min(0)]),
+        fats: this.fb.control("", [Validators.required, Validators.min(0)]),
+        calories: this.fb.control("", [Validators.required, Validators.min(0)]),
+        type: this.fb.control("", [Validators.required]),
+        categories: this.fb.control("", [Validators.required])
       }
     )
   }
@@ -46,42 +54,52 @@ export class AdminaddfoodComponent implements OnInit {
   }
 
 
-  
-addFood() {
-  this.foodForm.patchValue({
-      user: {
-          userId: this.userStore.authUser.userId
-      }
-  });
 
-  const foodData = {
+  addFood() {
+    this.foodForm.patchValue({
+      user: {
+        userId: this.userStore.authUser.userId
+      }
+    });
+
+    const foodData = {
       foodName: this.foodForm.get('foodName')?.value,
       price: this.foodForm.get('price')?.value,
       stockQuantity: this.foodForm.get('stockQuantity')?.value,
-      user: { userId: this.foodForm.get('user.userId')?.value }
-  };
+      user: { userId: this.foodForm.get('user.userId')?.value },
+      foodDescription: {
+        description: this.foodForm.get('description')?.value,
+        proteins: this.foodForm.get('proteins')?.value,
+        carbs: this.foodForm.get('carbs')?.value,
+        fats: this.foodForm.get('fats')?.value,
+        calories: this.foodForm.get('calories')?.value,
+        type: this.foodForm.get('type')?.value,
+        categories: this.foodForm.get('categories')?.value,
+      }
 
-  const formData = new FormData();
-  if (this.selectedFile) {
+    };
+
+    const formData = new FormData();
+    if (this.selectedFile) {
       formData.append('photo', this.selectedFile);
-  }
-  formData.append('food', new Blob([JSON.stringify(foodData)], { type: 'application/json' }));
+    }
+    formData.append('food', JSON.stringify(foodData));
 
-  if (this.foodForm.valid) {
-      console.log(this.foodForm.value);
+    if (this.foodForm.valid) {
+      console.log(formData);
       this.foodService.addFood(formData).subscribe(data => {
-          this.successMessage = "Successfully Added!";
-          setTimeout(() => {
-              this.router.navigate(['/admin/view/food']);
-          }, 2222);
+        this.successMessage = "Successfully Added!";
+        setTimeout(() => {
+          this.router.navigate(['/admin/view/food']);
+        }, 2222);
       }, error => {
-          console.error("Error adding food:", error);
-          alert("Failed to add food");
+        console.error("Error adding food:", error);
+        alert("Failed to add food");
       });
-  } else {
+    } else {
       alert("Form is invalid. Please check your inputs.");
+    }
   }
-}
 
   closePopUp() {
     this.successMessage = '';
@@ -103,7 +121,33 @@ addFood() {
     return this.foodForm.get("photo");
   }
 
+  public get description() {
+    return this.foodForm.get("description");
+  }
 
+  public get proteins() {
+    return this.foodForm.get("proteins");
+  }
+
+  public get carbs() {
+    return this.foodForm.get("carbs");
+  }
+
+  public get fats() {
+    return this.foodForm.get("fats");
+  }
+
+  public get calories() {
+    return this.foodForm.get("calories");
+  }
+
+  public get type() {
+    return this.foodForm.get("type");
+  }
+
+  public get categories() {
+    return this.foodForm.get("categories");
+  }
 
 
 }
