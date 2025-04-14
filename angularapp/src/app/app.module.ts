@@ -32,6 +32,8 @@ import { AdmineditfoodComponent } from './components/admineditfood/admineditfood
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
+import { ChartsModule } from 'ng2-charts';
+
 
 
 @NgModule({
@@ -69,6 +71,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ChartsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
