@@ -4,15 +4,17 @@
   max-width: 600px;
   margin: 30px auto;
   padding: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid #ffeb3b; /* Yellow border */
   border-radius: 8px;
-  background-color: #f9f9f9;
+  background-color: #333; /* Black background */
+  color: #ffeb3b; /* Yellow text */
 }
 
 /* Header */
 .feedback-form-container h2 {
   text-align: center;
   margin-bottom: 20px;
+  color: #ffeb3b; /* Yellow text */
 }
 
 /* Form group styling */
@@ -25,15 +27,17 @@ label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
+  color: #ffeb3b; /* Yellow text */
 }
 
 /* Readonly input styling */
 input[readonly] {
-  background-color: #e9ecef;
-  border: 1px solid #ccc;
+  background-color: #555; /* Dark grey background */
+  border: 1px solid #ffeb3b; /* Yellow border */
   padding: 8px;
   width: 100%;
   border-radius: 4px;
+  color: #ffeb3b; /* Yellow text */
 }
 
 /* Textarea styling */
@@ -41,14 +45,16 @@ textarea {
   width: 100%;
   padding: 10px;
   font-size: 14px;
-  border: 1px solid #ccc;
+  border: 1px solid #ffeb3b; /* Yellow border */
   border-radius: 4px;
   resize: vertical;
+  background-color: #555; /* Dark grey background */
+  color: #ffeb3b; /* Yellow text */
 }
 
 /* Error text styling */
 .error {
-  color: red;
+  color: #ffeb3b; /* Yellow text */
   font-size: 12px;
   margin-top: 5px;
 }
@@ -59,8 +65,8 @@ textarea {
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  background-color: #007bff;
-  color: #fff;
+  background-color: #ffeb3b; /* Yellow background */
+  color: #333; /* Black text */
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -88,7 +94,7 @@ textarea {
 /* Default star label styling */
 .stars label {
   font-size: 30px;
-  color: #ccc;
+  color: #555; /* Dark grey stars */
   cursor: pointer;
 }
 
@@ -97,7 +103,7 @@ textarea {
 .stars label:hover,
 .stars input:checked ~ label,
 .stars label:hover ~ label {
-  color: #f39c12;
+  color: #ffeb3b; /* Yellow stars */
 }
 
 /* Popup container styling */
@@ -116,10 +122,11 @@ textarea {
 
 /* Popup styling */
 .popup {
-  background-color: #fff;
+  background-color: #333; /* Black background */
   padding: 20px 30px;
   border-radius: 4px;
   text-align: center;
+  color: #ffeb3b; /* Yellow text */
 }
 
 /* Popup text styling */
@@ -130,8 +137,8 @@ textarea {
 
 /* Popup button styling */
 .popup button {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #ffeb3b; /* Yellow background */
+  color: #333; /* Black text */
   border: none;
   padding: 8px 16px;
   font-size: 14px;

@@ -1,7 +1,15 @@
+/* styles.css */
 body {
-    background-color: #000000; /* Black background */
-    color: #FFD700; /* Golden yellow text */
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif; /* Clean and readable font */
+}
+
+body.light-theme {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+body.dark-theme {
+    background-color: #000000;
+    color: #ffffff;
 }

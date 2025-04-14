@@ -2,3 +2,30 @@
     display: flex;
     flex-direction: column;
 }
+/* styles.css */
+
+/* Light Theme */
+:root {
+    --background-color: #ffffff;
+    --text-color: #000000;
+    --primary-color: #ffcc00;
+  }
+  
+  /* Dark Theme */
+  [data-theme="dark"] {
+    --background-color: #000000;
+    --text-color: #ffffff;
+    --primary-color: #ff9900;
+  }
+  
+  /* Apply the variables */
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  .button {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+  }
+  

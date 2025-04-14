@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,6 +21,8 @@ import com.examly.springapp.exceptions.FoodNotFoundException;
 import com.examly.springapp.exceptions.UserNotFoundException;
 import com.examly.springapp.model.Food;
 import com.examly.springapp.service.FoodService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 public class FoodController {  
@@ -29,20 +32,19 @@ public class FoodController {
 
     @PostMapping("api/food")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> addFood(@RequestPart("food") Food food, @RequestPart("photo") MultipartFile photo) {
+    public ResponseEntity<?> addFood(@RequestPart("food") String food, @RequestPart("photo") MultipartFile photo) {
         try{
-            food = foodService.addFood(food,photo);
-            return ResponseEntity.status(201).body(food);
+            
+            Food food1 = foodService.addFood(food,photo);
+            return ResponseEntity.status(201).body(food1);
+        }catch (JsonProcessingException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid JSON structure: " + e.getMessage());
         }
-        catch(RuntimeException e){
-            return ResponseEntity.status(401).body(e.getMessage());
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
-        catch(FoodNotFoundException e){
-            return ResponseEntity.status(403).body(e.getMessage());
-
-        }
-    
     }
+
 
     @GetMapping("/api/food/{foodId}")
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
@@ -125,7 +127,7 @@ public class FoodController {
 }
 
 
-    
+
 
     
 

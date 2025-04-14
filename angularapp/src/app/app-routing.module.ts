@@ -20,6 +20,8 @@ import { UserviewordersComponent } from './components/uservieworders/uservieword
 import { AdmineditfoodComponent } from './components/admineditfood/admineditfood.component';
 import { AdminorderschartComponent } from './components/adminorderschart/adminorderschart.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { VerifyResetTokenComponent } from './components/verify-reset-token/verify-reset-token.component';
+import { RequestPasswordResetComponent } from './components/request-password-reset/request-password-reset.component';
 
 
 
@@ -52,7 +54,10 @@ const routes: Routes = [
     path:'admin/edit/food/:id',
     component:AdmineditfoodComponent
   },
-
+  { 
+    path: 'user/edit/feedback/:feedbackId',
+    component: UseraddfeedbackComponent 
+  },
   {
     path:"error",
     component:ErrorComponent
@@ -85,10 +90,14 @@ const routes: Routes = [
     path:'register',
     component:RegistrationComponent
   },
-  {
-    path:"**",
-    component:HomeComponent
-  }
+ {path: 'request-password-reset', component: RequestPasswordResetComponent },
+ { path: 'verify-reset-token', component: VerifyResetTokenComponent },
+ { path: '', redirectTo: '/request-password-reset', pathMatch: 'full' },
+ {
+  path:"**",
+  component:HomeComponent
+},
+
 ];
 
 @NgModule({
