@@ -31,6 +31,12 @@ import { LoginComponent } from './components/login/login.component';
 import { AdmineditfoodComponent } from './components/admineditfood/admineditfood.component';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { ThemeToggleComponent } from './theme-toggle/theme-toggle.component';
+
+import { RequestPasswordResetComponent } from './components/request-password-reset/request-password-reset.component';
+import { VerifyResetToken } from './models/verify-reset-password.model';
+import { VerifyResetTokenComponent } from './components/verify-reset-token/verify-reset-token.component';
+
 
 import { ChartsModule } from 'ng2-charts';
 
@@ -61,8 +67,10 @@ import { ChartsModule } from 'ng2-charts';
     UserviewordersComponent,
     AdmineditfoodComponent,
     UserviewfoodComponent,
-    AdminDashboardComponent
-
+    AdminDashboardComponent,
+    ThemeToggleComponent,
+    VerifyResetTokenComponent,
+    RequestPasswordResetComponent
 
   ],
   imports: [

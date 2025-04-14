@@ -2,9 +2,12 @@
   <div class="navbar-header-img">
     <img class="img" src="/assets/img/logo.png" alt="" [routerLink]="['/home']">
   </div>
+
   
   <div class="navbar-links">
     <div class="navbar-menu" *ngIf="!isLoggedIn">
+      <app-theme-toggle></app-theme-toggle>
+
       <a class="navbar-link" routerLink="/register">Register</a>
       <a class="navbar-link" routerLink="/login">Login</a>
     </div>
@@ -12,11 +15,15 @@
       <div class="user-nav">
         <div class="user-item" *ngIf="userRole === 'ROLE_ADMIN'">
           <app-adminnav></app-adminnav>
+         
         </div>
         <div class="user-item" *ngIf="userRole === 'ROLE_USER'">
           <app-usernav></app-usernav>
+         
         </div>
       </div>
     </div>
   </div>
 </div>
+
+

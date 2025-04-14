@@ -1,77 +1,67 @@
-.navbar {
-  height: 4rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.8), rgba(0, 0, 0, 0.8)); 
+
+
+
+ .navbar {
+  background: #e78236; /* Softer yellow with 70% transparency */
+  padding: 15px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border-radius: 8px; /* Smooth rounded edges */
+  backdrop-filter: blur(5px); /* Adds a soft blur effect for elegance */
 }
 
+
 .navbar-header-img img {
-  position: absolute;
-  top: 0;
-  left: 5px;
-  width: 4rem;
-  height: 4rem;
-  object-fit: contain;
+  height: 60px;
+  /* Adjust logo size */
   cursor: pointer;
 }
 
-@keyframes popUp {
-  0% { transform: scale(0); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+.navbar-menu,
+.user-nav {
+  display: flex;
+  gap: 15px;
 }
 
-.navbar-header-img img {
-  animation: popUp 0.5s ease-out;
+.navbar-link,
+.dropdown-toggle {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out;
 }
 
-.navbar-header-img img:hover {
-  animation: bounce 0.6s ease-in-out infinite;
+.navbar-link:hover,
+.dropdown-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .user-section {
-  display: flex;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
 }
 
-/* Navbar Links Styling */
-.navbar-link {
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  transition: 0.3s ease-in-out;
-  background: rgba(255, 215, 0, 0.5); /* Golden glossy effect */
-  color: black;
-  font-weight: bold; /* Bold text for visibility */
-  text-decoration: none; /* Removes underline */
-  margin-right:2rem;
+.logout-button {
+  background-color: #ff3b3b;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 8px 15px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
 }
 
-.navbar-link:hover {
-  background: rgba(255, 215, 0, 0.8); /* Slightly darker gold on hover */
-  transform: scale(1.1); /* Adds a hover animation */
-}
-
-/* Keyframes for Bounce Effect */
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-/* Add bounce effect for hover */
-.navbar-link:hover {
-  animation: bounce 0.6s ease-in-out;
-}
-
-/* Optional: Add Pop-Up Animation for Links When Navbar Loads */
-@keyframes popUp {
-  0% { transform: scale(0); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-.navbar-link {
-  animation: popUp 0.5s ease-out;
+.logout-button:hover {
+  background-color: #c72828;
 }
