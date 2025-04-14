@@ -1,17 +1,22 @@
-<div class="container">
-  <!-- <input type="text" [(ngModel)]="searchData" placeholder="Search food by name">
-  <input type="number" [(ngModel)]="minPrice" placeholder="Minimum Price">
-  <input type="number" [(ngModel)]="maxPrice" placeholder="Maximum Price">
-  <button (click)="resetFilters()">Reset</button> -->
 
-  <!-- <div *ngIf="filteredFoods().length === 0">No foods are available.</div> -->
 
-  <ul *ngIf="foods.length!=0">
-    <li *ngFor="let food of foods">
-      <p>{{ food.foodName }}</p>
-      <p>Price: ${{ food.price }}</p>
-      <p>Stock: {{ food.stockQuantity === 0 ? 'Out of Stock' : food.stockQuantity }}</p>
-      <button *ngIf="food.stockQuantity > 0" [routerLink]="['/user/makeOrder',food.foodId]">Make Order</button>
-    </li>
-  </ul>
+<div class="menu">
+
+  <div class="heading">
+    <h3>&mdash; MENU &mdash; </h3>
+  </div>
+  <div class="cards" *ngIf="foods.length!=0">
+    <div *ngFor="let food of foods" class="food-items" id="menu">
+      <img src="/assets/img/burger.jpg">
+      <div class="details">
+        <div class="details-sub">
+          <h5> <span id="order1">{{food.foodName}}</span> </h5>
+          <h5 class="price">Price: ${{food.price}}</h5>
+          <h5>Stock: {{ food.stockQuantity === 0 ? 'Out of Stock' : food.stockQuantity }}</h5>
+        </div>
+        <button type="submit" *ngIf="food.stockQuantity > 0" [routerLink]="['/user/makeOrder',food.foodId]">Order Now</button>
+      </div>
+    </div>
+  </div>
+
 </div>
