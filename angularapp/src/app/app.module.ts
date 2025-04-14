@@ -38,6 +38,8 @@ import { VerifyResetToken } from './models/verify-reset-password.model';
 import { VerifyResetTokenComponent } from './components/verify-reset-token/verify-reset-token.component';
 
 
+import { ChartsModule } from 'ng2-charts';
+
 
 
 @NgModule({
@@ -77,6 +79,7 @@ import { VerifyResetTokenComponent } from './components/verify-reset-token/verif
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ChartsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

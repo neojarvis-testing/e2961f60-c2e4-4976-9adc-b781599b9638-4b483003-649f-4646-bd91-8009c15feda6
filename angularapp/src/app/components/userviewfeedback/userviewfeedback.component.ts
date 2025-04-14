@@ -62,6 +62,10 @@ export class UserviewfeedbackComponent implements OnInit {
       );
     }
   }
+  navigateToEdit(feedbackId: number): void {
+    this.router.navigate(['/user/edit/feedback', feedbackId]);
+  }
+  
 
   closeDeletePopup(): void {
 
@@ -69,18 +73,4 @@ export class UserviewfeedbackComponent implements OnInit {
     this.selectedFeedbackId = null;
   }
 
-
-  triggerLogout(): void {
-    this.showLogoutPopup = true;
-  }
-
-  confirmLogout(): void {
-    this.authService.logout();
-    this.showLogoutPopup = false;
-    this.router.navigate(['/login']);
-  }
-
-  cancelLogout(): void {
-    this.showLogoutPopup = false;
-  }
 }

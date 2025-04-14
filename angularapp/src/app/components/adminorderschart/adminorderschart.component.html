@@ -1,4 +1,41 @@
-<div>
-    <h2>Food Orders Pie Chart</h2>
-    <canvas id="ordersChart"></canvas>
+<div style="display: block;">
+        <h2>Total Sales by Date</h2>
+        <canvas baseChart [datasets]="salesByDateData" [labels]="salesByDateLabels" [options]="salesByDateOptions"
+                [legend]="salesByDateLegend" [chartType]="salesByDateType">
+        </canvas>
+</div>
+
+<div style="display: block;">
+        <h2>Number of Orders by Date</h2>
+        <canvas baseChart [datasets]="ordersByDateData" [labels]="ordersByDateLabels" [options]="ordersByDateOptions"
+                [legend]="ordersByDateLegend" [chartType]="ordersByDateType">
+        </canvas>
+</div>
+
+<div style="display: block;">
+        <h2>Sales by Food Item</h2>
+        <canvas baseChart [datasets]="salesByFoodData" [labels]="salesByFoodLabels" [options]="salesByFoodOptions"
+                [legend]="salesByFoodLegend" [chartType]="salesByFoodType">
+        </canvas>
+</div>
+
+<div style="display: block;">
+        <h2>Quantity Ordered by Food Item</h2>
+        <canvas baseChart [datasets]="quantityByFoodData" [labels]="quantityByFoodLabels"
+                [options]="quantityByFoodOptions" [legend]="quantityByFoodLegend" [chartType]="quantityByFoodType">
+        </canvas>
+</div>
+
+<div style="display: block;">
+        <h2>Order Status Distribution</h2>
+        <canvas baseChart [data]="statusDistributionData" [labels]="statusDistributionLabels"
+                [chartType]="statusDistributionType" [options]="statusDistributionOptions"
+                [colors]="statusDistributionColors" [legend]="statusDistributionLegend">
+        </canvas>
+</div>
+
+<div style="display: block;">
+        <canvas baseChart [datasets]="comparisonData" [labels]="comparisonLabels" [options]="comparisonOptions"
+                [legend]="comparisonLegend" [chartType]="comparisonType">
+        </canvas>
 </div>

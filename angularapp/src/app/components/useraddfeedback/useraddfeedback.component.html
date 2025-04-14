@@ -1,12 +1,10 @@
 <div class="feedback-form-container">
-  <h2>Add Feedback</h2>
+  <h2>{{ feedbackId ? 'Edit Feedback' : 'Add Feedback' }}</h2>
 
-  <form [formGroup]="userFeedbackForm" (ngSubmit)="createFeedback()">
+  <form [formGroup]="userFeedbackForm" (ngSubmit)="saveFeedback()">
     <div class="form-group">
-
-        <label for="food">Food:</label>
-        <input id="food" formControlName="food" readonly />
-
+      <label for="food">Food:</label>
+      <input id="food" formControlName="food" readonly />
     </div>
 
     <div class="form-group">
@@ -22,11 +20,10 @@
       </div>
     </div>
 
-    <!-- Rating Input -->
     <div class="form-group">
       <label for="rating">Rating (1 to 5):</label>
       <div class="stars">
-        <ng-container *ngFor="let star of [1,2,3,4,5]">
+        <ng-container *ngFor="let star of [5,4,3,2,1]">
           <input
             type="radio"
             id="star{{ star }}"
@@ -41,17 +38,16 @@
       </div>
     </div>
 
-    <!-- Submit Button -->
     <button type="submit" [disabled]="userFeedbackForm.invalid" class="btn-submit">
-      Submit Feedback
+      {{ feedbackId ? 'Update Feedback' : 'Submit Feedback' }}
     </button>
   </form>
 
-  <!-- Popup -->
   <div *ngIf="showPopup" class="popup-container">
     <div class="popup">
-      <p>Feedback Successfully Added!</p>
+      <p>{{ feedbackId ? 'Feedback Successfully Updated!' : 'Feedback Successfully Added!' }}</p>
       <button (click)="closePopup()">Ok</button>
     </div>
   </div>
 </div>
+
