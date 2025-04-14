@@ -14,7 +14,7 @@ import com.examly.springapp.model.Food;
 @Service
 public interface FoodService {
 
-    public Food addFood(Food food,MultipartFile photo) throws FoodNotFoundException;
+    public Food addFood(String foodJson,MultipartFile photo) throws Exception;
 
     public List<Food> getAllFoods() throws IllegalArgumentException, FoodNotFoundException;
 

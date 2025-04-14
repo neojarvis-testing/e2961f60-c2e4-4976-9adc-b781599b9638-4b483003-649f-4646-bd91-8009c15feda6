@@ -1,8 +1,7 @@
+/* General Styling */
 body {
-  background-color: #000000;
-  /* Black background */
-  color: #FFD700;
-  /* Golden yellow text */
+  background-color: #000000; /* Black background */
+  color: #FFD700; /* Golden yellow text */
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -24,6 +23,7 @@ body {
   font-size: 32px;
 }
 
+/* Filters Section */
 .filters {
   display: flex;
   gap: 10px;
@@ -59,6 +59,7 @@ body {
   background-color: #FFDD44;
 }
 
+/* Table Styling */
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -79,6 +80,7 @@ body {
   text-transform: uppercase;
 }
 
+/* Action Buttons */
 .btn-action {
   padding: 5px 10px;
   background-color: #FFD700;
@@ -103,7 +105,7 @@ body {
   background-color: #FF7777;
 }
 
-table>tbody>tr>td>img {
+table > tbody > tr > td > img {
   height: 100px;
   width: 100px;
 }
@@ -113,6 +115,7 @@ table>tbody>tr>td>img {
   gap: 1rem;
 }
 
+/* Popup Styling */
 .popup {
   position: fixed;
   top: 0;
@@ -121,54 +124,104 @@ table>tbody>tr>td>img {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7); /* Dim the background */
   display: flex;
-  justify-content: center; /* Centers horizontally */
-  align-items: center; /* Centers vertically */
-  animation: fadeIn 0.3s ease-in-out;
+  justify-content: center;
+  align-items: center;
   z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out; /* Fade-in animation */
 }
-
-.popup-box {
-  background-color: #fff;
-  width: 400px;
-  max-width: 90%; /* Responsive design */
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add depth */
-  text-align: center;
-  animation: slideIn 0.3s ease-in-out;
-}
-
 
 .popup-content {
-  background-color: #fff;
-  /* White background for the box */
+  background: #fff;
+  border-radius: 10px;
   padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-  animation: slideIn 0.3s ease-in-out;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column; /* Align image and details side by side */
+  gap: 20px;
+  transform: scale(0.8);
+  animation: scaleUp 0.3s ease-in-out forwards; /* Scale-up animation */
+
+}
+
+.popup-content h2 {
+  text-align: center; /* Centers the text horizontally */
+  font-size: 24px; /* Adjust font size if needed */
+  font-weight: bold; /* Makes the text bold */
+  margin-bottom: 20px; /* Add spacing below the title */
+  color: #333; /* Optional: Adjust text color for readability */
+}
+
+/* Flex Row Layout for Content */
+.image-section {
+  flex: 1; /* Adjust image section width */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.details-section {
+  flex: 2; /* Adjust details section width */
+}
+
+.details-section p {
+  margin: 10px 0;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .popup-image {
-  max-width: 90%;
-  max-height: 70vh;
-  margin-bottom: 15px;
+  width: 200px;
+  height: 150px;
   border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.popup-box h3 {
-  margin: 0 0 10px 0;
-  color: #333;
-  /* Dark text for readability */
-  font-size: 24px;
+/* Close Button Styling */
+.btn-close {
+  margin-top: 20px;
+  background-color: #f44336;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  align-self: flex-end;
+  transition: background-color 0.3s ease;
 }
 
-.popup-box p {
-  margin: 0 0 20px 0;
-  color: #555;
-  /* Softer text for the description */
-  font-size: 16px;
+.btn-close:hover {
+  background-color: #d32f2f;
 }
 
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Popup Box Actions */
 .popup-actions {
   display: flex;
   justify-content: space-between;
@@ -186,8 +239,7 @@ table>tbody>tr>td>img {
 }
 
 .popup-actions button:first-child {
-  background-color: #cccccc;
-  /* Neutral color for cancel */
+  background-color: #cccccc; /* Neutral color for cancel */
   color: #333;
 }
 
@@ -196,8 +248,7 @@ table>tbody>tr>td>img {
 }
 
 .popup-actions button:last-child {
-  background-color: #ff6b6b;
-  /* Red for danger (Delete) */
+  background-color: #ff6b6b; /* Red for danger (Delete) */
   color: white;
 }
 
@@ -206,26 +257,10 @@ table>tbody>tr>td>img {
 }
 
 .popup-actions button:active {
-  transform: scale(0.95);
-  /* Slightly shrink on click */
+  transform: scale(0.95); /* Slightly shrink on click */
 }
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateY(-20px);
-  }
-
-  to {
-    transform: translateY(0);
-  }
+.details-container{
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
 }
