@@ -20,7 +20,7 @@ export class FoodService {
     return this.htppClient.get(this.apiUrl+"/"+foodId);
   }
 
-  public addFood(food : Food) : Observable<any>{
+  public addFood(food : FormData) : Observable<any>{
     return this.htppClient.post(this.apiUrl,food);
   }
 
