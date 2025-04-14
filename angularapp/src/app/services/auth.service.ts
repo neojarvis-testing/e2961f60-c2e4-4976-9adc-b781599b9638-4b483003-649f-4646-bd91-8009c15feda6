@@ -17,11 +17,7 @@ export class AuthService {
   }
 
   register(user: User): Observable<any> {
-    return this.httpClient.post(this.apiUrl + "/register", user).pipe(
-      tap(registeredUser => {
-        console.log("User registered successfully", registeredUser);
-      })
-    );
+    return this.httpClient.post<string>(this.apiUrl + "/register", user,{responseType : 'text' as 'json'});
   }
   login(credentials: Login): Observable<any> {
     return this.httpClient.post(this.apiUrl + "/login", credentials);
