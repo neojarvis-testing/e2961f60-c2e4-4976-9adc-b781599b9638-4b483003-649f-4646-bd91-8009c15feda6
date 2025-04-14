@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Food } from 'src/app/models/food.model';
 import { FoodService } from 'src/app/services/food.service';
@@ -14,10 +15,13 @@ export class AdminviewfoodComponent implements OnInit {
   searchName: string = '';
   minPrice: number | null = null;
   maxPrice: number | null = null;
-  foodId: number ;
+  foodId: number;
   showPopup: boolean = false;
 
-  constructor(private foodService: FoodService, private router: Router) { }
+  showPreview: boolean = false;
+  selectedImage: any = null;
+
+  constructor(private foodService: FoodService, private router: Router, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.loadfood();
@@ -25,70 +29,73 @@ export class AdminviewfoodComponent implements OnInit {
 
   loadfood() {
     this.foodService.getAllFoods().subscribe((data) => {
-      this.foods = data;
-      console.log(data);
-      this.filteredFoods = data;
-    },
-      (error) => {
-        console.error('Error fetching food details:', error);
-      }
-    );
-  }
-  public filterFoods(): void {
-    this.filteredFoods = this.foods.filter((food) => {
-      const matchesName = food.foodName.toLowerCase().includes(this.searchName.toLowerCase());
-      const matchesPrice =
-        (this.minPrice === null || food.price >= this.minPrice) &&
-        (this.maxPrice === null || food.price <= this.maxPrice);
-      return matchesName && matchesPrice;
+      this.foods = data.map(food => ({
+        ...food,
+        photo: food.photo ? this.sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + food.photo) : null
+      }));
+      console.log("after deleting food updatingn filtered foods array")
+      this.filteredFoods = this.foods;
+    }, error => {
+      this.foods=[];
+      this.filteredFoods = [];
+      console.error('Error fetching food details:', error);
     });
   }
 
+
+  public filterFoods(): void {
+  this.filteredFoods = this.foods.filter((food) => {
+    const matchesName = food.foodName.toLowerCase().includes(this.searchName.toLowerCase());
+    const matchesPrice =
+      (this.minPrice === null || food.price >= this.minPrice) &&
+      (this.maxPrice === null || food.price <= this.maxPrice);
+    return matchesName && matchesPrice;
+  });
+}
+
   public resetFilters(): void {
-    this.searchName = '';
-    this.minPrice = null;
-    this.maxPrice = null;
-    this.loadfood();
+  this.searchName = '';
+  this.minPrice = null;
+  this.maxPrice = null;
+  this.loadfood();
+}
+
+
+
+confirmDelete(id: number): void {
+  this.showPopup = true;
+  this.foodId = id;
+
+}
+
+onConfirm(): void {
+  this.foodService.deleteFood(this.foodId).subscribe(
+    response => {
+      this.loadfood();
+      this.showPopup = false;
+    },
+    error => {
+      console.error('Error occurred while deleting food:', error);
+      this.foods = [];
+      this.filteredFoods = [];
+    }
+  );
+}
+
+onCancel(): void {
+  this.showPopup = false;
+  console.log('Deletion cancelled');
+}
+
+  // Show preview for the selected food image
+  openPreview(image: any): void {
+    this.selectedImage = image;
+    this.showPreview = true;
   }
 
-  // confirmDelete(foodId: number): void {
-  //   const confirmation = window.confirm('Are you sure you want to delete this food item?');
-
-  //   if (confirmation) {
-  //     this.foodService.deleteFood(foodId).subscribe(response => {
-  //       this.loadfood();
-  //     },
-  //       error => {
-  //         console.error('Error occurred while deleting food:', error);
-  //       }
-  //     );
-  //   } else {
-  //     console.log('Deletion cancelled');
-  //   }
-  // }
-
-  confirmDelete(id: number): void {
-    console.log("inside confirm delete")
-    this.showPopup = true; 
-    this.foodId = id;
-    console.log(this.foodId , this.showPopup);
-  }
-  
-  onConfirm(): void {
-    this.foodService.deleteFood(this.foodId).subscribe(
-      response => {
-        this.loadfood();
-        this.showPopup = false;
-      },
-      error => {
-        console.error('Error occurred while deleting food:', error);
-      }
-    );
-  }
-  
-  onCancel(): void {
-    this.showPopup = false; 
-    console.log('Deletion cancelled');
+  closePreview(): void {
+    this.showPreview = false;
+    this.selectedImage = null;
   }
 
 }

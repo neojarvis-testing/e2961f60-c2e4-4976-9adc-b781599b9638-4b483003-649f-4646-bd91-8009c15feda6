@@ -26,26 +26,31 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  loginUser(){
-    if(this.loginForm.valid){
+  loginUser() {
+    if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
-        next:(user:any)=>{
+        next: (user: any) => {
           this.userStore.setUser(user);
           console.log(user);
           this.redirectBasedOnRole();
         },
-        error:(err)=>{
-          this.errorMessage="Invalid Credentials! Please Try Again.";
-          console.log("Login Error",err);
+        error: (err: any) => {
+          if (err.status === 401) {
+            this.errorMessage = "Invalid Credentials! Please Try Again.";
+          } else {
+            this.errorMessage = "An unexpected error occurred. Please try again later.";
+          }
+          console.log("Login Error", err);
         }
-      })
+      });
     }
   }
+    
   
 
   redirectBasedOnRole(){
     if(this.userStore.authUser.role == "ROLE_ADMIN"){
-      this.router.navigate(['/admin/view/foods'])
+      this.router.navigate(['/admin/dashboard'])
     }
     else if(this.userStore.authUser.role =="ROLE_USER"){
       this.router.navigate(['/user/view/foods']);
@@ -53,9 +58,7 @@ export class LoginComponent implements OnInit {
     else{
       this.router.navigate(['home']);
     }
-
   }
-
 }
 
 

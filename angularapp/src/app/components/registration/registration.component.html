@@ -2,52 +2,55 @@
   <div class="registration-card">
     <h2 class="registration-title">Register</h2>
 
-    <form [formGroup]="registrationForm" (ngSubmit)="addRegister()" class="registration-form">
+    <!-- Dynamic status indicators -->
+    <div *ngIf="loading" class="status-icon">
+      <i class="fas fa-spinner fa-spin loading-icon"></i>
+      <p>Registering...</p>
+    </div>
+    <div *ngIf="success" class="status-icon">
+      <i class="fas fa-check-circle success-icon"></i>
+      <p>Registration successful! Redirecting to login...</p>
+    </div>
+    <div *ngIf="error409" class="status-icon">
+      <i class="fas fa-exclamation-circle error-icon"></i>
+      <p>User already exists. <a routerLink="/login" class="login-suggestion">Click here to log in.</a></p>
+    </div>
+
+    <!-- Registration Form -->
+    <form *ngIf="!loading && !success" [formGroup]="registrationForm" (ngSubmit)="addRegister()" class="registration-form">
       <div class="input-group">
         <label for="email" class="input-label">Email:</label>
         <input type="email" class="input-field" id="email" formControlName="email">
-        
-
         <div *ngIf="registrationForm.get('email').touched && registrationForm.get('email').invalid" class="error-message">
-        <span *ngIf="registrationForm.get('email').errors?.required">Email is required.</span>
-        <span *ngIf="registrationForm.get('email').errors?.email">Please enter a valid email address.</span>
+          <span *ngIf="registrationForm.get('email').errors?.required">Email is required.</span>
+          <span *ngIf="registrationForm.get('email').errors?.email">Please enter a valid email address.</span>
         </div>
-          
-
       </div>
 
       <div class="input-group">
         <label for="password" class="input-label">Password:</label>
         <input type="password" class="input-field" id="password" formControlName="password">
-
-        
         <div *ngIf="registrationForm.get('password').touched && registrationForm.get('password').invalid" class="error-message">
           <span *ngIf="registrationForm.get('password').errors?.required">Password is required.</span>
           <span *ngIf="registrationForm.get('password').errors?.minlength">Password must be at least 8 characters long.</span>
         </div>
-
       </div>
 
       <div class="input-group">
         <label for="username" class="input-label">Username:</label>
         <input type="text" class="input-field" id="username" formControlName="username">
-              
-      <div *ngIf="registrationForm.get('username').touched && registrationForm.get('username').invalid" class="error-message">
-      <span *ngIf="registrationForm.get('username').errors?.required">Username is required.</span>
-      </div>
-  
-
+        <div *ngIf="registrationForm.get('username').touched && registrationForm.get('username').invalid" class="error-message">
+          <span *ngIf="registrationForm.get('username').errors?.required">Username is required.</span>
+        </div>
       </div>
 
       <div class="input-group">
         <label for="mobileNumber" class="input-label">Mobile Number:</label>
         <input type="text" class="input-field" id="mobileNumber" formControlName="mobileNumber">
-
         <div *ngIf="registrationForm.get('mobileNumber').touched && registrationForm.get('mobileNumber').invalid" class="error-message">
-         <span *ngIf="registrationForm.get('mobileNumber').errors?.required">Mobile number is required.</span>
-         <span *ngIf="registrationForm.get('mobileNumber').errors?.pattern">Please enter a Minimum 10 </span>
+          <span *ngIf="registrationForm.get('mobileNumber').errors?.required">Mobile number is required.</span>
+          <span *ngIf="registrationForm.get('mobileNumber').errors?.pattern">Please enter a valid 10-digit number.</span>
         </div>
-        
       </div>
 
       <div class="input-group">

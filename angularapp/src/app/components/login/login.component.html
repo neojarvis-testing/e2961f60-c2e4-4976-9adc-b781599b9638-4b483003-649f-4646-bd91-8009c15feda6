@@ -1,23 +1,29 @@
 <div class="login-page">
   <form [formGroup]="loginForm" (ngSubmit)="loginUser()" class="login-form">
     <h2>Login</h2>
+    <!-- Email Field -->
     <div class="mb-3">
       <label for="email" class="form-label">Email:</label>
       <input type="email" class="form-control" id="email" formControlName="email">
-          <div *ngIf="loginForm.get('email').touched && loginForm.get('email').invalid" class="error-message">
-            <span *ngIf="loginForm.get('email').errors?.required">Email is required.</span>
-            <span *ngIf="loginForm.get('email').errors?.email">Please enter a valid email address.</span>
-          </div>
+      <div *ngIf="loginForm.get('email').touched && loginForm.get('email').invalid" class="error-message">
+        <span *ngIf="loginForm.get('email').errors?.required">Email is required.</span>
+        <span *ngIf="loginForm.get('email').errors?.email">Please enter a valid email address.</span>
+      </div>
     </div>
+    <!-- Password Field -->
     <div class="mb-3">
       <label for="password" class="form-label">Password:</label>
       <input type="password" class="form-control" id="password" formControlName="password">
-          <div *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid" class="error-message">
-            <span *ngIf="loginForm.get('password').errors?.required">Password is required.</span>
-            <span *ngIf="loginForm.get('password').errors?.minlength">Password must be at least 8 characters long.</span>
-          </div>
-
+      <div *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid" class="error-message">
+        <span *ngIf="loginForm.get('password').errors?.required">Password is required.</span>
+        <span *ngIf="loginForm.get('password').errors?.minlength">Password must be at least 8 characters long.</span>
+      </div>
     </div>
-    <button type="submit">Login</button>
+    <!-- Error Message for Invalid Credentials -->
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary">Login</button>
   </form>
 </div>

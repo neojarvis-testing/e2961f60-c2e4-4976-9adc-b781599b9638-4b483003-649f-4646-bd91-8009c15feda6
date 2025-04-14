@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -35,55 +36,56 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private JwtUtils jwtUtils;
 
-
-
     @Override
     public User registerUser(User user) {
         Optional<User> opt = userRepo.findByEmail(user.getEmail());
-        if(opt.isPresent()){
+        if (opt.isPresent()) {
             throw new DuplicateUserException("User already exists");
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User newUser = userRepo.save(user);
-        return newUser;  
+        return newUser;
     }
 
-
     @Override
-    public User getUserById(int id){
+    public User getUserById(int id) {
 
-       Optional<User> opt = userRepo.findById(id);
-       if(opt.isEmpty()){
-        throw new EntityNotFoundException();
-       }
-       return opt.get();
-    }
-
-
-    @Override
-    public AuthUser loginUser(LoginDTO user) {
-        Authentication authentication = authManager.authenticate(
-            new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword())
-            );
-        if(authentication.isAuthenticated()){
-        List<String> roleList=authentication.getAuthorities().stream().map(r->r.getAuthority()).collect(Collectors.toList());
-        if(roleList.isEmpty()){
-            throw new IllegalStateException("User has no role");
+        Optional<User> opt = userRepo.findById(id);
+        if (opt.isEmpty()) {
+            throw new EntityNotFoundException();
         }
-        String role=roleList.get(0);
-        AuthUser authUser=new AuthUser();
-        authUser.setUserName(user.getEmail());
-        authUser.setToken(jwtUtils.generateToken(user.getEmail()));
-        authUser.setRole(role);
-        authUser.setUserId(userRepo.findUserIdByEmail(user.getEmail()));
-        authUser.setName(userRepo.findNameByEmail(user.getEmail()));
-        return authUser;
-       }
-       else{
-        throw new InvalidCredentialsException("Invalid User Name or Password");
-       }
-       
+        return opt.get();
     }
 
-    
+    @Override
+    public AuthUser loginUser(LoginDTO user) throws InvalidCredentialsException {
+        try {
+            Authentication authentication = authManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
+
+            if (authentication.isAuthenticated()) {
+                List<String> roleList = authentication.getAuthorities().stream()
+                        .map(r -> r.getAuthority())
+                        .collect(Collectors.toList());
+
+                if (roleList.isEmpty()) {
+                    throw new IllegalStateException("User has no role");
+                }
+
+                String role = roleList.get(0);
+                AuthUser authUser = new AuthUser();
+                authUser.setUserName(user.getEmail());
+                authUser.setToken(jwtUtils.generateToken(user.getEmail()));
+                authUser.setRole(role);
+                authUser.setUserId(userRepo.findUserIdByEmail(user.getEmail()));
+                authUser.setName(userRepo.findNameByEmail(user.getEmail()));
+                return authUser;
+            }else {
+                throw new InvalidCredentialsException("Invalid User Name or Password");
+            }
+        } catch (AuthenticationException e) {
+            throw new InvalidCredentialsException("Invalid User Name or Password");
+        }
+    }
+
 }
