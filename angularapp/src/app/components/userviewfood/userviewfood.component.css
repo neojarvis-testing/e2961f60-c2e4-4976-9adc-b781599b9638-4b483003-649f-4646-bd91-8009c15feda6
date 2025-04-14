@@ -1,93 +1,131 @@
-.container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #f8f9fa; 
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-  font-family: Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Montserrat:ital@1&family=Oswald&family=Signika:wght@400;600&display=swap');
+
+
+* {
+  scroll-behavior: smooth;
 }
 
 
-input[type="text"],
-input[type="number"] {
-  width: calc(100% - 20px); 
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ced4da; 
-  border-radius: 4px;
-  font-size: 14px;
+
+
+
+
+/* menu  */
+
+.menu {
+ display: flex;
+ flex-direction: column;
 }
 
-input:focus {
-  border-color: #007bff; 
-  outline: none;
+.cards{
+  margin: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
 }
 
-
-button {
-  padding: 10px 20px;
-  margin: 10px 5px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-button:hover {
-  opacity: 0.9;
-}
-
-button:first-child {
-  background-color: #007bff; 
-  color: white;
-}
-
-button:last-child {
-  background-color: #6c757d; 
-}
-
-button[routerLink] {
-  background-color: #28a745; 
-  color: white;
-}
-
-button[routerLink]:hover {
-  background-color: #218838;
-
-
-div[ngIf] {
+.heading {
+  color: #333;
+  margin-bottom: 30px;
+  padding: 120px 0 30px 0;
+  grid-column: 1/-1;
   text-align: center;
-  color: #dc3545; 
-  font-size: 16px;
-  margin-top: 20px;
 }
 
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0;
+.heading>h1 {
+  font-weight: 400;
+  font-size: 30px;
+  letter-spacing: 10px;
+  margin-bottom: 10px;
 }
 
-li {
-  background-color: #ffffff; 
-  margin-bottom: 15px;
-  padding: 15px;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
+.heading>h3 {
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: 5px;
+}
+
+.food-items {
+  width: calc(25% - 20px);
+  max-width: 280px;
+  flex-grow: 1;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.food-items img {
+  position: relative;
+  width: 100%;
+  border-radius: 15px 15px 0 0;
+}
+
+.food-items:hover{
+  transform: translateY(-10px);
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.3);
+}
+
+.details {
+  padding: 35px 14px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 }
 
-li p {
-  margin: 5px 0;
+.details-sub {
+  display: grid;
+  grid-template-columns: auto auto;
 }
 
-li button {
-  align-self: flex-start;
-  margin-top: 10px;
-}
+.details-sub>h5 {
+  font-weight: 600;
+  font-size: 18px;
 }
 
+.price {
+  color: #e1711b; /* Bright orange to grab attention */
+  font-size: 20px; /* Slightly larger */
+  font-weight: bold; /* Makes it pop */
+  background-color: #ffebcd; /* Light background to contrast */
+  padding: 5px 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+.details>p {
+  color: #6f6f6f;
+  font-size: 15px;
+  line-height: 28px;
+  font-weight: 400;
+  align-self: stretch;
+}
+
+.details>button {
+  margin: 5px;
+  background-color: #e1711b;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  width: 180px;
+  align-items: center;
+}
+
+@media(max-width:1024px){
+  .food-items{
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .food-items{
+    width: 100%;
+  }
+}

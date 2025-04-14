@@ -1,23 +1,14 @@
-<body>
-    <header>
-        <div class="navbar">
-
-            <div >
-                <nav>
-                    <ul class="navbar-list">
-                        <div class="user-section">
-                            <li class="navbar-welcome">Welcome {{userName}}/{{userRole}}</li>
-                        </div>
-                        <li class="navbar-item"><a class="navbar-link" [routerLink]="['']">Home</a></li>
-                        <li class="navbar-dropdown">
-                            <a class="dropdown-toggle" [routerLink]="['/user/view/foods']">Food</a>
-                        </li>
-                        <li class="navbar-item"><a class="navbar-link" [routerLink]="['/user/view/orders']">MyOrder</a></li>
-                        <li class="navbar-item"><a class="navbar-link" [routerLink]="['/user/view/feedBack']">Feedbacks</a></li>
-                        <li class="navbar-item"><a class="logout-button" (click)="logout()" type="button">Logout</a></li>
-                    </ul>
-                </nav>
-            </div>
+<nav class="navbar">
+    <ul class="navbar-list">
+        <div class="user-section">
+            <li class="navbar-welcome">Welcome {{userName}}/{{userRole}}</li>
         </div>
-    </header>
-</body>
+        <li class="navbar-item"><a class="navbar-link" [routerLink]="['']">Home</a></li>
+        <li class="navbar-dropdown">
+            <a class="dropdown-toggle" [routerLink]="['/user/view/foods']">Food</a>
+        </li>
+        <li class="navbar-item"><a class="navbar-link" [routerLink]="['/user/view/orders']">MyOrder</a></li>
+        <li class="navbar-item"><a class="navbar-link" [routerLink]="['/user/view/feedBack']">Feedbacks</a></li>
+        <li class="navbar-item"><a class="logout-button" (click)="logout()" type="button">Logout</a></li>
+    </ul>
+</nav>
