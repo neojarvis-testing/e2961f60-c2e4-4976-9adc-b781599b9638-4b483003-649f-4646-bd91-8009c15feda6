@@ -1,7 +1,8 @@
 <div class="container">
     <h1 class="header">Food Details</h1>
     <div class="filters">
-        <input class="input" type="text" placeholder="Search food by name" [(ngModel)]="searchName" (input)="filterFoods()" />
+        <input class="input" type="text" placeholder="Search food by name" [(ngModel)]="searchName"
+            (input)="filterFoods()" />
         <input class="input" type="number" placeholder="Min Price" [(ngModel)]="minPrice" (input)="filterFoods()" />
         <input class="input" type="number" placeholder="Max Price" [(ngModel)]="maxPrice" (input)="filterFoods()" />
         <button class="btn-reset" (click)="resetFilters()">Reset</button>
@@ -20,15 +21,24 @@
                 <td>{{ food.foodName }}</td>
                 <td>{{ food.price }}</td>
                 <td>{{ food.stockQuantity }}</td>
-                <td>
-                    <button class="btn-action" [routerLink]="['/admin/edit/food',food.foodId]">Edit</button>
+                <td class='action-button'>
+                    <button class="btn-action" (click)="openPreview(food.photo)">Preview</button>
+                    <button class="btn-action" [routerLink]="['/admin/edit/food', food.foodId]">Edit</button>
                     <button class="btn-action btn-delete" (click)="confirmDelete(food.foodId)">Delete</button>
                 </td>
             </tr>
         </tbody>
     </table>
-</div>
 
+    <!-- Popup for Image Preview -->
+    <div class="popup" *ngIf="showPreview">
+        <div class="popup-content">
+            <img [src]="selectedImage" alt="Food Preview" class="popup-image" />
+            <button class="btn-close" (click)="closePreview()">Close Preview</button>
+        </div>
+    </div>
+
+</div>
 <div *ngIf="showPopup" class="popup-overlay">
     <div class="popup-box">
         <h3>Confirm Deletion</h3>

@@ -30,10 +30,9 @@ export class UsermakeorderComponent implements OnInit {
   ngOnInit(): void {
 
     this.userId = this.userStoreService.authUser?.userId;
-    // this.foodId = parseInt(this.activatedRoute.snapshot.paramMap.get("id"));
-
-    this.foodId = 1;
-    
+    this.activatedRoute.paramMap.subscribe(data=>{
+      this.foodId = parseInt(data.get("id"));
+    })
     this.loadFoodDetails();
 
 

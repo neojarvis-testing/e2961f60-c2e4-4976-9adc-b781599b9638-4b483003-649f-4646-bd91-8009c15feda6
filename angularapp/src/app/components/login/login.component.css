@@ -1,6 +1,7 @@
 /* General Reset */
 .error-message {
   color: red;
+  margin-bottom: 1rem;
 }
 body, html {
   margin: 0;
@@ -76,8 +77,11 @@ button {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-top: 1rem;
 }
-
+input{
+  font-weight: bold;
+}
 button:hover {
   background-color: #ff9900; /* Darker orange on hover */
 }

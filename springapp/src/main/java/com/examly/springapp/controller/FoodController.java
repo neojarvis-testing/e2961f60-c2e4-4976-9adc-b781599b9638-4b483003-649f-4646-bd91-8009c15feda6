@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.examly.springapp.exceptions.FoodNotFoundException;
 import com.examly.springapp.exceptions.UserNotFoundException;
@@ -27,10 +29,13 @@ public class FoodController {
 
     @PostMapping("api/food")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> addFood(@RequestBody Food food) {
+    public ResponseEntity<?> addFood(@RequestPart("food") Food food, @RequestPart("photo") MultipartFile photo) {
         try{
-            food = foodService.addFood(food);
+            food = foodService.addFood(food,photo);
             return ResponseEntity.status(201).body(food);
+        }
+        catch(RuntimeException e){
+            return ResponseEntity.status(401).body(e.getMessage());
         }
         catch(FoodNotFoundException e){
             return ResponseEntity.status(403).body(e.getMessage());

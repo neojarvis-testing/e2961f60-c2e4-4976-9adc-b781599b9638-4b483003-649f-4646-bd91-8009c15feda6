@@ -34,26 +34,44 @@
   animation: bounce 0.6s ease-in-out infinite;
 }
 
-
-.navbar-links {
-  display: flex;
-  align-items: center;
-}
-
 .user-section {
   display: flex;
 }
 
+/* Navbar Links Styling */
 .navbar-link {
   padding: 0.5rem 1rem;
   border-radius: 5px;
   transition: 0.3s ease-in-out;
   background: rgba(255, 215, 0, 0.5); /* Golden glossy effect */
   color: black;
+  font-weight: bold; /* Bold text for visibility */
+  text-decoration: none; /* Removes underline */
+  margin-right:2rem;
 }
 
 .navbar-link:hover {
-  background: rgba(255, 215, 0, 0.8);
-  transform: scale(1.1);
+  background: rgba(255, 215, 0, 0.8); /* Slightly darker gold on hover */
+  transform: scale(1.1); /* Adds a hover animation */
 }
 
+/* Keyframes for Bounce Effect */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Add bounce effect for hover */
+.navbar-link:hover {
+  animation: bounce 0.6s ease-in-out;
+}
+
+/* Optional: Add Pop-Up Animation for Links When Navbar Loads */
+@keyframes popUp {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.navbar-link {
+  animation: popUp 0.5s ease-out;
+}

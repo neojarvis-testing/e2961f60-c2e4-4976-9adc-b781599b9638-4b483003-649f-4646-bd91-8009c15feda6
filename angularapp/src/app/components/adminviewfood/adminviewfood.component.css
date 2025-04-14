@@ -1,6 +1,8 @@
 body {
-  background-color: #000000; /* Black background */
-  color: #FFD700; /* Golden yellow text */
+  background-color: #000000;
+  /* Black background */
+  color: #FFD700;
+  /* Golden yellow text */
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -50,6 +52,7 @@ body {
   border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
+  transition: background 0.3s;
 }
 
 .btn-reset:hover {
@@ -65,14 +68,14 @@ body {
   color: #FFD700;
 }
 
-.table th, .table td {
+.table th,
+.table td {
   padding: 10px;
   border: 1px solid #FFD700;
 }
 
 .table th {
   background-color: #555555;
-  color: #FFD700;
   text-transform: uppercase;
 }
 
@@ -84,6 +87,7 @@ body {
   border-radius: 3px;
   cursor: pointer;
   font-weight: bold;
+  transition: background 0.3s;
 }
 
 .btn-action:hover {
@@ -97,4 +101,131 @@ body {
 
 .btn-delete:hover {
   background-color: #FF7777;
+}
+
+table>tbody>tr>td>img {
+  height: 100px;
+  width: 100px;
+}
+
+.action-button {
+  display: flex;
+  gap: 1rem;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Dim the background */
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  animation: fadeIn 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.popup-box {
+  background-color: #fff;
+  width: 400px;
+  max-width: 90%; /* Responsive design */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add depth */
+  text-align: center;
+  animation: slideIn 0.3s ease-in-out;
+}
+
+
+.popup-content {
+  background-color: #fff;
+  /* White background for the box */
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  animation: slideIn 0.3s ease-in-out;
+}
+
+.popup-image {
+  max-width: 90%;
+  max-height: 70vh;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+
+.popup-box h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+  /* Dark text for readability */
+  font-size: 24px;
+}
+
+.popup-box p {
+  margin: 0 0 20px 0;
+  color: #555;
+  /* Softer text for the description */
+  font-size: 16px;
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.popup-actions button {
+  flex: 1;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.popup-actions button:first-child {
+  background-color: #cccccc;
+  /* Neutral color for cancel */
+  color: #333;
+}
+
+.popup-actions button:first-child:hover {
+  background-color: #dddddd;
+}
+
+.popup-actions button:last-child {
+  background-color: #ff6b6b;
+  /* Red for danger (Delete) */
+  color: white;
+}
+
+.popup-actions button:last-child:hover {
+  background-color: #ff4c4c;
+}
+
+.popup-actions button:active {
+  transform: scale(0.95);
+  /* Slightly shrink on click */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
 }
