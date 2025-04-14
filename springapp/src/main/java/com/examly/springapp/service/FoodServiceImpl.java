@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.examly.springapp.exceptions.FoodNotFoundException;
 import com.examly.springapp.exceptions.UserNotFoundException;
@@ -19,11 +20,15 @@ public class FoodServiceImpl implements FoodService{
     private FoodRepo foodRepo;
 
     @Override
-    public Food addFood(Food food) throws FoodNotFoundException {
+    public Food addFood(Food food,MultipartFile photo) throws FoodNotFoundException {
         if (food == null) {
             throw new FoodNotFoundException("Food cannot be null.");
         }
-  
+        try{
+            food.setPhoto(photo.getBytes());
+        }catch(Exception e){
+            throw new RuntimeException("Error uploading photo");
+        }
         Food savedFood = foodRepo.save(food);
         return savedFood;
     } 

@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,7 +27,9 @@ public class Food {
     private String foodName;
     private Double price;
     private int stockQuantity;
-    private String photo;
+
+    @Lob
+    private byte[] photo;
 
     @ManyToOne
     @JoinColumn(name = "userId", nullable=false)

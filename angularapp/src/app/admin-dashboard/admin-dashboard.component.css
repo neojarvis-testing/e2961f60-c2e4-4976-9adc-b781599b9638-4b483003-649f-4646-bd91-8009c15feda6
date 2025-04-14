@@ -1,0 +1,100 @@
+.admin-dashboard {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* Motivational Message */
+.motivational-message {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.motivational-message h1 {
+  font-size: 32px;
+  color: #FFD700;
+}
+
+.motivational-message p {
+  font-size: 18px;
+  color: #555;
+}
+
+/* Food Carousel */
+.food-carousel {
+  margin-bottom: 30px;
+}
+
+.food-carousel h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.carousel {
+  display: flex;
+  overflow: hidden;
+  gap: 1rem; /* Remove gaps for smooth scrolling */
+  animation: scrollCarousel 15s linear infinite;
+}
+
+.carousel-item {
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.carousel-item img {
+  height: 250px; /* Larger images for a cleaner look */
+  width: auto;
+  border-radius: 10px;
+}
+
+/* Infinite Scroll Keyframes */
+@keyframes scrollCarousel {
+  0% {
+      transform: translateX(0);
+  }
+  100% {
+      transform: translateX(-100%);
+  }
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  display: flex;
+  gap: 30px; 
+}
+
+/* Recent Testimonials */
+.recent-testimonials {
+  flex: 1; 
+}
+
+.recent-testimonials h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.testimonial {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Statistics Section */
+.statistics {
+  flex: 1; 
+}
+
+.statistics h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.statistic-card {
+  background-color: #FFD700;
+  color: #000;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}

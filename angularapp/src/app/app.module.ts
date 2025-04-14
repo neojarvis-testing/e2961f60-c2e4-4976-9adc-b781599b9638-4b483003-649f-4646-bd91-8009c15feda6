@@ -29,6 +29,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { LoginComponent } from './components/login/login.component';
 import { AdmineditfoodComponent } from './components/admineditfood/admineditfood.component';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+
 
 
 @NgModule({
@@ -55,7 +58,8 @@ import { AdmineditfoodComponent } from './components/admineditfood/admineditfood
     UserviewfeedbackComponent,
     UserviewordersComponent,
     AdmineditfoodComponent,
-    UserviewfoodComponent
+    UserviewfoodComponent,
+    AdminDashboardComponent
 
 
   ],
@@ -64,8 +68,7 @@ import { AdmineditfoodComponent } from './components/admineditfood/admineditfood
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
-   
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

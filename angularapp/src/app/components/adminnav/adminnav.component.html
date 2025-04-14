@@ -3,6 +3,9 @@
       <div class="navbar-welcome user-section-inside">
         Welcome {{userName}}/{{userRole}}
       </div>
+      <div class="navbar-item">
+        <a class="navbar-link" [routerLink]="['admin/dashboard']">Dashboard</a>
+      </div>
       <div class="navbar-dropdown">
         <a class="dropdown-toggle" href="#">Food</a>
         <div class="dropdown-list">
@@ -10,7 +13,7 @@
             <a class="dropdown-link" [routerLink]="['admin/addFood']">Add Food</a>
           </div>
           <div class="dropdown-item">
-            <a class="dropdown-link" [routerLink]="['admin/view/food']">View Food</a>
+            <a class="dropdown-link" [routerLink]="['admin/view/foods']">View Food</a>
           </div>
         </div>
       </div>

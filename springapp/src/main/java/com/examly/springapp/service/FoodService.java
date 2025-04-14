@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.examly.springapp.exceptions.DuplicateIdException;
 import com.examly.springapp.exceptions.FoodNotFoundException;
@@ -13,7 +14,7 @@ import com.examly.springapp.model.Food;
 @Service
 public interface FoodService {
 
-    public Food addFood(Food food) throws FoodNotFoundException;
+    public Food addFood(Food food,MultipartFile photo) throws FoodNotFoundException;
 
     public List<Food> getAllFoods() throws IllegalArgumentException, FoodNotFoundException;
 

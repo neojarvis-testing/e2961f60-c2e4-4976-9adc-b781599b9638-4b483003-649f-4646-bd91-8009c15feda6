@@ -1,5 +1,8 @@
 package com.examly.springapp.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.examly.springapp.exceptions.DuplicateUserException;
 import com.examly.springapp.exceptions.InvalidCredentialsException;
 import com.examly.springapp.model.AuthUser;
 import com.examly.springapp.model.LoginDTO;
@@ -24,14 +29,13 @@ public class AuthController {
 
 
     @PostMapping("/api/register")
-    public ResponseEntity<?> registerUser(@RequestBody User user){
+    public ResponseEntity<String> registerUser(@RequestBody User user){
         try{
             User addNewUser = userServiceImpl.registerUser(user);
-            return ResponseEntity.status(201).body("Registered Successfully");
+            return ResponseEntity.status(201).body("User registered successfully");
         }
-        catch(EntityNotFoundException e ){
-            return ResponseEntity.status(401).body(e.getMessage());
-
+        catch(DuplicateUserException e){
+            return ResponseEntity.status(409).body(e.getMessage());
         }
     }
 

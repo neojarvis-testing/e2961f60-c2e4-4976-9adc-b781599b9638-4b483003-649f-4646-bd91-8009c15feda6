@@ -19,11 +19,15 @@ import { UserviewfeedbackComponent } from './components/userviewfeedback/uservie
 import { UserviewordersComponent } from './components/uservieworders/uservieworders.component';
 import { AdmineditfoodComponent } from './components/admineditfood/admineditfood.component';
 import { AdminorderschartComponent } from './components/adminorderschart/adminorderschart.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 
 
 const routes: Routes = [
-  
+  {
+    path:"admin/dashboard",
+    component:AdminDashboardComponent
+  },
   {
     path:"admin/addFood",
     component:AdminaddfoodComponent
@@ -37,7 +41,7 @@ const routes: Routes = [
     component:AdminviewfeedbackComponent
   },
   {
-    path:"admin/view/food",
+    path:"admin/view/foods",
     component:AdminviewfoodComponent
   },
   {
