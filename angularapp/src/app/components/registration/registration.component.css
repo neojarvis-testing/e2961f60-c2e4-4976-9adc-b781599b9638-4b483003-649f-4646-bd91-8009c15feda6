@@ -5,11 +5,24 @@ body, html {
   box-sizing: border-box;
   height: 100%;
   font-family: 'Arial', sans-serif;
+
 }
 
 /* Error Message */
 .error-message {
+  margin-top: 0.3rem;
   color: red;
+  font-size: 0.8rem;
+  animation: shake 0.5s ease-in-out; /* Apply shake animation */
+}
+
+/* Shake Effect */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
 }
 
 /* Registration Container */
@@ -19,17 +32,26 @@ body, html {
   align-items: center;
   min-height: 100vh;
   background: url('/assets/login2.jpg') no-repeat center center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-position-x: center;
   background-size: cover; /* Ensures image covers entire page */
+  transition: background-size 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Smooth transition for background changes */
+
+
 }
+
 
 /* Registration Card */
 .registration-card {
+  margin-top: 1.5rem;
   background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
   border-radius: 8px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5); /* Adds depth to the form */
-  padding: 30px;
+  padding: 15px;
   max-width: 500px;
   width: 100%;
+  border-radius: 1.5rem;
 }
 
 /* Registration Title */
@@ -63,6 +85,7 @@ body, html {
   border-radius: 5px;
   font-size: 14px;
   transition: border-color 0.3s ease;
+  font-weight: bold;
 }
 
 .input-field:focus {
@@ -96,6 +119,37 @@ select.input-field {
 .submit-button:disabled {
   background-color: #ddd;
   cursor: not-allowed;
+}
+
+/* Dynamic status icons */
+.status-icon {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.loading-icon {
+  font-size: 2rem;
+  color: var(--primary-color); /* Orange spinner */
+}
+
+.success-icon {
+  font-size: 2rem;
+  color: #28a745; /* Green success icon */
+}
+
+.error-icon {
+  font-size: 2rem;
+  color: #dc3545; /* Red error icon */
+}
+
+.login-suggestion {
+  color: var(--primary-color);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.login-suggestion:hover {
+  color: var(--primary-color-dark);
 }
 
 /* Responsive Design */
