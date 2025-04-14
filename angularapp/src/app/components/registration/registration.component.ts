@@ -21,17 +21,21 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm = this.fb.group({
       email: fb.control("", [Validators.required, Validators.email]),
       password: fb.control("", [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,}$')]),
+      confirmPassword :fb.control("",[Validators.required,Validators.minLength(8)]),
       username: fb.control("", Validators.required),
       mobileNumber: fb.control("", [Validators.required, Validators.pattern('[0-9]{10}$')]),
       userRole: fb.control("", Validators.required)
-    });
+    },{validators:this.passwordMatchValidators});
+  }
+  passwordMatchValidators(registrationForm:FormGroup){
+    return registrationForm.get('password').value === registrationForm.get('confirmPassword').value ? null:{mismatch:true}
   }
 
   ngOnInit(): void {}
 
   addRegister() {
     if (this.registrationForm.valid) {
-      this.loading = true; // Show loading icon
+      this.loading = true; 
       this.success = false;
       this.error409 = false;
 

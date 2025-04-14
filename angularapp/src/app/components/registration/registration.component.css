@@ -5,7 +5,6 @@ body, html {
   box-sizing: border-box;
   height: 100%;
   font-family: 'Arial', sans-serif;
-
 }
 
 /* Error Message */
@@ -37,52 +36,46 @@ body, html {
   background-position-x: center;
   background-size: cover; /* Ensures image covers entire page */
   transition: background-size 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Smooth transition for background changes */
-
-
 }
-
 
 /* Registration Card */
 .registration-card {
   margin-top: 1.5rem;
-  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
-  border-radius: 8px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5); /* Adds depth to the form */
-  padding: 15px;
-  max-width: 500px;
-  width: 100%;
-  border-radius: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Adds depth to the form */
+  padding: 20px;
+  max-width: 400px; /* Reduced max-width */
+  width: 90%; /* Adaptive width */
+  border: 2px solid #ffcc00; /* Bright yellow border */
+  transition: transform 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+
+.registration-card:hover {
+  transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
 /* Registration Title */
 .registration-title {
   font-size: 24px;
   font-weight: bold;
-  color: #ffcc00; /* Bright yellow */
+  color: #ffcc00; /* Bright yellow text */
   text-align: center;
   margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds shadow to the text */
 }
 
-/* Form Groups */
+/* Input Groups */
 .input-group {
-  margin-bottom: 20px;
-}
-
-/* Labels */
-.input-label {
-  font-size: 14px;
-  font-weight: bold;
-  color: #d0b23b; /* Bright yellow */
-  margin-bottom: 8px;
-  display: block;
+  margin-bottom: 20px; /* Space between input fields */
 }
 
 /* Input Fields */
 .input-field {
   width: 94%;
   padding: 12px;
-  border: 5px solid #ffcc00; /* Bright yellow border */
-  border-radius: 5px;
+  border: 2px solid #ffcc00; /* Bright yellow border */
+  border-radius: 8px;
   font-size: 14px;
   transition: border-color 0.3s ease;
   font-weight: bold;
@@ -93,27 +86,24 @@ body, html {
   outline: none;
 }
 
-/* Dropdown Field */
-select.input-field {
-  background-color: #ffffff;
-}
-
 /* Submit Button */
 .submit-button {
   width: 100%;
   padding: 12px;
   font-size: 16px;
   font-weight: bold;
-  color: #000000; /* Black text */
-  background-color: #ffcc00; /* Bright yellow */
+  color: #ffffff; /* White text */
+  background: linear-gradient(135deg, #ffcc00, #ff9900); /* Gradient background */
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for background and shadow */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
 }
 
 .submit-button:hover {
-  background-color: #ff9900; /* Slightly darker orange */
+  background: linear-gradient(135deg, #ff9900, #ffcc00); /* Reverse gradient on hover */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Increased shadow on hover */
 }
 
 .submit-button:disabled {
@@ -121,41 +111,11 @@ select.input-field {
   cursor: not-allowed;
 }
 
-/* Dynamic status icons */
-.status-icon {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.loading-icon {
-  font-size: 2rem;
-  color: var(--primary-color); /* Orange spinner */
-}
-
-.success-icon {
-  font-size: 2rem;
-  color: #28a745; /* Green success icon */
-}
-
-.error-icon {
-  font-size: 2rem;
-  color: #dc3545; /* Red error icon */
-}
-
-.login-suggestion {
-  color: var(--primary-color);
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.login-suggestion:hover {
-  color: var(--primary-color-dark);
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .registration-card {
-    padding: 20px;
+    padding: 15px;
+    max-width: 90%; /* Adjust max-width for smaller screens */
   }
 
   .registration-title {
@@ -166,4 +126,12 @@ select.input-field {
     font-size: 14px;
     padding: 10px;
   }
+}
+
+/* Label Styling */
+.input-label {
+  color: yellow;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
 }
