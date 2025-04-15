@@ -167,3 +167,49 @@ button:nth-of-type(2) {
     padding: 4px 6px;
   }
 }
+
+/* Container for filters and sorting */
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f9f9f9; /* Light gray background */
+  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 8px;
+}
+
+/* Label for dropdown */
+.filter-container label {
+  font-weight: bold;
+  color: #333; /* Dark text */
+  margin-right: 10px;
+}
+
+/* Dropdown styling */
+.filter-container select {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 4px;
+  color: #333; /* Dark text */
+  background-color: #ffffff; /* White background */
+  cursor: pointer;
+}
+
+/* Button for sorting */
+.filter-container button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #ffffff; /* White text */
+  background-color: #e78236; /* Orange background */
+}
+
+.filter-container button:hover {
+  opacity: 0.8;
+}
+
