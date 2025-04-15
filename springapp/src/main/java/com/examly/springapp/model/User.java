@@ -27,4 +27,5 @@ public class User {
     private String mobileNumber;
     private String userRole;
     private String username;
+    private String secretKey;
 }

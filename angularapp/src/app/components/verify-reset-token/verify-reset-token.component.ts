@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { VerifyResetToken } from 'src/app/models/verify-reset-password.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-verify-reset-token',
@@ -11,22 +12,28 @@ export class VerifyResetTokenComponent implements OnInit {
     token:string;
     newPassword :string;
     otp : number;
-    secretKey : string;
-
   
-  constructor(private authService :AuthService ) { }
+  constructor(private authService :AuthService,private activatedRoute : ActivatedRoute ) { }
 
   
    onSubmit() {
-     this.authService.verifyResetToken(this.token, this.newPassword, this.otp, this.secretKey).subscribe(response => {
+    const resetPassword = {
+      token : this.token,
+      newPassword : this.newPassword,
+      otp : this.otp
+    }
+     this.authService.verifyResetToken(resetPassword).subscribe(response => {
 
-    
+      console.log("Password reset successfully")
      });
      }
     
 
 
   ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.token = params['token']; 
+    });
   }
 
 }
