@@ -92,7 +92,7 @@ const routes: Routes = [
   },
  {path: 'request-password-reset', component: RequestPasswordResetComponent },
  { path: 'verify-reset-token', component: VerifyResetTokenComponent },
- { path: '', redirectTo: '/request-password-reset', pathMatch: 'full' },
+ { path: '', component:HomeComponent },
  {
   path:"**",
   component:HomeComponent

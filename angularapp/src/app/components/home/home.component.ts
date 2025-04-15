@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import {Carousel} from 'bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { EmailService } from 'src/app/services/email.service';
+import { Email } from 'src/app/models/email.model';
+
 
 
 
@@ -16,7 +19,13 @@ export class HomeComponent implements OnInit {
   userId : number;
   isSubmit : boolean = false;
 
-  constructor(private authService : AuthService) { }
+  emailData: Email={
+    name:'',
+    email:'',
+    message:''
+  };
+
+  constructor(private authService : AuthService , private emailService:EmailService) { }
 
   ngOnInit(): void {
     this.userId = this.authService.getCurrentUserId();
@@ -34,8 +43,19 @@ export class HomeComponent implements OnInit {
     }
   }
  
-  submit(){
-    this.isSubmit = true;
+  onSubmit(){
+    this.emailService.sendEmail(this.emailData).subscribe({
+     
+      next:(response) =>{
+        console.log(this.emailData)
+        alert(response);
+        this.emailData = {name:'',email:'',message:''};
+      },
+      error:(error) =>{
+        alert('Failed to send Email please try again....');
+        console.log(error);
+      }
+    })
   }
 
 }
