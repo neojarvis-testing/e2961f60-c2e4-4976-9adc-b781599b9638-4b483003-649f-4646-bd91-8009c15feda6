@@ -13,6 +13,8 @@ export class AdminviewordersComponent implements OnInit {
   orders: orders[] = [];
   selectedUser: any = null;
   changeStatus: boolean = false;
+  deletePopupVisible: boolean = false; 
+  deletePopupMessage: string = ''; 
 
   constructor(private orderService: OrderService) { }
 
@@ -36,7 +38,6 @@ export class AdminviewordersComponent implements OnInit {
       order.orderStatus = newStatus;
       this.orderService.updateOrder(orderId, order).subscribe(data => {
         console.log(data);
-        console.log("hiiiii")
       })
       console.log(`Order ${orderId} status updated to ${newStatus}`);
     } else {
@@ -47,17 +48,17 @@ export class AdminviewordersComponent implements OnInit {
   deleteOrder(orderId: number) {
     console.log(orderId);
     const order = this.orders.find(order => order.orderId === orderId);
-    if (order.orderStatus != 'Making Food' && order.orderStatus != 'On the way' && order.orderStatus != 'Delivered') {
+    
+    if (order && (order.orderStatus === 'Making Food' || order.orderStatus === 'On the way' || order.orderStatus === 'Delivered')) {
+      this.deletePopupMessage = `Cannot delete order as its status is ${order.orderStatus}.`;
+      this.deletePopupVisible = true;
+    } else if (order) {
       this.changeStatus = true;
       this.orderService.deleteOrder(orderId).subscribe(data => {
-        this.getAllOrders();
-      })
-    }else{
-      alert("Cant delete as Order status is "+ order.orderStatus);
+        this.getAllOrders(); 
+      });
     }
   }
-
-  
 
   selectUser(user: User) {
     this.selectedUser = user;
@@ -65,6 +66,10 @@ export class AdminviewordersComponent implements OnInit {
 
   closeUser() {
     this.selectedUser = null;
+  }
+
+  closeDeletePopup() {
+    this.deletePopupVisible = false; 
   }
 
 }

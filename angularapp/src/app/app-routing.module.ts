@@ -22,6 +22,7 @@ import { AdminorderschartComponent } from './components/adminorderschart/adminor
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { VerifyResetTokenComponent } from './components/verify-reset-token/verify-reset-token.component';
 import { RequestPasswordResetComponent } from './components/request-password-reset/request-password-reset.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 
@@ -61,6 +62,10 @@ const routes: Routes = [
   {
     path:"error",
     component:ErrorComponent
+  },
+  {
+    path:"user/profile",
+    component:UserProfileComponent,
   },
   {
     path:"user/add/feedback/:id",

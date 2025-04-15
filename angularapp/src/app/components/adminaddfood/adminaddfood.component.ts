@@ -90,7 +90,7 @@ export class AdminaddfoodComponent implements OnInit {
       this.foodService.addFood(formData).subscribe(data => {
         this.successMessage = "Successfully Added!";
         setTimeout(() => {
-          this.router.navigate(['/admin/view/food']);
+          this.router.navigate(['/admin/view/foods']);
         }, 2222);
       }, error => {
         console.error("Error adding food:", error);

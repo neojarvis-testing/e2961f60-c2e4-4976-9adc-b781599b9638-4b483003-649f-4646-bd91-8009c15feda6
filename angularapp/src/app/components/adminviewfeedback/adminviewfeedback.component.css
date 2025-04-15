@@ -1,99 +1,249 @@
 .feedback-container {
-    width: 80%;
-    margin: auto;
-    padding: 20px;
-    color: #ffeb3b; /* Yellow text */
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  color: #000000; 
+}
+
+.feedback-container h2 {
+  text-align: center;
+  color: #e78236; 
+}
+
+.feedback-container p {
+  text-align: center;
+  color: #000000; 
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #f9f9f9; 
+  border: 1px solid #ddd; 
+  border-radius: 8px; 
+  overflow: hidden; 
+}
+
+th,
+td {
+  padding: 12px 15px; 
+  text-align: left;
+  border-bottom: 1px solid #ddd; 
+  color: #333; 
+}
+
+th {
+  background-color: #e78236; 
+  color: #fff; 
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f1f1f1; 
+}
+
+tr:hover {
+  background-color: #ffe5d3; 
+  color: #333; 
+}
+
+td {
+  vertical-align: middle; 
+}
+
+table + * {
+  margin-top: 20px;
+}
+
+
+button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #ffffff; 
+  background-color: #e78236; 
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+
+button:nth-of-type(1) {
+  background-color: #dc3545; 
+  color: white; 
+}
+
+
+button:nth-of-type(2) {
+  margin-right: 10px; /* Adjust the value as needed */
+}
+
+/* Popup overlay for confirmation dialogs */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Popup container styling */
+.popup {
+  background: #ffffff; /* White background */
+  padding: 20px;
+  border-radius: 4px;
+  text-align: center;
+  color: #000000; /* Black text */
+}
+
+/* Styling for buttons inside the popup */
+.popup button {
+  margin: 10px;
+  padding: 8px 16px;
+  background-color: #e78236; /* Orange background */
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Specific styling for Delete button inside the popup */
+.popup button:nth-of-type(1) {
+  background-color: #dc3545; /* Red background */
+  color: white; /* White text */
+}
+
+
+@media (max-width: 768px) {
+  .feedback-container {
+    width: 95%; /* Wider container for smaller devices */
+    padding: 10px; /* Less padding for smaller screens */
   }
-  
-  .feedback-container h2 {
-    text-align: center;
-    color: #ffeb3b; /* Yellow text */
+
+  table th,
+  table td {
+    padding: 10px 8px; /* Reduced padding for smaller screens */
   }
-  
-  .feedback-container p {
-    text-align: center;
-    color: #ffeb3b; /* Yellow text */
-  }
-  
+
   table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+    font-size: 14px; /* Smaller font size on narrow devices */
   }
-  
+
   th,
   td {
-    border: 1px solid #ffeb3b; /* Yellow border */
-    padding: 10px;
-    text-align: left;
+    text-align: center; /* Center-align text for compact view */
   }
-  
-  th {
-    background-color: #333; /* Black background */
-    color: #ffeb3b; /* Yellow text */
-  }
-  
+
   button {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    color: #333; /* Black text */
-    background-color: #ffeb3b; /* Yellow background */
+    padding: 5px 8px; /* Smaller buttons for mobile */
+    font-size: 14px; /* Adjust button text size */
   }
-  
-  button:hover {
-    opacity: 0.8;
+}
+
+@media (max-width: 480px) {
+  table {
+    font-size: 12px; /* Even smaller font size for very small screens */
   }
-  
-  /* Specific styling for Delete button */
-  button:nth-of-type(1) {
-    background-color: #dc3545; /* Red background */
-    color: white; /* White text */
+
+  th,
+  td {
+    padding: 8px 5px; /* Compact padding for small screens */
   }
-  
-  /* Add margin to the edit button */
-  button:nth-of-type(2) {
-    margin-right: 10px; /* Adjust the value as needed */
+
+  .feedback-container h2 {
+    font-size: 18px; /* Smaller headings for mobile */
   }
-  
-  /* Popup overlay for confirmation dialogs */
-  .popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+
+  button {
+    font-size: 12px; /* Adjust button size further for small screens */
+    padding: 4px 6px;
   }
-  
-  /* Popup container styling */
-  .popup {
-    background: #333; /* Black background */
-    padding: 20px;
-    border-radius: 4px;
-    text-align: center;
-    color: #ffeb3b; /* Yellow text */
+}
+/* Container for filter and sorting section */
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f9f9f9; /* Light gray background for filter section */
+  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 8px; /* Rounded corners */
+}
+
+/* Label for dropdown */
+.filter-container label {
+  font-weight: bold;
+  color: #333; /* Dark text for label */
+  margin-right: 10px;
+}
+
+/* Dropdown styling */
+.filter-container select {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 4px;
+  color: #333; /* Dark text for dropdown options */
+  background-color: #ffffff; /* White background */
+  cursor: pointer;
+}
+
+/* Button for sorting */
+.filter-container button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #ffffff; /* White text for button */
+  background-color: #e78236; /* Orange background */
+}
+
+.filter-container button:hover {
+  opacity: 0.8; /* Slight opacity change on hover for feedback */
+}
+
+/* Responsive styles for filtering and sorting */
+@media (max-width: 768px) {
+  .filter-container {
+    flex-direction: column; /* Stack filter and sorting section vertically */
+    align-items: flex-start;
+    padding: 10px;
   }
-  
-  /* Styling for buttons inside the popup */
-  .popup button {
-    margin: 10px;
-    padding: 8px 16px;
-    background-color: #ffeb3b; /* Yellow background */
-    color: #333; /* Black text */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+
+  .filter-container label {
+    margin-bottom: 5px;
   }
-  
-  /* Specific styling for Delete button inside the popup */
-  .popup button:nth-of-type(1) {
-    background-color: #dc3545; /* Red background */
-    color: white; /* White text */
+
+  .filter-container select {
+    margin-bottom: 10px;
+    width: 100%; /* Dropdown takes full width on smaller screens */
   }
-  
+
+  .filter-container button {
+    width: 100%; /* Button takes full width on smaller screens */
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-container select {
+    font-size: 12px; /* Smaller font for dropdown on small screens */
+    padding: 6px 8px;
+  }
+
+  .filter-container button {
+    font-size: 12px; /* Smaller font for button on small screens */
+    padding: 8px 12px;
+  }
+}

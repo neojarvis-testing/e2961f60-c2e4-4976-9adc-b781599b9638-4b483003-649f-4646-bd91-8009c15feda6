@@ -9,11 +9,11 @@
   margin: 0;
 }
 
-.navbar-item, .navbar-dropdown {
+.navbar-item {
   position: relative;
 }
 
-.navbar-link, .dropdown-toggle {
+.navbar-link {
   text-decoration: none;
   color: #fff;
   font-size: 18px;

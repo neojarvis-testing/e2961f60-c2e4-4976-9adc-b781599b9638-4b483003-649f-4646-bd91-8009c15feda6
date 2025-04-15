@@ -17,6 +17,8 @@ export class AdminviewfoodComponent implements OnInit {
   maxPrice: number | null = null;
   foodId: number;
   showPopup: boolean = false;
+  showSuccessPopup: boolean = false; // Addition: Controls visibility of success popup
+  successMessage: string = ''; 
 
   showPreview: boolean = false;
   selectedImage: any = null;
@@ -73,11 +75,13 @@ confirmDelete(id: number): void {
 
 onConfirm(): void {
   this.foodService.deleteFood(this.foodId).subscribe(
-    response => {
+    (response) => {
       this.loadfood();
-      this.showPopup = false;
+      this.showPopup = false; // Close the delete confirmation popup
+      this.successMessage = 'Food item successfully deleted.'; // Set success message
+      this.showSuccessPopup = true; // Show success popup
     },
-    error => {
+    (error) => {
       console.error('Error occurred while deleting food:', error);
       this.foods = [];
       this.filteredFoods = [];
@@ -90,6 +94,10 @@ onCancel(): void {
   console.log('Deletion cancelled');
 }
 
+closeSuccessPopup(): void {
+  this.showSuccessPopup = false; // Close the success popup
+}
+
   // Show preview for the selected food image
   // openPreview(image: any): void {
   //   this.selectedImage = image;
@@ -98,7 +106,6 @@ onCancel(): void {
 
   openPreview(food: any,image: any): void {
     console.log(food)
-
     this.selectedImage = food.photo;
     this.selectedFood = {
       foodName: food.foodName,

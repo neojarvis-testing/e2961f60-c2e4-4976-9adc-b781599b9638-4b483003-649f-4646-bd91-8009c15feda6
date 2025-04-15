@@ -18,7 +18,15 @@ export class UsermakeorderComponent implements OnInit {
   userId: number;
   totalAmount: number = 0;
   errorMessage: string = '';
+
   orderPlaced : boolean = false;
+
+  userAddress: string = ''; 
+  isAddressPopupVisible: boolean = false;
+  isSuccessPopupVisible: boolean = false;
+  successMessage: string = '';
+  
+
 
   constructor(
     private orderService: OrderService,
@@ -72,6 +80,20 @@ export class UsermakeorderComponent implements OnInit {
     this.totalAmount = this.food.price * this.quantity;
   }
 
+  showAddressPopup() {
+    this.isAddressPopupVisible = true;
+  }
+
+  closeAddressPopup() {
+    this.isAddressPopupVisible = false;
+  }
+
+  saveAddress() {
+    console.log("Address saved:", this.userAddress);
+    this.isAddressPopupVisible = false;
+    this.createOrder()
+  }
+
   createOrder() {
     if (this.quantity < 1) {
       alert("Please select at leat 1 item");
@@ -85,13 +107,16 @@ export class UsermakeorderComponent implements OnInit {
       userId: this.userId,
       foodId: this.foodId,
       orderDate: new Date().toISOString(),
+      address : this.userAddress,
       user: {
         userId: this.userId,
         email: '',
         password: '',
         username: '',
         mobileNumber: '',
-        userRole: ''
+        userRole: '',
+        
+        
       },
       food: {
         foodId: this.foodId,
@@ -103,23 +128,33 @@ export class UsermakeorderComponent implements OnInit {
     };
 
     this.orderService.placeOrder(order).subscribe(data => {
+
       this.orderPlaced = true;
       // this.router.navigate(['/user/view/orders']);
+
+      this.successMessage = "Order Placed Successfully!"; // Set success message
+      this.isSuccessPopupVisible = true; // Show success popup
+
     },
       (error) => {
-        this.errorMessage = 'Failed to placed order!!!';
+        this.errorMessage = 'Failed to place order!!!';
         console.log(error);
       }
-    )
-
+    );
   }
   cancelOrder() {
     this.router.navigate(['/user/view/foods']);
   }
 
+
   closePopup(){
     this.orderPlaced = false;
     this.router.navigate(['/user/view/orders']);
+
+  closeSuccessPopup() {
+    this.isSuccessPopupVisible = false; // Hide success popup
+    this.router.navigate(['/user/view/orders']); // Redirect to orders page
+
   }
 
 }

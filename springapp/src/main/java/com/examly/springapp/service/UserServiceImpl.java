@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.examly.springapp.config.JwtUtils;
 import com.examly.springapp.exceptions.DuplicateUserException;
 import com.examly.springapp.exceptions.InvalidCredentialsException;
+import com.examly.springapp.exceptions.UserNotFoundException;
 import com.examly.springapp.model.AuthUser;
 import com.examly.springapp.model.LoginDTO;
 import com.examly.springapp.model.User;
@@ -86,6 +87,20 @@ public class UserServiceImpl implements UserService {
         } catch (AuthenticationException e) {
             throw new InvalidCredentialsException("Invalid User Name or Password");
         }
+    }
+
+    @Override
+    public User updatedUser(int id, User user) throws UserNotFoundException{
+       Optional<User> opt = userRepo.findById(id);
+       if(opt.isEmpty()){
+        throw new UserNotFoundException("User with id "+id+" not found");
+       }
+       User existingUser = opt.get();
+       System.out.println("********updating emial******");
+       System.out.println(user.getEmail());
+       existingUser.setEmail(user.getEmail());
+       return userRepo.save(existingUser);
+
     }
 
 }
