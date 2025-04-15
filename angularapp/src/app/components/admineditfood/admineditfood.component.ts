@@ -45,7 +45,7 @@ export class AdmineditfoodComponent implements OnInit {
       this.foodService.updateFood(this.foodId,this.editForm.value).subscribe(data=>{
         console.log("after update")
         this.successMessage = "Successfully updated!"
-        this.router.navigate(['/admin/view/food']);
+        this.router.navigate(['/admin/view/foods']);
       })
     } else {
       console.log('Form Invalid');

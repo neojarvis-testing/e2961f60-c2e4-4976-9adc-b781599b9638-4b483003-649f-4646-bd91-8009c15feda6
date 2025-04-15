@@ -13,5 +13,7 @@ export interface orders {
     food ?: Food;
 
     orderDate : string;
+    address?:string;
+    
 
 }

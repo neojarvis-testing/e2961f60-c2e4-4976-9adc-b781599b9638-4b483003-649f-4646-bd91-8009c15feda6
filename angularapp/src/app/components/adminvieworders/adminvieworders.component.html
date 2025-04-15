@@ -10,6 +10,7 @@
       <th>Quantity</th>
       <th>Total Price</th>
       <th>User Profile</th>
+      <th>Delivery Address</th>
       <th>Order Status</th>
       <th>Change Order Status</th>
       <th>Action</th>
@@ -24,18 +25,32 @@
       <td>
         <button class="profile-btn" (click)="selectUser(order.user)">Show Profile</button>
       </td>
+
+      <td>{{order.address}}</td>
+
       <td>{{ order.orderStatus }}</td>
       <td>
         <button class="status-btn" (click)="updatedStatus(order.orderId, 'Making Food')">Making Food</button>
         <button class="status-btn" (click)="updatedStatus(order.orderId, 'On the way')">On the way</button>
         <button class="status-btn" (click)="updatedStatus(order.orderId, 'Delivered')">Delivered</button>
       </td>
+
+
       <td>
         <button class="delete-btn"  (click)="deleteOrder(order.orderId)">Delete</button>
       </td>
     </tr>
   </tbody>
 </table>
+
+<!-- Popup for Delete Message -->
+<div *ngIf="deletePopupVisible" class="popup-modal">
+  <div class="popup-content">
+    <h3>Cannot Delete Order</h3>
+    <p>{{ deletePopupMessage }}</p>
+    <button (click)="closeDeletePopup()">OK</button>
+  </div>
+</div>
 
 <!-- Popup for Selected User Details -->
 <div *ngIf="selectedUser" class="popup">
