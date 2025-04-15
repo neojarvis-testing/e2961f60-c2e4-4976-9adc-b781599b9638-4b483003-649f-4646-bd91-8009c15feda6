@@ -2,25 +2,59 @@
   width: 80%;
   margin: auto;
   padding: 20px;
-  color: #ffeb3b; /* Yellow text */
+  color: #000000; /* Black text */
+}
+
+.feedback-container h2 {
+  text-align: center;
+  color: #e78236; /* Orange text */
+}
+
+.feedback-container p {
+  text-align: center;
+  color: #000000; /* Black text */
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  background-color: #f9f9f9; /* Light gray background for the table */
+  border: 1px solid #ddd; /* Subtle border for the entire table */
+  border-radius: 8px; /* Rounded corners for the table */
+  overflow: hidden; /* Ensures border-radius is applied cleanly */
 }
 
 th,
 td {
-  border: 1px solid #ffeb3b; /* Yellow border */
-  padding: 10px;
+  padding: 12px 15px; /* Padding inside table cells */
   text-align: left;
+  border-bottom: 1px solid #ddd; /* Light gray border between rows */
+  color: #333; /* Dark text for readability */
 }
 
 th {
-  background-color: #333; /* Black background */
-  color: #ffeb3b; /* Yellow text */
+  background-color: #e78236; /* Orange background for header */
+  color: #fff; /* White text for header cells */
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f1f1f1; /* Light gray background for even rows */
+}
+
+tr:hover {
+  background-color: #ffe5d3; /* Light orange background on row hover */
+  color: #333; /* Ensure text is still readable on hover */
+}
+
+td {
+  vertical-align: middle; /* Aligns text in the middle of cells */
+}
+
+/* Adding some spacing between the table and surrounding elements */
+table + * {
+  margin-top: 20px;
 }
 
 button {
@@ -28,15 +62,9 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  color: #333; /* Black text */
-  background-color: #ffeb3b; /* Yellow background */
+  color: #ffffff; /* White text */
+  background-color: #e78236; /* Orange background */
 }
-
-
-button:nth-of-type(2) {
-  margin-left: 10px;
-}
-  
 
 button:hover {
   opacity: 0.8;
@@ -46,6 +74,11 @@ button:hover {
 button:nth-of-type(1) {
   background-color: #dc3545; /* Red background */
   color: white; /* White text */
+}
+
+/* Add margin to the edit button */
+button:nth-of-type(2) {
+  margin-left: 10px; /* Adjust the value as needed */
 }
 
 /* Popup overlay for confirmation dialogs */
@@ -64,19 +97,19 @@ button:nth-of-type(1) {
 
 /* Popup container styling */
 .popup {
-  background: #333; /* Black background */
+  background: #ffffff; /* White background */
   padding: 20px;
   border-radius: 4px;
   text-align: center;
-  color: #ffeb3b; /* Yellow text */
+  color: #000000; /* Black text */
 }
 
 /* Styling for buttons inside the popup */
 .popup button {
   margin: 10px;
   padding: 8px 16px;
-  background-color: #ffeb3b; /* Yellow background */
-  color: #333; /* Black text */
+  background-color: #e78236; /* Orange background */
+  color: #ffffff; /* White text */
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -86,4 +119,51 @@ button:nth-of-type(1) {
 .popup button:nth-of-type(1) {
   background-color: #dc3545; /* Red background */
   color: white; /* White text */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .feedback-container {
+    width: 95%; /* Wider container for smaller devices */
+    padding: 10px; /* Less padding for smaller screens */
+  }
+
+  table th,
+  table td {
+    padding: 10px 8px; /* Reduced padding for smaller screens */
+  }
+
+  table {
+    font-size: 14px; /* Smaller font size on narrow devices */
+  }
+
+  th,
+  td {
+    text-align: center; /* Center-align text for compact view */
+  }
+
+  button {
+    padding: 5px 8px; /* Smaller buttons for mobile */
+    font-size: 14px; /* Adjust button text size */
+  }
+}
+
+@media (max-width: 480px) {
+  table {
+    font-size: 12px; /* Even smaller font size for very small screens */
+  }
+
+  th,
+  td {
+    padding: 8px 5px; /* Compact padding for small screens */
+  }
+
+  .feedback-container h2 {
+    font-size: 18px; /* Smaller headings for mobile */
+  }
+
+  button {
+    font-size: 12px; /* Adjust button size further for small screens */
+    padding: 4px 6px;
+  }
 }
