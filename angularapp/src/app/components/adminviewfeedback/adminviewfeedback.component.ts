@@ -16,13 +16,14 @@ export class AdminviewfeedbackComponent implements OnInit {
   showDeletePopup: boolean = false;
   selectedFeedbackId: number | null = null;
   showLogoutPopup: boolean = false;
+  filteredFeedbacks: Feedback[] = []; // For filtered data
+selectedRating: number | string = '';
 
   constructor(
     private feedbackService: FeedbackService,
     private authService: AuthService,
     private router: Router,
   ) { }
-
 
   ngOnInit(): void {
     this.getAllFeedBacks();
@@ -31,9 +32,24 @@ export class AdminviewfeedbackComponent implements OnInit {
   public getAllFeedBacks(){
     this.feedbackService.getFeedbacks().subscribe(data=>{
       this.feedbacks=data?data:[];
+      this.filteredFeedbacks = [...this.feedbacks]; // Initialize filtered feedbacks
     })
-
   }
+
+  filterByRating(): void {
+    if (this.selectedRating === '' || this.selectedRating === null) {
+      this.filteredFeedbacks = [...this.feedbacks]; // Reset to all feedbacks
+    } else {
+      this.filteredFeedbacks = this.feedbacks.filter(
+        feedback => feedback.rating === Number(this.selectedRating) // Filter based on rating
+      );
+    }
+  }
+  
+  sortByRating(): void {
+    this.filteredFeedbacks.sort((a, b) => b.rating - a.rating); // Sort by rating descending
+  }
+
   triggerDelete(feedbackId: number): void {
     this.selectedFeedbackId = feedbackId;
     this.showDeletePopup = true;

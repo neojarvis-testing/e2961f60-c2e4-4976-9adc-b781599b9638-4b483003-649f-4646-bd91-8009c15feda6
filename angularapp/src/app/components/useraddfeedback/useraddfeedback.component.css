@@ -1,72 +1,66 @@
-/* Container for the feedback form */
 .feedback-form-container {
   width: 100%;
   max-width: 600px;
   margin: 30px auto;
   padding: 20px;
-  border: 1px solid #ffeb3b; /* Yellow border */
+  border: 1px solid #e78236; 
   border-radius: 8px;
-  background-color: #333; /* Black background */
-  color: #ffeb3b; /* Yellow text */
+  background-color: #ffffff; 
+  color: #000000; 
+  background: #f5f4f4;
 }
 
-/* Header */
 .feedback-form-container h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #ffeb3b; /* Yellow text */
+  color: #e78236; 
 }
 
-/* Form group styling */
 .form-group {
   margin-bottom: 15px;
 }
 
-/* Label styling */
 label {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
-  color: #ffeb3b; /* Yellow text */
+  color: #000000; 
 }
 
-/* Readonly input styling */
 input[readonly] {
-  background-color: #555; /* Dark grey background */
-  border: 1px solid #ffeb3b; /* Yellow border */
+  background-color: #f1f1f1; 
+  border: 1px solid #e78236; 
   padding: 8px;
   width: 100%;
   border-radius: 4px;
-  color: #ffeb3b; /* Yellow text */
+  color: #333; 
+  font-weight: bold;
 }
 
-/* Textarea styling */
 textarea {
   width: 100%;
   padding: 10px;
   font-size: 14px;
-  border: 1px solid #ffeb3b; /* Yellow border */
+  border: 1px solid #e78236; 
   border-radius: 4px;
   resize: vertical;
-  background-color: #555; /* Dark grey background */
-  color: #ffeb3b; /* Yellow text */
+  background-color: #f1f1f1; 
+  color: #333; 
 }
 
-/* Error text styling */
 .error {
-  color: #ffeb3b; /* Yellow text */
+  color: #dc3545; 
   font-size: 12px;
   margin-top: 5px;
 }
 
-/* Submit button styling */
 .btn-submit {
   display: block;
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  background-color: #ffeb3b; /* Yellow background */
-  color: #333; /* Black text */
+  background-color: #e78236; 
+  color: #ffffff; 
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -77,36 +71,29 @@ textarea {
   cursor: not-allowed;
 }
 
-/* Star rating container */
-/* Using flex-direction: row-reverse flips the order visually */
 .stars {
   display: flex;
   flex-direction: row-reverse;
   gap: 5px;
-  justify-content: center; /* Centers the stars */
+  justify-content: center; 
 }
 
-/* Hide the native radio inputs */
 .stars input {
   display: none;
 }
 
-/* Default star label styling */
 .stars label {
   font-size: 30px;
-  color: #555; /* Dark grey stars */
+  color: #ccc; 
   cursor: pointer;
 }
 
-/* When hovering or when a radio input is checked, alter the colors */
-/* The ~ sibling selector and reverse order ensure that clicking on a star colors all the stars to the left */
 .stars label:hover,
 .stars input:checked ~ label,
 .stars label:hover ~ label {
-  color: #ffeb3b; /* Yellow stars */
+  color: #e78236; 
 }
 
-/* Popup container styling */
 .popup-container {
   position: fixed;
   top: 0;
@@ -120,25 +107,22 @@ textarea {
   z-index: 1000;
 }
 
-/* Popup styling */
 .popup {
-  background-color: #333; /* Black background */
+  background-color: #ffffff; 
   padding: 20px 30px;
   border-radius: 4px;
   text-align: center;
-  color: #ffeb3b; /* Yellow text */
+  color: #333; 
 }
 
-/* Popup text styling */
 .popup p {
   font-size: 18px;
   margin-bottom: 20px;
 }
 
-/* Popup button styling */
 .popup button {
-  background-color: #ffeb3b; /* Yellow background */
-  color: #333; /* Black text */
+  background-color: #e78236; 
+  color: #ffffff; 
   border: none;
   padding: 8px 16px;
   font-size: 14px;

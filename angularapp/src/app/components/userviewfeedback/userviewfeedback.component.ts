@@ -15,6 +15,8 @@ export class UserviewfeedbackComponent implements OnInit {
   feedbacks: Feedback[] = [];
   showDeletePopup: boolean = false;
   selectedFeedbackId: number | null = null;
+  filteredFeedbacks: Feedback[] = []; 
+  selectedRating: number | string = '';
   showLogoutPopup: boolean = false;
 
   constructor(
@@ -33,12 +35,30 @@ export class UserviewfeedbackComponent implements OnInit {
       this.feedbackService.getAllFeedbacksByUserId(currentUser).subscribe(
         (data: Feedback[]) => {
           this.feedbacks = data ? data : [];
+          this.filteredFeedbacks = [...this.feedbacks]; 
         },
         error => {
           console.error('Error fetching feedback:', error);
         }
       );
     }
+  }
+
+  // Filter feedbacks based on selected rating
+  filterByRating(): void {
+    if (!this.selectedRating || this.selectedRating === '') {
+      this.filteredFeedbacks = [...this.feedbacks]; 
+    } else {
+      this.filteredFeedbacks = this.feedbacks.filter(
+        feedback => feedback.rating === Number(this.selectedRating) 
+      );
+    }
+  }
+  
+
+
+  sortByRating(): void {
+    this.filteredFeedbacks.sort((a, b) => b.rating - a.rating); 
   }
 
   triggerDelete(feedbackId: number): void {
