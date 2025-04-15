@@ -39,6 +39,7 @@ import { VerifyResetTokenComponent } from './components/verify-reset-token/verif
 
 
 import { ChartsModule } from 'ng2-charts';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 
@@ -70,7 +71,8 @@ import { ChartsModule } from 'ng2-charts';
     AdminDashboardComponent,
     ThemeToggleComponent,
     VerifyResetTokenComponent,
-    RequestPasswordResetComponent
+    RequestPasswordResetComponent,
+    UserProfileComponent
 
   ],
   imports: [
