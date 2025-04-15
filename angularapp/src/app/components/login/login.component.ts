@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   loginForm:FormGroup
   successMessage :string="";
   errorMessage:string=''
+  showResetLink = false;
   constructor(private fb : FormBuilder,private authService : AuthService,private router :Router,private userStore :UserStoreService) {
     this.loginForm = this.fb.group({
       email: fb.control("",[Validators.required,Validators.email]),
@@ -60,5 +61,6 @@ export class LoginComponent implements OnInit {
     }
   }
 }
+
 
 

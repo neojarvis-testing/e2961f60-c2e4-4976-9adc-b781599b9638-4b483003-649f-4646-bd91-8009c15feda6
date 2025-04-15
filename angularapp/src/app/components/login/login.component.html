@@ -23,6 +23,10 @@
     <div *ngIf="errorMessage" class="alert alert-danger">
       {{ errorMessage }}
     </div>
+
+    <div *ngIf="errorMessage">
+      <a routerLink="/request-password-reset" type="button"> Forget the password </a>
+    </div>
     <!-- Submit Button -->
     <button type="submit" class="btn btn-primary">Login</button>
   </form>

@@ -54,5 +54,7 @@ export class AuthService {
   verifyResetToken(resetPassword): Observable<any> {
     return this.httpClient.post(this.apiUrl + "/verify-reset-token",resetPassword);
   }
+
+  
 }
 

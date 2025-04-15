@@ -1,10 +1,16 @@
 package com.examly.springapp.service;
 
+import com.examly.springapp.exceptions.DuplicateResetTokenException;
+import com.examly.springapp.exceptions.InvalidOtpException;
+import com.examly.springapp.exceptions.InvalidTokenException;
+import com.examly.springapp.exceptions.TokenExpiredException;
 import com.examly.springapp.model.PasswordResetToken;
 import com.examly.springapp.model.ResetPasswordRequestDto;
 import com.examly.springapp.model.User;
 import com.examly.springapp.repository.PasswordResetTokenRepo;
 import com.examly.springapp.repository.UserRepo;
+
+import jakarta.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -14,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -35,12 +42,21 @@ public class PasswordResetService {
     @Autowired
     private GoogleAuthenticatorService googleAuthenticatorService;
 
-    public void sendPasswordResetEmail(String email) {
+    public void sendPasswordResetEmail(String email) throws DuplicateResetTokenException{
 
         String result = email.replace("%40", "@");
         System.out.println(result);
 
-        User user = userRepo.findByEmail(result).orElseThrow(() -> new RuntimeException("User not found"));
+        User user = userRepo.findByEmail(result).orElseThrow(() -> new EntityNotFoundException("User not found"));
+        
+
+        // Check if a valid token already exists for the user
+        Optional<PasswordResetToken> existingToken = passwordResetTokenRepository.findByUser(user);
+        
+        if(existingToken.isPresent()){
+            throw new DuplicateResetTokenException("A valid reset token already exists for this user. Please wait until it expires.");
+        }
+
         String token = UUID.randomUUID().toString();
 
         String secretKey = googleAuthenticatorService.generateSecretKey(); // Generate new secret key
@@ -66,25 +82,18 @@ public class PasswordResetService {
 
     public void verifyResetToken(ResetPasswordRequestDto passwordDetails) {
 
-        System.out.println("********Inside verify tokenand otp method********");
         PasswordResetToken resetToken = passwordResetTokenRepository.findByToken(passwordDetails.getToken())
-                .orElseThrow(() -> new RuntimeException("Invalid token"));
-        
-        System.out.println(resetToken);
-        System.out.println("********Verifying otp********");
+                .orElseThrow(() -> new InvalidTokenException("Invalid token"));
+
         if (resetToken.getExpiryDate().isBefore(LocalDateTime.now())) {
-            throw new RuntimeException("Token expired");
+             throw new TokenExpiredException("Token expired");
         }
 
         User user = resetToken.getUser();
-        
         String storedSecretKey = user.getSecretKey(); // Fetch secret key from DB
-        System.out.println(resetToken);
-        System.out.println(storedSecretKey);
 
         if (!googleAuthenticatorService.verifyCode(storedSecretKey, passwordDetails.getOtp())) {
-            System.out.println("********Verifying otp********");
-            throw new RuntimeException("Invalid OTP");
+            throw new InvalidOtpException("Invalid OTP");
         }
 
         user.setPassword(passwordEncoder.encode(passwordDetails.getNewPassword()));
