@@ -15,8 +15,19 @@
     <input type="text" [value]="totalAmount | currency" disabled>
   
     <div class="btn-group">
-      <button class="confirm-btn" (click)="createOrder()">Confirm Order</button>
+      <button class="confirm-btn" (click)="isAddressPopupVisible = true">Confirm Order</button>
       <button class="cancel-btn" (click)="cancelOrder()">Cancel</button>
+    </div>
+  </div>
+
+  <div *ngIf="isAddressPopupVisible" class="popup-modal">
+    <div class="popup-content">
+      <h3>Enter Your Address</h3>
+      <textarea [(ngModel)]="userAddress" rows="3" placeholder="Enter your address"></textarea>
+      <div class="popup-actions">
+        <button (click)="saveAddress()">Save</button>
+        <button (click)="closeAddressPopup()">Close</button>
+      </div>
     </div>
   </div>
   
