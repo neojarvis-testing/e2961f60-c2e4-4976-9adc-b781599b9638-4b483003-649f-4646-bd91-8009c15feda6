@@ -1,0 +1,97 @@
+:host{
+    display: block;
+    height: 70vh;
+    background: url(/assets/img/user-profile/userimg.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-clip: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+}
+.container {
+   
+    display: flex;
+    margin-right: 50px;
+    flex-direction: column;
+    max-width: 450px;
+    padding: 20px;
+    background: linear-gradient(135deg, #222121d6, #efeae75a);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(240, 238, 235, 0.5);   
+}
+
+/* Header */
+h2 {
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+/* Profile Table */
+.profile-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 15px;
+}
+.profile-body{
+
+}
+
+.profile-table td {
+    padding: 12px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Edit icon */
+.edit-icon {
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 10px;
+    color: #ffe5b4;
+    transition: transform 0.3s ease-in-out;
+}
+
+.edit-icon:hover {
+    transform: scale(1.2);
+    color: #fff;
+}
+
+/* Input field */
+input {
+    width: 80%;
+    padding: 8px;
+    border: 2px solid #ff7f00;
+    border-radius: 5px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+}
+
+/* Save button */
+button {
+    background: linear-gradient(135deg, #ff7f00, #ff5500);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #ff5500, #e67300);
+    box-shadow: 0px 0px 10px rgba(255, 127, 0, 0.8);
+}
