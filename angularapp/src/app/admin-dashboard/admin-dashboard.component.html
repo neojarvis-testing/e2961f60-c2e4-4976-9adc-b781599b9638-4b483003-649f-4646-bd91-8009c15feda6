@@ -1,43 +1,56 @@
 <div class="admin-dashboard">
-    <!-- Motivational Message -->
-    <div class="motivational-message">
-      <h1>Welcome, Admin!</h1>
-      <p>“Great things are done by a series of small things brought together.” – Vincent Van Gogh</p>
-    </div>
-  
-
-    <div class="food-carousel">
-      <h2>Featured Foods</h2>
-      <div class="carousel">
-        <div class="carousel-item" *ngFor="let foodImage of foodImages">
-          <img [src]="foodImage" alt="Food Image">
-        </div>
-      </div>
-    </div>
-  
-
-    <div class="dashboard-container">
-      <div class="recent-testimonials">
-        <h2>Recent Testimonials</h2>
-        <div *ngFor="let testimonial of testimonials" class="testimonial">
-          <p>"{{ testimonial.message }}"</p>
-          <p>- {{ testimonial.customerName }}</p>
-        </div>
-        <button class="button" routerLink="/admin/view/feedback">View More</button>
-      </div>
-  
-      <div class="statistics">
-        <h2>Dashboard Statistics</h2>
-        <div class="statistic-card">
-          <p>Total Orders Received: {{ totalOrders }}</p>
-        </div>
-        <div class="statistic-card">
-          <p>Pending Orders: {{ pendingOrders }}</p>
-        </div>
-        <div class="statistic-card">
-          <p>Total Revenue: {{ totalRevenue | currency }}</p>
-        </div>
-      </div>
-    </div>
+  <!-- Motivational Message -->
+  <div class="motivational-message">
+    <h1>Welcome, {{userName}}!</h1>
+    <p> {{motivationalMessage}}</p>
   </div>
-  
+
+<!-- 
+  <div class="food-carousel">
+    <h2>Featured Foods</h2>
+    <div class="carousel">
+      <div class="carousel-item" *ngFor="let foodImage of foodImages">
+        <img [src]="foodImage" alt="Food Image">
+      </div>
+    </div>
+  </div> -->
+
+
+  <div class="dashboard-container">
+    <div class="recent-testimonials">
+      <h2>💬 Recent Testimonials</h2>
+      <div class="testimonial-container">
+        <div class="testimonial-track">
+          <div class="testimonial" *ngFor="let testimonial of testimonials">
+            <p>"{{ testimonial.message }}"</p>
+            <p class="customer-name">— <strong>{{ testimonial.customerName }}</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="statistics">
+      <h2>📊 Dashboard Insights</h2>
+      <div class="stats-grid">
+        <div class="statistic-card">
+          <div class="stat-icon">📦</div>
+          <p class="stat-label">Total Orders</p>
+          <p class="stat-value">{{ totalOrders }}</p>
+        </div>
+
+        <div class="statistic-card">
+          <div class="stat-icon">⏳</div>
+          <p class="stat-label">Pending Orders</p>
+          <p class="stat-value">{{ pendingOrders }}</p>
+        </div>
+
+        <div class="statistic-card">
+          <div class="stat-icon">💰</div>
+          <p class="stat-label">Total Revenue</p>
+          <p class="stat-value">{{ totalRevenue }}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

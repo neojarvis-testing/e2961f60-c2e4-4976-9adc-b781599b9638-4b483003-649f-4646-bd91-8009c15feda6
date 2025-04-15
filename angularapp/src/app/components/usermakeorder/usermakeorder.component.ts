@@ -18,6 +18,7 @@ export class UsermakeorderComponent implements OnInit {
   userId: number;
   totalAmount: number = 0;
   errorMessage: string = '';
+  orderPlaced : boolean = false;
 
   constructor(
     private orderService: OrderService,
@@ -102,8 +103,8 @@ export class UsermakeorderComponent implements OnInit {
     };
 
     this.orderService.placeOrder(order).subscribe(data => {
-      alert("Order Placed Successfully !");
-      this.router.navigate(['/user/view/orders']);
+      this.orderPlaced = true;
+      // this.router.navigate(['/user/view/orders']);
     },
       (error) => {
         this.errorMessage = 'Failed to placed order!!!';
@@ -114,6 +115,11 @@ export class UsermakeorderComponent implements OnInit {
   }
   cancelOrder() {
     this.router.navigate(['/user/view/foods']);
+  }
+
+  closePopup(){
+    this.orderPlaced = false;
+    this.router.navigate(['/user/view/orders']);
   }
 
 }

@@ -1,25 +1,124 @@
 .container {
-    margin-top: 20px;
+  margin: auto;
+  max-width: 90%;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+hr {
+  border: 3px solid rgba(255, 165, 0, 0.8);
+  height: 4px;
+  background-color: rgba(255, 165, 0, 0.8);
+  margin: 10px auto;
+  width: 80%;
+  box-shadow: 0px 5px 10px rgba(255, 166, 0, 0.744);
+  margin-bottom: 2.5rem
+  ;
+
+  /* Animation */
+  animation: shadowGlow 1.5s infinite alternate;
+}
+
+/* Shadow Animation */
+@keyframes shadowGlow {
+  0% {
+      box-shadow: 0px 5px 10px rgba(255, 140, 0, 0.8);
   }
-  
+  100% {
+      box-shadow: 0px 15px 20px rgba(255, 140, 0, 1);
+  }
+}
+
+.text-muted {
+  font-size: 1.1em;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+.alert {
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.alert-danger {
+  background: #ff5252;
+  color: white;
+}
+
+.alert-warning {
+  background: #ffc107;
+}
+
+.card {
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card-title {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #333;
+}
+
+.card-text {
+  font-size: 1.1em;
+  color: #555;
+}
+
+.feedback-button {
+  display: inline-block;
+  padding: 10px 15px;
+  background: #4CAF50;
+  color: white;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.feedback-button:hover {
+  background: #45a049;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    padding: 10px;
+  }
+
   .card {
     padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
-  
+
   .card-title {
-    color: #007bff;
+    font-size: 1.2em;
   }
-  
+
   .card-text {
-    font-size: 14px;
-    color: #333;
+    font-size: 1em;
   }
-  
-  .alert-warning {
-    background-color: #ffeeba;
-    border: 1px solid #ffc107;
-    color: #856404;
+
+  .feedback-button {
+    width: 100%;
+    font-size: 1em;
   }
-  
+}

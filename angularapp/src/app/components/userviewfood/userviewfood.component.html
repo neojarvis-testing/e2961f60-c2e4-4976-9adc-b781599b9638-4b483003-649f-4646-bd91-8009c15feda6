@@ -5,16 +5,34 @@
   <div class="heading">
     <h3>&mdash; MENU &mdash; </h3>
   </div>
-  <div class="cards" *ngIf="foods.length!=0">
-    <div *ngFor="let food of foods" class="food-items" id="menu">
+  
+  <!-- type filter  -->
+
+  <div class="filter-toggle">
+    <button class="veg"  (click)="filterMenu('veg')" [class.active]="selectedType === 'veg'">Veg</button>
+    <button class="non-veg" (click)="filterMenu('non-veg')" [class.active]="selectedType === 'non-veg'">Non Veg</button>
+    <button class="all" (click)="filterMenu('all')" [class.active]="selectedType === 'all'">All</button> 
+  </div>
+
+  <!-- price filter  -->
+  <div class="price-filter">
+    <input class="input" type="number" placeholder="Min Price" [(ngModel)]="minPrice" (input)="filterFoods()" />
+    <input class="input" type="number" placeholder="Max Price" [(ngModel)]="maxPrice" (input)="filterFoods()" />
+    <button class="btn-reset" (click)="resetFilters()">Reset</button>
+  </div>
+
+  <!-- main body  -->
+  <div class="cards" *ngIf="filteredFoods.length">
+    <div *ngFor="let food of filteredFoods" class="food-items" id="menu">
       <img src="/assets/img/burger.jpg">
       <div class="details">
         <div class="details-sub">
-          <h5> <span id="order1">{{food.foodName}}</span> </h5>
-          <h5 class="price">Price: ${{food.price}}</h5>
-          <h5>Stock: {{ food.stockQuantity === 0 ? 'Out of Stock' : food.stockQuantity }}</h5>
+          <h5> <span id="order1">{{food?.foodName}}</span> </h5>
+          <h5 class="price">Price: ₹{{food?.price}}</h5>
+          <h5>Type: {{food?.foodDescription?.type}}</h5>
+          <h5>Stock: {{ food?.stockQuantity === 0 ? 'Out of Stock' : food?.stockQuantity }}</h5>
         </div>
-        <button type="submit" *ngIf="food.stockQuantity > 0" [routerLink]="['/user/makeOrder',food.foodId]">Order Now</button>
+        <button type="submit" *ngIf="food.stockQuantity > 0" [routerLink]="['/user/makeOrder',food?.foodId]">Order Now</button>
       </div>
     </div>
   </div>

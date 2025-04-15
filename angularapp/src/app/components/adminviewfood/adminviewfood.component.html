@@ -1,5 +1,5 @@
 <div class="container">
-    <h1 class="header">Food Details</h1>
+    <h1 class="header">Menu Management</h1>
     <div class="filters">
         <input class="input" type="text" placeholder="Search food by name" [(ngModel)]="searchName"
             (input)="filterFoods()" />
@@ -19,12 +19,20 @@
         <tbody>
             <tr *ngFor="let food of filteredFoods">
                 <td>{{ food.foodName }}</td>
-                <td>{{ food.price }}</td>
+                <td>₹{{ food.price }}</td>
                 <td>{{ food.stockQuantity }}</td>
                 <td class='action-button'>
-                    <button class="btn-action" (click)="openPreview(food)">Preview</button>
-                    <button class="btn-action" [routerLink]="['/admin/edit/food', food.foodId]">Edit</button>
-                    <button class="btn-action btn-delete" (click)="confirmDelete(food.foodId)">Delete</button>
+                    <div class="btn-group">
+                        <div>
+                            <button class="btn-action" (click)="openPreview(food)">Preview</button>
+                        </div>
+                        <div>
+                            <button class="btn-action" [routerLink]="['/admin/edit/food', food.foodId]">Edit</button>
+                        </div>
+                        <div>
+                            <button class="btn-action btn-delete" (click)="confirmDelete(food.foodId)">Delete</button>
+                        </div>
+                    </div>
                 </td>
             </tr>
         </tbody>
@@ -40,13 +48,13 @@
 
     <div class="popup" *ngIf="showPreview">
         <div class="popup-content">
-            <h2>Food Details Preview</h2>
+            <h2>Preview</h2>
 
             <div class="details-container">
                 <div>
                     <img [src]="selectedImage" alt="Food Preview" class="popup-image" />
                 </div>
-                
+
                 <div class="food-details">
                     <p><strong>Name:</strong> {{ selectedFood.foodName }}</p>
                     <p><strong>Description:</strong> {{ selectedFood.description }}</p>
@@ -58,7 +66,7 @@
                     <p><strong>Categories:</strong> {{ selectedFood.categories }}</p>
                 </div>
             </div>
-            <button class="btn-close" (click)="closePreview()">Close Preview</button>
+            <button class="btn-closes" (click)="closePreview()">Close Preview</button>
         </div>
     </div>
 

@@ -7,7 +7,7 @@
     <label>Quantity:</label>
     <div class="quantity-controls">
       <button (click)="decreaseQuantity()" [disabled]="quantity<=1">-</button>
-      <span>{{ quantity }}</span>
+      <span style="font-weight: bold;" >{{ quantity }}</span>
       <button (click)="increaseQuantity()" [disabled]="quantity>=food?.stockQuantity">+</button>
     </div>
   
@@ -20,5 +20,14 @@
     </div>
   </div>
   
+  <div *ngIf="orderPlaced"  class="popup" class="overlay" >
+    <div class="content-popup"  >
+      <h3>Order Placed Successfully!</h3>
+      <p>Your order has been Confirmed</p>
+      <button (click)="closePopup()" >Ok</button>
+    </div>
+  </div>
+
+
 
   
