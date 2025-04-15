@@ -20,6 +20,8 @@ export class UsermakeorderComponent implements OnInit {
   errorMessage: string = '';
   userAddress: string = ''; 
   isAddressPopupVisible: boolean = false;
+  isSuccessPopupVisible: boolean = false;
+  successMessage: string = '';
   
 
   constructor(
@@ -122,18 +124,22 @@ export class UsermakeorderComponent implements OnInit {
     };
 
     this.orderService.placeOrder(order).subscribe(data => {
-      alert("Order Placed Successfully !");
-      this.router.navigate(['/user/view/orders']);
+      this.successMessage = "Order Placed Successfully!"; // Set success message
+      this.isSuccessPopupVisible = true; // Show success popup
     },
       (error) => {
-        this.errorMessage = 'Failed to placed order!!!';
+        this.errorMessage = 'Failed to place order!!!';
         console.log(error);
       }
-    )
-
+    );
   }
   cancelOrder() {
     this.router.navigate(['/user/view/foods']);
+  }
+
+  closeSuccessPopup() {
+    this.isSuccessPopupVisible = false; // Hide success popup
+    this.router.navigate(['/user/view/orders']); // Redirect to orders page
   }
 
 }

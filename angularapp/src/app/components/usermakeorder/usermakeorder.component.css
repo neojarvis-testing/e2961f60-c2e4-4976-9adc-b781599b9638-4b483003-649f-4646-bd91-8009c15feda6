@@ -1,3 +1,4 @@
+/* Order Form Styling */
 .order-form {
     max-width: 400px;
     margin: auto;
@@ -19,31 +20,6 @@
     border: 1px solid #ddd;
     border-radius: 4px;
     text-align: center;
-}
-
-.btn-group {
-    margin-top: 20px;
-}
-
-.confirm-btn {
-    background: #28a745;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 10px;
-}
-
-.cancel-btn {
-    background: #dc3545;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    opacity: 0.9;
 }
 
 .quantity-controls {
@@ -78,6 +54,32 @@ button:hover {
     background-color: #0056b3;
 }
 
+.btn-group {
+    margin-top: 20px;
+}
+
+.confirm-btn {
+    background: #28a745;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.cancel-btn {
+    background: #dc3545;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* Popup Styling */
 .popup-modal {
     position: fixed;
     top: 0;
@@ -129,3 +131,56 @@ button:hover {
     background-color: #dc3545;
     color: white;
 }
+
+/* Success Popup Styling - Orange Theme */
+.popup-content.success {
+    background: #fff4e6; /* Soft orange background for success */
+    border: 2px solid #ffa500; /* Vibrant orange border */
+    color: #cc8400; /* Deep orange text for better readability */
+    max-width: 400px; /* Slightly wider for balance */
+    padding: 25px;
+    border-radius: 12px; /* Rounded corners for a smoother design */
+    text-align: center;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* Deeper shadow for emphasis */
+    animation: fade-in-scale 0.3s ease-out; /* Smooth entry animation */
+}
+
+.popup-content.success h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #cc8400; /* Match deep orange theme */
+}
+
+.popup-content.success p {
+    font-size: 16px;
+    margin: 10px 0 20px;
+}
+
+.popup-content.success button {
+    background-color: #ffa500; /* Bright orange button */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px; /* Rounded button for consistency */
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth hover effect */
+}
+
+.popup-content.success button:hover {
+    background-color: #e59400; /* Slightly darker orange on hover */
+}
+
+/* Smooth fade-in and scaling animation */
+@keyframes fade-in-scale {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+

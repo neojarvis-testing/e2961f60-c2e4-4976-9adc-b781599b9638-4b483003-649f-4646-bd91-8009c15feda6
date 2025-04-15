@@ -43,6 +43,15 @@
   </tbody>
 </table>
 
+<!-- Popup for Delete Message -->
+<div *ngIf="deletePopupVisible" class="popup-modal">
+  <div class="popup-content">
+    <h3>Cannot Delete Order</h3>
+    <p>{{ deletePopupMessage }}</p>
+    <button (click)="closeDeletePopup()">OK</button>
+  </div>
+</div>
+
 <!-- Popup for Selected User Details -->
 <div *ngIf="selectedUser" class="popup">
   <div class="popup-content">
