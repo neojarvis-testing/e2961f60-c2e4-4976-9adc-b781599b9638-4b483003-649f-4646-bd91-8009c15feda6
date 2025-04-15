@@ -9,10 +9,12 @@ import { FoodService } from 'src/app/services/food.service';
 })
 
 export class UserviewfoodComponent implements OnInit {
-  foods: Food[] = [];
+  foods: any[] = [];
   searchData: string = '';
-  minPrice: number = 0;
+  minPrice: number ;
   maxPrice: number = Infinity;
+  filteredFoods : any[] = [];
+  selectedType : string = 'all';
 
   constructor(private foodService : FoodService) { }
 
@@ -26,6 +28,7 @@ export class UserviewfoodComponent implements OnInit {
       console.log(data)
         this.foods = data; 
         console.log(this.foods)
+        this.filteredFoods = this.foods
     },
     (error) => {
       console.error('Error fetching food data:', error); 
@@ -33,19 +36,31 @@ export class UserviewfoodComponent implements OnInit {
     );
   }
 
-  // public resetFilters() {
-  //   this.searchData = '';
-  //   this.minPrice = 0;
-  //   this.maxPrice = Infinity;
-  // }
+  filterMenu(type:string){
+    this.selectedType = type
+    if(type==='all'){
+      this.filteredFoods = this.foods
+    }else{
+      this.filteredFoods = this.foods.filter(food=>food?.foodDescription?.type === type);
+    }
+  }
 
-  // public filteredFoods() {
-  //   return this.foods.filter(food =>
-  //     food.foodName.toLowerCase().includes(this.searchData.toLowerCase()) &&
-  //     food.price >= this.minPrice &&
-  //     food.price <= this.maxPrice
-  //   );
-  // }
+  filterFoods(){
+    this.filteredFoods = this.foods.filter(food => {
+      const matchesType = this.selectedType === 'all' || food.foodDescription.type === this.selectedType;
+      const matchesPrice = food.price >= this.minPrice && food.price <= this.maxPrice;
+      return matchesType && matchesPrice;
+    });
+  }
+
+  resetFilters(): void {
+    this.selectedType = 'all';
+    this.minPrice = 0 ;
+    this.maxPrice = Infinity;
+    this.filteredFoods = this.foods;
+  }
+
+
 }
 
 

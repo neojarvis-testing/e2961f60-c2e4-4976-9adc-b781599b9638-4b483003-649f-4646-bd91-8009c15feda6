@@ -1,77 +1,78 @@
+/* General Styling */
 body {
+  background-color: #F4A267; /* Soft orange background */
   font-family: Arial, sans-serif;
-  background-color: #000000; /* Black background */
-  color: #FFD700; /* Golden yellow text */
   margin: 0;
   padding: 0;
 }
 
+/* Container */
 .container {
-  max-width: 600px;
-  margin: 50px auto; /* Centers the form */
-  padding: 20px;
-  background-color: #333333; /* Dark gray container */
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
-  border: 2px solid #FFD700; /* Golden yellow border */
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 25px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Form Header */
 h2 {
   text-align: center;
-  color: #FFD700;
+  color: #D66D33;
+  font-size: 24px;
   margin-bottom: 20px;
-  font-size: 28px;
-  font-weight: bold;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-  color: #FFD700;
-  font-weight: bold;
-}
-
+/* Form Input Styling */
 input {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #FFD700; /* Golden yellow border */
-  border-radius: 5px;
-  background-color: #444444; /* Dark gray input background */
-  color: #FFD700; /* Golden yellow text */
+  padding: 12px;
+  border: 2px solid #F4A267;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: 0.3s ease-in-out;
 }
 
 input:focus {
-  outline: none;
-  border-color: #FFDD44; /* Slightly brighter border on focus */
+  border-color: #D66D33;
+  box-shadow: 0 2px 6px rgba(244, 162, 103, 0.4);
 }
 
-button {
-  padding: 10px 20px;
-  margin-right: 10px;
-  background-color: #FFD700; /* Golden yellow background */
-  color: #000000; /* Black text for contrast */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-button:hover {
-  background-color: #FFDD44; /* Slightly brighter yellow on hover */
-}
-
-button:disabled {
-  background-color: #666666; /* Gray for disabled button */
-  color: #CCCCCC; /* Lighter gray text */
-  cursor: not-allowed; /* Indicate disabled state */
-}
-
-div {
-  margin-bottom: 15px;
-}
-
-div > div {
-  color: #FF5555; /* Red for error messages */
+/* Error Messages */
+div[ngIf] {
+  color: red;
   font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Buttons */
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button[type="submit"] {
+  background: #D66D33;
+  color: white;
+  border: none;
+}
+
+button[type="submit"]:hover {
+  background: #C55E29;
+}
+
+button[type="button"] {
+  background: #ddd;
+  color: black;
+  border: none;
+}
+
+button[type="button"]:hover {
+  background: #bbb;
 }

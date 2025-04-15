@@ -15,6 +15,8 @@
 .menu {
  display: flex;
  flex-direction: column;
+ margin: 0;
+ padding: 0;
 }
 
 .cards{
@@ -27,8 +29,8 @@
 
 .heading {
   color: #333;
-  margin-bottom: 30px;
-  padding: 120px 0 30px 0;
+  margin-bottom: 16px;
+  padding: 47px 0 5px 0;
   grid-column: 1/-1;
   text-align: center;
 }
@@ -112,6 +114,75 @@
   width: 180px;
   align-items: center;
 }
+
+.filter-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.filter-toggle button {
+ 
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.veg{
+  background: green;
+  color: #fff;
+}
+
+.non-veg{
+  background: red;
+  color: white;
+}
+
+.all{
+  background: #F4A267;
+  color: white;
+}
+
+.filter-toggle button:hover {
+  background: #E78236;
+}
+
+.filter-toggle button.active {
+  background: #D66D33;
+}
+
+.price-filter {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input {
+  padding: 10px;
+  border: 2px solid #F4A267;
+  border-radius: 8px;
+  font-size: 16px;
+  background: white;
+}
+
+.btn-reset {
+  background: #F4A267;
+  color: black;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.btn-reset:hover {
+  background: #e5b593;
+}
+
 
 @media(max-width:1024px){
   .food-items{

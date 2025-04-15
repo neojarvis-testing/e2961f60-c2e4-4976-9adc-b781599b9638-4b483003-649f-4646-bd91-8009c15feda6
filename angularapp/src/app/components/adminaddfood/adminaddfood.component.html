@@ -3,7 +3,7 @@
         <h2 class="header">Add Food</h2>
         <form [formGroup]="foodForm" (ngSubmit)="addFood()">
             <div class="form-group">
-                <label for="foodName" class="label">Food Name:</label>
+                <label for="foodName" class="label">Food Name:<span style="color: red;">*</span></label>
                 <input type="text" class="input" id="foodName" formControlName="foodName">
                 <div *ngIf="foodName.invalid && foodName.touched" class="error-message">
                     <span *ngIf="foodName.errors['required']">Food Name is required.</span>
@@ -11,7 +11,7 @@
             </div>
 
             <div class="form-group">
-                <label for="price" class="label">Price:</label>
+                <label for="price" class="label">Price:<span style="color: red;">*</span></label>
                 <input type="number" class="input" id="price" formControlName="price">
                 <div *ngIf="price.invalid && price.touched" class="error-message">
                     <span *ngIf="price.errors['required']">Price is required.</span>
@@ -20,7 +20,7 @@
             </div>
 
             <div class="form-group">
-                <label for="stockQuantity" class="label">Stock Quantity:</label>
+                <label for="stockQuantity" class="label">Stock Quantity:<span style="color: red;">*</span></label>
                 <input type="number" class="input" id="stockQuantity" formControlName="stockQuantity">
                 <div *ngIf="stockQuantity.invalid && stockQuantity.touched" class="error-message">
                     <span *ngIf="stockQuantity.errors['required']">Stock Quantity is required.</span>
@@ -29,12 +29,12 @@
             </div>
 
             <div class="form-group">
-                <label for="photo" class="label">Upload Photo:</label>
+                <label for="photo" class="label">Upload Photo:<span style="color: red;">*</span></label>
                 <input type="file" class="input" id="photo" (change)="handleFileChange($event)">
             </div>
 
             <div class="form-group">
-                <label for="description" class="label">Description:</label>
+                <label for="description" class="label">Description:<span style="color: red;">*</span></label>
                 <input type="text" class="input" id="description" formControlName="description" />
                 <div *ngIf="description.invalid && description.touched" class="error-message">
                     <span *ngIf="description.errors['required']">Description is required.</span>
@@ -42,7 +42,7 @@
             </div>
             
             <div class="form-group">
-                <label for="proteins" class="label">Proteins (g):</label>
+                <label for="proteins" class="label">Proteins (g):<span style="color: red;">*</span></label>
                 <input type="number" class="input" id="proteins" formControlName="proteins" />
                 <div *ngIf="proteins.invalid && proteins.touched" class="error-message">
                     <span *ngIf="proteins.errors['required']">Proteins are required.</span>
@@ -51,7 +51,7 @@
             </div>
 
             <div class="form-group">
-                <label for="carbs" class="label">Carbohydrates (g):</label>
+                <label for="carbs" class="label">Carbohydrates (g):<span style="color: red;">*</span></label>
                 <input type="number" class="input" id="carbs" formControlName="carbs" />
                 <div *ngIf="carbs.invalid && carbs.touched" class="error-message">
                     <span *ngIf="carbs.errors['required']">Carbohydrates are required.</span>
@@ -60,7 +60,7 @@
             </div>
 
             <div class="form-group">
-                <label for="fats" class="label">Fats (g):</label>
+                <label for="fats" class="label">Fats (g):<span style="color: red;">*</span></label>
                 <input type="number" class="input" id="fats" formControlName="fats" />
                 <div *ngIf="fats.invalid && fats.touched" class="error-message">
                     <span *ngIf="fats.errors['required']">Fats are required.</span>
@@ -70,7 +70,7 @@
 
 
             <div class="form-group">
-                <label for="calories" class="label">Calories:</label>
+                <label for="calories" class="label">Calories:<span style="color: red;">*</span></label>
                 <input type="number" class="input" id="calories" formControlName="calories" />
                 <div *ngIf="calories.invalid && calories.touched" class="error-message">
                     <span *ngIf="calories.errors['required']">Calories are required.</span>
@@ -79,9 +79,10 @@
             </div>
 
             <div class="form-group">
-                <label for="type" class="label">Type:</label>
+                <label for="type" class="label">Type:<span style="color: red;">*</span></label>
                 <select id="type" class="input" formControlName="type">
-                    <option value="veg">Vegetarian</option>
+                    <option value="" disabled selected>Select type</option>
+                    <option  value="veg">Vegetarian</option>
                     <option value="non-veg">Non-Vegetarian</option>
                 </select>
                 <div *ngIf="type.invalid && type.touched" class="error-message">
@@ -90,7 +91,7 @@
             </div>
             
             <div class="form-group">
-                <label for="categories" class="label">Categories:</label>
+                <label for="categories" class="label">Categories:<span style="color: red;">*</span></label>
                 <select id="categories" class="input" formControlName="categories">
                     <option value="" disabled selected>Select Category</option>
                     <option *ngFor="let category of categoriesArray" [value]="category">{{ category }}</option>

@@ -1,6 +1,6 @@
 /* General Styling */
 body {
-  background-color: #000000; /* Black background */
+  background-color: #efab00; /* Black background */
   color: #FFD700; /* Golden yellow text */
   font-family: Arial, sans-serif;
   margin: 0;
@@ -11,14 +11,14 @@ body {
   max-width: 900px;
   margin: 50px auto;
   padding: 20px;
-  background-color: #333333;
+  background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 .header {
   text-align: center;
-  color: #FFD700;
+  color: #333;
   margin-bottom: 20px;
   font-size: 32px;
 }
@@ -33,9 +33,8 @@ body {
 .input {
   flex: 1;
   padding: 10px;
-  border: 1px solid #FFD700;
+  border: 2px solid #F4A267;
   border-radius: 5px;
-  background-color: #444444;
   color: #FFD700;
 }
 
@@ -46,8 +45,8 @@ body {
 
 .btn-reset {
   padding: 10px 20px;
-  background-color: #FFD700;
-  color: #000000;
+  background-color: #F4A267;
+  color: #fff;
   border: none;
   border-radius: 5px;
   font-weight: bold;
@@ -65,26 +64,30 @@ body {
   border-collapse: collapse;
   margin-top: 20px;
   text-align: left;
-  background-color: #444444;
+  background-color: #f4a267;
   color: #FFD700;
+  text-align: center;
 }
 
 .table th,
 .table td {
   padding: 10px;
-  border: 1px solid #FFD700;
+  border: 1px solid #f4a267;
 }
 
 .table th {
-  background-color: #555555;
+  background-color: #f4a267;
   text-transform: uppercase;
+  color: #fff;
+  text-align: center;
 }
 
 /* Action Buttons */
 .btn-action {
+  margin: 10px;
   padding: 5px 10px;
-  background-color: #FFD700;
-  color: #000000;
+  background-color: #F4A267;
+  color: #fff;
   border: none;
   border-radius: 3px;
   cursor: pointer;
@@ -92,8 +95,15 @@ body {
   transition: background 0.3s;
 }
 
+.btn-group{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  
+}
+
 .btn-action:hover {
-  background-color: #FFDD44;
+  background-color: #e5bc9f;
 }
 
 .btn-delete {
@@ -164,7 +174,7 @@ table > tbody > tr > td > img {
 }
 
 /* Close Button Styling */
-.btn-close {
+.btn-closes {
   margin-top: 20px;
   background-color: #f44336;
   color: #fff;
@@ -174,6 +184,7 @@ table > tbody > tr > td > img {
   cursor: pointer;
   align-self: flex-end;
   transition: background-color 0.3s ease;
+  width: 136px;
 }
 
 .btn-close:hover {
@@ -259,3 +270,45 @@ table > tbody > tr > td > img {
   flex-direction: row;
   gap: 3rem;
 }
+
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 95%;
+    margin: 20px auto;
+  }
+
+  .filters {
+    flex-direction: column; /* Stack filter inputs vertically */
+    align-items: center;
+  }
+
+  .btn-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .popup {
+    width: 90%; /* Wider popup for mobile screens */
+  }
+
+  .table th, .table td {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    font-size: 24px;
+  }
+
+  .btn-action {
+    width: 100%; /* Make buttons full width for mobile */
+  }
+
+  .popup {
+    width: 100%;
+    max-width: 380px;
+  }
+}
+

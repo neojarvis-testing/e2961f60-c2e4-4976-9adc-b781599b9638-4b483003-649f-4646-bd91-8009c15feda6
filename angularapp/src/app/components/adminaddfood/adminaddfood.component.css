@@ -1,3 +1,12 @@
+
+/* Main Container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background: rgba(255, 165, 0, 0.2);
+
 form {
     font-family: 'Arial', sans-serif;
 }
@@ -100,72 +109,101 @@ body {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     margin: auto;
     margin-top: 4rem;
+
 }
 
+/* Card Styling */
 .card {
-    padding: 20px;
-    border: 2px solid #FFD700;
-    border-radius: 10px;
+    width: 80%;
+    max-width: 700px;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
 }
 
+/* Header */
 .header {
     text-align: center;
-    color: #FFD700;
-    margin-bottom: 20px;
     font-size: 24px;
+    color: #F4A267;
+    margin-bottom: 20px;
 }
+
+
+/* Grid Layout for Form */
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 
 form {
     padding: 1rem 3rem;
+
 }
 
-.form-group {
-    margin-bottom: 15px;
+.form-group{
+    margin: 20px;
 }
 
+/* Labels */
 .label {
-    display: block;
-    margin-bottom: 5px;
-    color: #FFD700;
     font-weight: bold;
+    color: #333;
 }
 
+/* Input Fields */
 .input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #FFD700;
-    border-radius: 5px;
-    background-color: #444444;
-    color: #FFD700;
+    border: 2px solid #F4A267;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.3s;
 }
 
 .input:focus {
-    outline: none;
-    border-color: #FFDD44;
+    border-color: #F4A267;
+    box-shadow: 0 2px 6px rgba(255, 100, 0, 0.2);
 }
 
-.error-message {
-    color: #FF5555;
-    font-size: 14px;
-    margin-top: 5px;
-}
-
+/* Submit Button */
 .btn-submit {
-    display: block;
+    background: linear-gradient(45deg, #F4A267, #F4A267);
+    color: white;
+    font-size: 18px;
+    padding: 12px;
     width: 100%;
-    padding: 10px;
-    background-color: #FFD700;
-    color: #000000;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
+    border-radius: 8px;
     cursor: pointer;
 }
 
 .btn-submit:hover {
-    background-color: #FFDD44;
+    background: linear-gradient(45deg, #ff8800, #F4A267);
 }
+
+
+/* Collapsible Sections */
+.collapsible {
+    background: rgba(255, 140, 0, 0.3);
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.collapsible:hover {
+    background: rgba(255, 100, 0, 0.5);
+}
+
+.hidden {
+    display: none;
+}
+
+.error-message{
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
 
 /* Updated Success Message with Orange Theme */
 .success-message {
@@ -174,4 +212,5 @@ form {
     color: #F4A267; /* Orange theme for success message */
     font-size: 16px;
     font-weight: bold;
+
 }

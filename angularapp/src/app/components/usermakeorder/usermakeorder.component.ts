@@ -18,11 +18,15 @@ export class UsermakeorderComponent implements OnInit {
   userId: number;
   totalAmount: number = 0;
   errorMessage: string = '';
+
+  orderPlaced : boolean = false;
+
   userAddress: string = ''; 
   isAddressPopupVisible: boolean = false;
   isSuccessPopupVisible: boolean = false;
   successMessage: string = '';
   
+
 
   constructor(
     private orderService: OrderService,
@@ -124,8 +128,13 @@ export class UsermakeorderComponent implements OnInit {
     };
 
     this.orderService.placeOrder(order).subscribe(data => {
+
+      this.orderPlaced = true;
+      // this.router.navigate(['/user/view/orders']);
+
       this.successMessage = "Order Placed Successfully!"; // Set success message
       this.isSuccessPopupVisible = true; // Show success popup
+
     },
       (error) => {
         this.errorMessage = 'Failed to place order!!!';
@@ -137,9 +146,15 @@ export class UsermakeorderComponent implements OnInit {
     this.router.navigate(['/user/view/foods']);
   }
 
+
+  closePopup(){
+    this.orderPlaced = false;
+    this.router.navigate(['/user/view/orders']);
+
   closeSuccessPopup() {
     this.isSuccessPopupVisible = false; // Hide success popup
     this.router.navigate(['/user/view/orders']); // Redirect to orders page
+
   }
 
 }
