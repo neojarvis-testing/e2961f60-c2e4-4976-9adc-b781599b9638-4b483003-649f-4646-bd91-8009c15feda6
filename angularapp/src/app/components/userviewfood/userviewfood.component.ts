@@ -15,7 +15,9 @@ export class UserviewfoodComponent implements OnInit {
   maxPrice: number = Infinity;
   filteredFoods : any[] = [];
   selectedType : string = 'all';
-
+  popup : boolean = false;
+  selectedImage : any = null;
+  selectedFood : any;
   constructor(private foodService : FoodService) { }
 
   ngOnInit(): void {
@@ -59,6 +61,31 @@ export class UserviewfoodComponent implements OnInit {
     this.maxPrice = Infinity;
     this.filteredFoods = this.foods;
   }
+
+  
+  getPhotoUrl(photo): string {
+    return `data:image/jpeg;base64,${photo}`;
+  }
+
+  preview(food){
+    this.selectedImage = food.photo;
+    this.selectedFood = {
+      foodName: food.foodName,
+      description: food.foodDescription.description,
+      proteins: food.foodDescription.proteins,
+      carbs: food.foodDescription.carbs,
+      fats: food.foodDescription.fats,
+      calories: food.foodDescription.calories,
+      type: food.foodDescription.type,
+      categories: food.foodDescription.categories
+    };
+
+    this.popup = true;
+  }
+  closePreview(){
+    this.popup=false;
+  }
+  
 
 
 }

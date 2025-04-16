@@ -2,6 +2,7 @@
 
 <div class="menu">
 
+
   <div class="heading">
     <h3>&mdash; MENU &mdash; </h3>
   </div>
@@ -24,7 +25,10 @@
   <!-- main body  -->
   <div class="cards" *ngIf="filteredFoods.length">
     <div *ngFor="let food of filteredFoods" class="food-items" id="menu">
-      <img src="/assets/img/burger.jpg">
+      <div class="img-div">
+        <img [src]="getPhotoUrl(food.photo)" alt="image">
+      </div>
+      <hr>
       <div class="details">
         <div class="details-sub">
           <h5> <span id="order1">{{food?.foodName}}</span> </h5>
@@ -32,9 +36,37 @@
           <h5>Type: {{food?.foodDescription?.type}}</h5>
           <h5>Stock: {{ food?.stockQuantity === 0 ? 'Out of Stock' : food?.stockQuantity }}</h5>
         </div>
-        <button type="submit" *ngIf="food.stockQuantity > 0" [routerLink]="['/user/makeOrder',food?.foodId]">Order Now</button>
+        <div class="order-button-div">
+          <button type="submit" (click)="preview(food)" >View Details</button>
+          <button type="submit" *ngIf="food.stockQuantity > 0" [routerLink]="['/user/makeOrder',food?.foodId]">Order Now</button>
+        </div>
+        
       </div>
     </div>
   </div>
 
+</div>
+
+<div class="popup" *ngIf="popup">
+  <div class="popup-content">
+      <h2>Preview</h2>
+
+      <div class="details-container">
+          <div>
+              <img [src]="getPhotoUrl(selectedImage)" alt="Food Preview" class="popup-image" />
+          </div>
+
+          <div class="food-details">
+              <p><strong>Name:</strong> {{ selectedFood.foodName }}</p>
+              <p><strong>Description:</strong> {{ selectedFood.description }}</p>
+              <p><strong>Proteins:</strong> {{ selectedFood.proteins }} g</p>
+              <p><strong>Carbs:</strong> {{ selectedFood.carbs }} g</p>
+              <p><strong>Fats:</strong> {{ selectedFood.fats }} g</p>
+              <p><strong>Calories:</strong> {{ selectedFood.calories }} kcal</p>
+              <p><strong>Type:</strong> {{ selectedFood.type }}</p>
+              <p><strong>Categories:</strong> {{ selectedFood.categories }}</p>
+          </div>
+      </div>
+      <button class="btn-closes" (click)="closePreview()">Close Preview</button>
+  </div>
 </div>
