@@ -54,7 +54,7 @@ export class AdmineditfoodComponent implements OnInit {
 
   
   onBack(): void {
-    this.router.navigate(['/admin/view/food']);
+    this.router.navigate(['/admin/view/foods']);
   }
 
   public get foodName(){

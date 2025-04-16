@@ -2,11 +2,11 @@
   <h2 class="text-center">My Orders</h2>
   <p class="text-center text-muted">Here are your recent orders. Track their status and leave feedback!</p>
 
-  <div *ngIf="errorMessage" class="alert alert-danger">
+  <div *ngIf="errorMessage && !isEmpty" class="alert alert-danger">
     {{ errorMessage }}
   </div>
 
-  <div *ngIf="orders.length === 0 && !errorMessage" class="alert alert-warning text-center">
+  <div *ngIf="orders.length === 0 || isEmpty " class="alert alert-warning text-center">
     You have no current orders.
   </div>
   <hr>

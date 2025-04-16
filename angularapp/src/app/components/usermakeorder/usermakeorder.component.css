@@ -118,7 +118,7 @@ button:hover {
 
 .overlay{
     display: none;
-
+}
 .btn-group {
     margin-top: 20px;
 }
@@ -228,7 +228,9 @@ button:hover {
         gap: 10px;
     }
 }
-=======
+
+/* i have made some changes here */
+.popup-modal{
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
     display: flex;

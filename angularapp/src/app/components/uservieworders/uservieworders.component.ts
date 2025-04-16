@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faSleigh } from '@fortawesome/free-solid-svg-icons';
 import { UserStoreService } from 'src/app/helpers/user-store.service';
 import { orders } from 'src/app/models/orders.model';
 import { FoodService } from 'src/app/services/food.service';
@@ -14,6 +15,7 @@ export class UserviewordersComponent implements OnInit {
   orders : orders[] = [];
   userId : number;
   errorMessage : string = '';
+  isEmpty : boolean = false;
 
   constructor(private orderService: OrderService , private userStoreService:UserStoreService,private foodService:FoodService) { }
 
@@ -27,10 +29,14 @@ export class UserviewordersComponent implements OnInit {
   loadOrdersByUser(){
     this.orderService.getAllOrdersByUserId(this.userId).subscribe( {
       next:(data)=>{
+        this.isEmpty=false;
         console.log(data)
         this.orders=data;
       },
       error : (error)=>{
+        if(error.status == 404){
+          this.isEmpty = true;
+        }
         console.log("error in fetching orders from user");
         this.errorMessage="Failed to load order history , please try again";
       }

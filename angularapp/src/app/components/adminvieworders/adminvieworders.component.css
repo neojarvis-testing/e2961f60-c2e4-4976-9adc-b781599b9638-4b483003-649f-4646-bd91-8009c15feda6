@@ -68,7 +68,16 @@ button:hover {
   z-index: 1000; /* Ensure it appears above all other elements */
 }
 
+.popup{
+  position: fixed;
+  left: 35%;
+  top: 50%;
+}
+
+
 .popup-content {
+  align-self: center;
+  vertical-align: middle;
   background: white;
   padding: 20px;
   border-radius: 8px;

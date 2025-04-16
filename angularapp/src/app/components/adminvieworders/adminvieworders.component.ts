@@ -50,11 +50,14 @@ export class AdminviewordersComponent implements OnInit {
     const order = this.orders.find(order => order.orderId === orderId);
     
     if (order && (order.orderStatus === 'Making Food' || order.orderStatus === 'On the way' || order.orderStatus === 'Delivered')) {
+      this.changeStatus=false;
       this.deletePopupMessage = `Cannot delete order as its status is ${order.orderStatus}.`;
       this.deletePopupVisible = true;
     } else if (order) {
       this.changeStatus = true;
       this.orderService.deleteOrder(orderId).subscribe(data => {
+        this.deletePopupMessage="Successfully Cancelled the order."
+        this.deletePopupVisible = true;
         this.getAllOrders(); 
       });
     }

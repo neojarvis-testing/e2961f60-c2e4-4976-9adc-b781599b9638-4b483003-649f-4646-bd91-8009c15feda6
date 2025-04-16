@@ -3,17 +3,20 @@
     <h2 class="registration-title">Register</h2>
 
     <!-- Dynamic status indicators -->
-    <div *ngIf="loading" class="status-icon">
-      <i class="fas fa-spinner fa-spin loading-icon"></i>
-      <p>Registering...</p>
+    <div class="confirmation">
+      <div *ngIf="loading" class="status-icon">
+        <i class="fas fa-spinner fa-spin loading-icon"></i>
+        <p>Registering...</p>
+      </div>
+      <div *ngIf="success" class="status-icon">
+        <i class="fas fa-check-circle success-icon"></i>
+        <p >Registration successful! Redirecting to login...</p>
+      </div>
     </div>
-    <div *ngIf="success" class="status-icon">
-      <i class="fas fa-check-circle success-icon"></i>
-      <p>Registration successful! Redirecting to login...</p>
-    </div>
+   
     <div *ngIf="error409" class="status-icon">
       <i class="fas fa-exclamation-circle error-icon"></i>
-      <p>User already exists. <a routerLink="/login" class="login-suggestion">Click here to log in.</a></p>
+      <p class="duplicate user">User already exists. <a routerLink="/login" class="login-suggestion">Click here to log in.</a></p>
     </div>
 
     <!-- Registration Form -->
