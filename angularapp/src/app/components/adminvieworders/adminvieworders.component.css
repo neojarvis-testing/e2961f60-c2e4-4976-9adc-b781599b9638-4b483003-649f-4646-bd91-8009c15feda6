@@ -149,3 +149,20 @@ button:hover {
     transform: rotate(360deg);
   }
 }
+
+.no-orders-message {
+  text-align: center;
+  color: white;
+  background-color: #FFA500; /* Orange background */
+  padding: 20px;
+  border-radius: 10px;
+  font-family: 'Arial', sans-serif;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  margin: 20px auto;
+  max-width: 400px;
+}
+
+.action-buttons-table{
+  display: flex;
+}

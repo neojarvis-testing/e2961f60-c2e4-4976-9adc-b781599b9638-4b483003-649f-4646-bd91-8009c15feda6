@@ -3,6 +3,10 @@
   <p>Loading orders...</p>
 </div>
 
+  <div *ngIf="!orders && !loading" class="no-orders-message">
+  Oops, no orders!
+</div>
+
 <div *ngIf="!loading">
   <table *ngIf="orders.length > 0" class="orders-table">
     <thead>

@@ -35,7 +35,7 @@
 
             <div class="form-group">
                 <label for="description" class="label">Description:<span style="color: red;">*</span></label>
-                <input type="text" class="input" id="description" formControlName="description" />
+                <textarea type="text" class="input" id="description" formControlName="description"></textarea>
                 <div *ngIf="description.invalid && description.touched" class="error-message">
                     <span *ngIf="description.errors['required']">Description is required.</span>
                 </div>
