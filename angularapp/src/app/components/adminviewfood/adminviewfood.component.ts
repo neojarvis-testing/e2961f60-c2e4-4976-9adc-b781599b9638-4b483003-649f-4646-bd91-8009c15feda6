@@ -23,6 +23,7 @@ export class AdminviewfoodComponent implements OnInit {
   showPreview: boolean = false;
   selectedImage: any = null;
   selectedFood: any = null;
+  loading : boolean = false;
 
   constructor(private foodService: FoodService, private router: Router, private sanitizer: DomSanitizer) { }
 
@@ -31,6 +32,7 @@ export class AdminviewfoodComponent implements OnInit {
   }
 
   loadfood() {
+    this.loading = true;
     this.foodService.getAllFoods().subscribe((data) => {
       this.foods = data.map(food => ({
         ...food,
@@ -39,10 +41,12 @@ export class AdminviewfoodComponent implements OnInit {
       }));
       console.log("after deleting food updating filtered foods array")
       this.filteredFoods = this.foods;
+      this.loading= false;
       console.log(this.foods)
     }, error => {
       this.foods=[];
       this.filteredFoods = [];
+      this.loading = false;
       console.error('Error fetching food details:', error);
     });
   }

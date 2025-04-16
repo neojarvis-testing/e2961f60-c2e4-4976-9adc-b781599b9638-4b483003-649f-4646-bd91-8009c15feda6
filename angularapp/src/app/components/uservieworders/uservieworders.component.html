@@ -2,14 +2,29 @@
   <h2 class="text-center">My Orders</h2>
   <p class="text-center text-muted">Here are your recent orders. Track their status and leave feedback!</p>
 
-  <div *ngIf="errorMessage && !isEmpty" class="alert alert-danger">
+ 
+  <div *ngIf="!orders && !loading" class="no-orders-message">
+    You have no current orders.
+  </div>
+
+
+  <div *ngIf="errorMessage && !isEmpty && !loading" class="alert alert-danger">
     {{ errorMessage }}
   </div>
 
-  <div *ngIf="orders.length === 0 || isEmpty " class="alert alert-warning text-center">
-    You have no current orders.
-  </div>
   <hr>
+
+  <div *ngIf="loading" class="spinner">
+    <div class="foodImages">
+      <div class="food">🍎</div>
+      <div class="food">🍩</div>
+      <div class="food">🍕</div>
+    </div>
+    <div class="loading-text">
+      Fetching your Orders...
+    </div>
+  </div>
+
 
   <div *ngIf="orders.length > 0" class="row">
     <div *ngFor="let order of orders" class="col-md-6">

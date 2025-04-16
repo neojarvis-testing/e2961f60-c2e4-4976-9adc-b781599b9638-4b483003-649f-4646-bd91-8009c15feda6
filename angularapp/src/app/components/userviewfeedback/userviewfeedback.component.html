@@ -19,7 +19,18 @@
     </div>
   </div>
 
-  <div *ngIf="filteredFeedbacks.length === 0">
+  <div *ngIf="loading" class="spinner">
+    <div class="foodImages">
+      <div class="food">🍎</div>
+      <div class="food">🍩</div>
+      <div class="food">🍕</div>
+    </div>
+    <div class="loading-text">
+      Fetching Feedbacks ...
+    </div>
+  </div>
+
+  <div *ngIf="filteredFeedbacks.length === 0 && !loading ">
     <p>Oops! No records found</p>
   </div>
 

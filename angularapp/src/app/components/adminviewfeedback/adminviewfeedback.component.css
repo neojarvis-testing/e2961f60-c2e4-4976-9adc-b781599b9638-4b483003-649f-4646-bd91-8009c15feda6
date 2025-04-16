@@ -2,57 +2,57 @@
   width: 80%;
   margin: auto;
   padding: 20px;
-  color: #000000; 
+  color: #000000;
 }
 
 .feedback-container h2 {
   text-align: center;
-  color: #e78236; 
+  color: #e78236;
 }
 
 .feedback-container p {
   text-align: center;
-  color: #000000; 
+  color: #000000;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  background-color: #f9f9f9; 
-  border: 1px solid #ddd; 
-  border-radius: 8px; 
-  overflow: hidden; 
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 th,
 td {
-  padding: 12px 15px; 
+  padding: 12px 15px;
   text-align: left;
-  border-bottom: 1px solid #ddd; 
-  color: #333; 
+  border-bottom: 1px solid #ddd;
+  color: #333;
 }
 
 th {
-  background-color: #e78236; 
-  color: #fff; 
+  background-color: #e78236;
+  color: #fff;
   font-weight: bold;
 }
 
 tr:nth-child(even) {
-  background-color: #f1f1f1; 
+  background-color: #f1f1f1;
 }
 
 tr:hover {
-  background-color: #ffe5d3; 
-  color: #333; 
+  background-color: #ffe5d3;
+  color: #333;
 }
 
 td {
-  vertical-align: middle; 
+  vertical-align: middle;
 }
 
-table + * {
+table+* {
   margin-top: 20px;
 }
 
@@ -62,8 +62,8 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  color: #ffffff; 
-  background-color: #e78236; 
+  color: #ffffff;
+  background-color: #e78236;
 }
 
 button:hover {
@@ -72,13 +72,14 @@ button:hover {
 
 
 button:nth-of-type(1) {
-  background-color: #dc3545; 
-  color: white; 
+  background-color: #dc3545;
+  color: white;
 }
 
 
 button:nth-of-type(2) {
-  margin-right: 10px; /* Adjust the value as needed */
+  margin-right: 10px;
+  /* Adjust the value as needed */
 }
 
 /* Popup overlay for confirmation dialogs */
@@ -97,19 +98,23 @@ button:nth-of-type(2) {
 
 /* Popup container styling */
 .popup {
-  background: #ffffff; /* White background */
+  background: #ffffff;
+  /* White background */
   padding: 20px;
   border-radius: 4px;
   text-align: center;
-  color: #000000; /* Black text */
+  color: #000000;
+  /* Black text */
 }
 
 /* Styling for buttons inside the popup */
 .popup button {
   margin: 10px;
   padding: 8px 16px;
-  background-color: #e78236; /* Orange background */
-  color: #ffffff; /* White text */
+  background-color: #e78236;
+  /* Orange background */
+  color: #ffffff;
+  /* White text */
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -117,56 +122,70 @@ button:nth-of-type(2) {
 
 /* Specific styling for Delete button inside the popup */
 .popup button:nth-of-type(1) {
-  background-color: #dc3545; /* Red background */
-  color: white; /* White text */
+  background-color: #dc3545;
+  /* Red background */
+  color: white;
+  /* White text */
 }
 
 
 @media (max-width: 768px) {
   .feedback-container {
-    width: 95%; /* Wider container for smaller devices */
-    padding: 10px; /* Less padding for smaller screens */
+    width: 95%;
+    /* Wider container for smaller devices */
+    padding: 10px;
+    /* Less padding for smaller screens */
   }
 
   table th,
   table td {
-    padding: 10px 8px; /* Reduced padding for smaller screens */
+    padding: 10px 8px;
+    /* Reduced padding for smaller screens */
   }
 
   table {
-    font-size: 14px; /* Smaller font size on narrow devices */
+    font-size: 14px;
+    /* Smaller font size on narrow devices */
   }
 
   th,
   td {
-    text-align: center; /* Center-align text for compact view */
+    text-align: center;
+    /* Center-align text for compact view */
   }
 
   button {
-    padding: 5px 8px; /* Smaller buttons for mobile */
-    font-size: 14px; /* Adjust button text size */
+    padding: 5px 8px;
+    /* Smaller buttons for mobile */
+    font-size: 14px;
+    /* Adjust button text size */
   }
 }
 
 @media (max-width: 480px) {
   table {
-    font-size: 12px; /* Even smaller font size for very small screens */
+    font-size: 12px;
+    /* Even smaller font size for very small screens */
   }
 
   th,
   td {
-    padding: 8px 5px; /* Compact padding for small screens */
+    padding: 8px 5px;
+    /* Compact padding for small screens */
   }
 
   .feedback-container h2 {
-    font-size: 18px; /* Smaller headings for mobile */
+    font-size: 18px;
+    /* Smaller headings for mobile */
   }
 
   button {
-    font-size: 12px; /* Adjust button size further for small screens */
+    font-size: 12px;
+    /* Adjust button size further for small screens */
     padding: 4px 6px;
   }
 }
+
 /* Container for filter and sorting section */
 .filter-container {
   display: flex;
@@ -174,15 +193,19 @@ button:nth-of-type(2) {
   align-items: center;
   margin-bottom: 20px;
   padding: 10px;
-  background-color: #f9f9f9; /* Light gray background for filter section */
-  border: 1px solid #ddd; /* Subtle border */
-  border-radius: 8px; /* Rounded corners */
+  background-color: #f9f9f9;
+  /* Light gray background for filter section */
+  border: 1px solid #ddd;
+  /* Subtle border */
+  border-radius: 8px;
+  /* Rounded corners */
 }
 
 /* Label for dropdown */
 .filter-container label {
   font-weight: bold;
-  color: #333; /* Dark text for label */
+  color: #333;
+  /* Dark text for label */
   margin-right: 10px;
 }
 
@@ -190,10 +213,13 @@ button:nth-of-type(2) {
 .filter-container select {
   padding: 8px 12px;
   font-size: 14px;
-  border: 1px solid #ddd; /* Subtle border */
+  border: 1px solid #ddd;
+  /* Subtle border */
   border-radius: 4px;
-  color: #333; /* Dark text for dropdown options */
-  background-color: #ffffff; /* White background */
+  color: #333;
+  /* Dark text for dropdown options */
+  background-color: #ffffff;
+  /* White background */
   cursor: pointer;
 }
 
@@ -204,18 +230,22 @@ button:nth-of-type(2) {
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
-  color: #ffffff; /* White text for button */
-  background-color: #e78236; /* Orange background */
+  color: #ffffff;
+  /* White text for button */
+  background-color: #e78236;
+  /* Orange background */
 }
 
 .filter-container button:hover {
-  opacity: 0.8; /* Slight opacity change on hover for feedback */
+  opacity: 0.8;
+  /* Slight opacity change on hover for feedback */
 }
 
 /* Responsive styles for filtering and sorting */
 @media (max-width: 768px) {
   .filter-container {
-    flex-direction: column; /* Stack filter and sorting section vertically */
+    flex-direction: column;
+    /* Stack filter and sorting section vertically */
     align-items: flex-start;
     padding: 10px;
   }
@@ -226,11 +256,13 @@ button:nth-of-type(2) {
 
   .filter-container select {
     margin-bottom: 10px;
-    width: 100%; /* Dropdown takes full width on smaller screens */
+    width: 100%;
+    /* Dropdown takes full width on smaller screens */
   }
 
   .filter-container button {
-    width: 100%; /* Button takes full width on smaller screens */
+    width: 100%;
+    /* Button takes full width on smaller screens */
     font-size: 14px;
     padding: 10px;
   }
@@ -238,12 +270,68 @@ button:nth-of-type(2) {
 
 @media (max-width: 480px) {
   .filter-container select {
-    font-size: 12px; /* Smaller font for dropdown on small screens */
+    font-size: 12px;
+    /* Smaller font for dropdown on small screens */
     padding: 6px 8px;
   }
 
   .filter-container button {
-    font-size: 12px; /* Smaller font for button on small screens */
+    font-size: 12px;
+    /* Smaller font for button on small screens */
     padding: 8px 12px;
+  }
+}
+
+/* Loader */
+
+.foodImages {
+  display: flex;
+}
+
+
+.spinner {
+  margin-top: 120px;
+  display: flex;
+  gap: 10px;
+  position: fixed;
+  /* Position it relative to the host */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Center the spinner */
+  height: auto;
+  /* Let it fit its content */
+  width: auto;
+}
+
+.food {
+  font-size: 30px;
+  animation: jump 0.5s infinite ease-in-out;
+}
+
+.food:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.food:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.food:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes jump {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
   }
 }

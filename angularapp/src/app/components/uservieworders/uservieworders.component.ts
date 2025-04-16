@@ -16,6 +16,7 @@ export class UserviewordersComponent implements OnInit {
   userId : number;
   errorMessage : string = '';
   isEmpty : boolean = false;
+  loading : boolean = false;
 
   constructor(private orderService: OrderService , private userStoreService:UserStoreService,private foodService:FoodService) { }
 
@@ -27,16 +28,19 @@ export class UserviewordersComponent implements OnInit {
   }
 
   loadOrdersByUser(){
+    this.loading = true;
     this.orderService.getAllOrdersByUserId(this.userId).subscribe( {
       next:(data)=>{
         this.isEmpty=false;
         console.log(data)
         this.orders=data;
+        this.loading = false;
       },
       error : (error)=>{
         if(error.status == 404){
           this.isEmpty = true;
         }
+        this.loading = false;
         console.log("error in fetching orders from user");
         this.errorMessage="Failed to load order history , please try again";
       }
