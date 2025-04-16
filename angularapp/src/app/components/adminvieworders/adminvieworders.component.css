@@ -112,3 +112,7 @@ button:hover {
 .popup-content button:hover {
   background-color: #dc8b4b; /* Slightly darker orange on hover */
 }
+
+.action-buttons-table{
+  display: flex;
+}

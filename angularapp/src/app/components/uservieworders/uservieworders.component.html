@@ -21,7 +21,7 @@
           <p class="card-text"><strong>Total Cost:</strong> ₹{{ order.totalAmount ? (order.totalAmount | number:'1.2-2')
             : 'N/A' }}</p>
           <p class="card-text"><strong>Order Status:</strong> {{ order.orderStatus || 'N/A' }}</p>
-          <p class="card-text"><strong>Order Date:</strong> {{ order.orderDate || 'N/A' }}</p>
+          <p class="card-text"><strong>Order Date:</strong> {{ order.orderDate | date:'shortDate' || 'N/A' }}</p>
           <button class="feedback-button" *ngIf="order.orderStatus=='Delivered'"
             [routerLink]="['/user/add/feedback',order.orderId]">Give Feedback</button>
         </div>

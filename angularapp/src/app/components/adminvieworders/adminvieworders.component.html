@@ -29,7 +29,7 @@
       <td>{{order.address}}</td>
 
       <td>{{ order.orderStatus }}</td>
-      <td>
+      <td class="action-buttons-table">
         <button class="status-btn" (click)="updatedStatus(order.orderId, 'Making Food')">Making Food</button>
         <button class="status-btn" (click)="updatedStatus(order.orderId, 'On the way')">On the way</button>
         <button class="status-btn" (click)="updatedStatus(order.orderId, 'Delivered')">Delivered</button>
