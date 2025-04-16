@@ -15,6 +15,7 @@ export class AdminviewordersComponent implements OnInit {
   changeStatus: boolean = false;
   deletePopupVisible: boolean = false; 
   deletePopupMessage: string = ''; 
+  loading:boolean = true;
 
   constructor(private orderService: OrderService) { }
 
@@ -24,8 +25,12 @@ export class AdminviewordersComponent implements OnInit {
   }
 
   getAllOrders() {
+    this.loading = true
     this.orderService.getAllOrders().subscribe(data => {
       this.orders = data;
+      this.loading=false;
+    },()=>{
+      this.loading=false;
     })
   }
 

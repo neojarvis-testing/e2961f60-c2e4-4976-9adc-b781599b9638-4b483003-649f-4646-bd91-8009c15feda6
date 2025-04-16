@@ -68,12 +68,14 @@ button:hover {
   z-index: 1000; /* Ensure it appears above all other elements */
 }
 
-.popup{
+.popup {
   position: fixed;
-  left: 35%;
+  left: 50%;
   top: 50%;
+  transform: translate(-50% , -50%);
+  width: 400px;
+  z-index: 1000; /* Ensure it appears above the blurred background */
 }
-
 
 .popup-content {
   align-self: center;
@@ -89,30 +91,61 @@ button:hover {
 .popup-content h3 {
   margin-bottom: 15px;
   font-size: 18px;
-  color: #F4A267; /* Use the provided orange color for header text */
+  color: #F4A267;
 }
 
 .popup-content p {
   margin: 10px 0;
   font-size: 16px;
-  color: #d97d3e; /* Slightly darker variant for secondary text */
+  color: #d97d3e;
 }
 
 .popup-content button {
   padding: 10px 20px;
-  background-color: #F4A267; /* Button color using provided orange */
+  background-color: #F4A267;
   color: white;
   border: none;
   border-radius: 5px;
   font-size: 14px;
   cursor: pointer;
-  transition: background-color 0.3s; /* Smooth hover effect */
+  transition: background-color 0.3s;
 }
 
 .popup-content button:hover {
-  background-color: #dc8b4b; /* Slightly darker orange on hover */
+  background-color: #dc8b4b;
 }
 
-.action-buttons-table{
+/* Background Blur Effect */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(10px); /* Blurs background */
+  background: rgba(0, 0, 0, 0.4); /* Semi-transparent dark overlay */
+  z-index: 999; /* Behind the popup but above everything else */
+}
+
+.loading-container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(244, 162, 103, 0.3);
+  border-top-color: #F4A267;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
