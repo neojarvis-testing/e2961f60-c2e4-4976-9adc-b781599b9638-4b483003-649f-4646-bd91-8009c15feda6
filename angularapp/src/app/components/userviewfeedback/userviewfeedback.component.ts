@@ -74,8 +74,9 @@ export class UserviewfeedbackComponent implements OnInit {
           const currentUser = this.userStore.authUser?.userId;
           this.feedbackService.getAllFeedbacksByUserId(currentUser).subscribe(
             (data: Feedback[]) => {
-
               this.feedbacks = data ? data : [];
+              this.filteredFeedbacks = [...this.feedbacks]; 
+              console.log(this.feedbacks)
               this.closeDeletePopup();
             })
         }
@@ -88,7 +89,6 @@ export class UserviewfeedbackComponent implements OnInit {
   
 
   closeDeletePopup(): void {
-
     this.showDeletePopup = false;
     this.selectedFeedbackId = null;
   }

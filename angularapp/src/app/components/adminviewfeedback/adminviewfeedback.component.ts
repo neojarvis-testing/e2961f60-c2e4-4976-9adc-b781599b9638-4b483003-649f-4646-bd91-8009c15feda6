@@ -32,22 +32,22 @@ selectedRating: number | string = '';
   public getAllFeedBacks(){
     this.feedbackService.getFeedbacks().subscribe(data=>{
       this.feedbacks=data?data:[];
-      this.filteredFeedbacks = [...this.feedbacks]; // Initialize filtered feedbacks
+      this.filteredFeedbacks = [...this.feedbacks]; 
     })
   }
 
   filterByRating(): void {
     if (this.selectedRating === '' || this.selectedRating === null) {
-      this.filteredFeedbacks = [...this.feedbacks]; // Reset to all feedbacks
+      this.filteredFeedbacks = [...this.feedbacks]; 
     } else {
       this.filteredFeedbacks = this.feedbacks.filter(
-        feedback => feedback.rating === Number(this.selectedRating) // Filter based on rating
+        feedback => feedback.rating === Number(this.selectedRating) 
       );
     }
   }
   
   sortByRating(): void {
-    this.filteredFeedbacks.sort((a, b) => b.rating - a.rating); // Sort by rating descending
+    this.filteredFeedbacks.sort((a, b) => b.rating - a.rating); 
   }
 
   triggerDelete(feedbackId: number): void {
@@ -62,6 +62,7 @@ selectedRating: number | string = '';
           const index = this.feedbacks.findIndex(f => f.feedbackId === this.selectedFeedbackId);
           if (index !== -1) {
             this.feedbacks.splice(index, 1);
+            this.filteredFeedbacks = [...this.feedbacks]; 
           }
           this.closeDeletePopup();
         },

@@ -1,47 +1,50 @@
-<div *ngIf="orders.length === 0">
-  <h3>Oops! No records found.</h3>
+<div *ngIf="loading" class="loading-container">
+  <div class="spinner"></div>
+  <p>Loading orders...</p>
 </div>
 
-<table *ngIf="orders.length > 0" class="orders-table">
-  <thead>
-    <tr>
-      <th>Sr No</th>
-      <th>Food Name</th>
-      <th>Quantity</th>
-      <th>Total Price</th>
-      <th>User Profile</th>
-      <th>Delivery Address</th>
-      <th>Order Status</th>
-      <th>Change Order Status</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let order of orders; let i = index">
-      <td>{{ i + 1 }}</td>
-      <td>{{ order.food.foodName }}</td>
-      <td>{{ order.quantity }}</td>
-      <td>{{ order.totalAmount | currency }}</td>
-      <td>
-        <button class="profile-btn" (click)="selectUser(order.user)">Show Profile</button>
-      </td>
+<div *ngIf="!loading">
+  <table *ngIf="orders.length > 0" class="orders-table">
+    <thead>
+      <tr>
+        <th>Sr No</th>
+        <th>Food Name</th>
+        <th>Quantity</th>
+        <th>Total Price</th>
+        <th>User Profile</th>
+        <th>Delivery Address</th>
+        <th>Order Status</th>
+        <th>Change Order Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ order.food.foodName }}</td>
+        <td>{{ order.quantity }}</td>
+        <td>₹{{ order.totalAmount}}</td>
+        <td>
+          <button class="profile-btn" (click)="selectUser(order.user)">Show Profile</button>
+        </td>
 
-      <td>{{order.address}}</td>
+        <td>{{order.address}}</td>
 
-      <td>{{ order.orderStatus }}</td>
-      <td class="action-buttons-table">
-        <button class="status-btn" (click)="updatedStatus(order.orderId, 'Making Food')">Making Food</button>
-        <button class="status-btn" (click)="updatedStatus(order.orderId, 'On the way')">On the way</button>
-        <button class="status-btn" (click)="updatedStatus(order.orderId, 'Delivered')">Delivered</button>
-      </td>
+        <td>{{ order.orderStatus }}</td>
+        <td class="action-buttons-table">
+          <button class="status-btn" (click)="updatedStatus(order.orderId, 'Making Food')">Making Food</button>
+          <button class="status-btn" (click)="updatedStatus(order.orderId, 'On the way')">On the way</button>
+          <button class="status-btn" (click)="updatedStatus(order.orderId, 'Delivered')">Delivered</button>
+        </td>
 
 
-      <td>
-        <button class="delete-btn"  (click)="deleteOrder(order.orderId)">Delete</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+        <td>
+          <button class="delete-btn" (click)="deleteOrder(order.orderId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <!-- Popup for Delete Message -->
 <div *ngIf="deletePopupVisible" class="popup-modal">
@@ -53,13 +56,17 @@
 </div>
 
 <!-- Popup for Selected User Details -->
-<div *ngIf="selectedUser" class="popup">
-  <div class="popup-content">
-    <h3>Selected User Details</h3>
-    <p><strong>Username:</strong> {{ selectedUser.username }}</p>
-    <p><strong>Email:</strong> {{ selectedUser.email }}</p>
-    <p><strong>Phone:</strong> {{ selectedUser.mobileNumber }}</p>
-    <p><strong>Role:</strong> {{ selectedUser.userRole }}</p>
-    <button class="close-btn" (click)="closeUser()">Close</button>
+<div *ngIf="selectedUser">
+
+  <div class="popup-overlay"></div>
+  <div class="popup">
+    <div class="popup-content">
+      <h3>Selected User Details</h3>
+      <p><strong>Username:</strong> {{ selectedUser.username }}</p>
+      <p><strong>Email:</strong> {{ selectedUser.email }}</p>
+      <p><strong>Phone:</strong> {{ selectedUser.mobileNumber }}</p>
+      <p><strong>Role:</strong> {{ selectedUser.userRole }}</p>
+      <button class="close-btn" (click)="closeUser()">Close</button>
+    </div>
   </div>
 </div>
