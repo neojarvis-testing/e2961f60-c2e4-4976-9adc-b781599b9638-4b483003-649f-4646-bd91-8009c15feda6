@@ -16,6 +16,7 @@ export class RequestPasswordResetComponent implements OnInit {
   onSubmit() {
     this.authService.requestPasswordReset(this.email).subscribe({
       next: (response) => {
+        console.log(response);
         console.log("Password reset request sent successfully.");
         this.router.navigate(['verify-reset-token']);
       },
@@ -25,8 +26,7 @@ export class RequestPasswordResetComponent implements OnInit {
         } else if (error.status === 400) {
           this.errorCode = 400;
         } else {
-         
-          alert("An error occurred. Please try again later.");
+         alert("An error occurred. Please try again later.");
         }
         console.error("Error resetting password:", error);
       }
