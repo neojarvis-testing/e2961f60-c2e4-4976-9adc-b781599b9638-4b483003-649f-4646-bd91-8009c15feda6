@@ -14,13 +14,14 @@
 .container {
    
     display: flex;
-    margin-right: 50px;
-    flex-direction: column;
+    flex-direction: row;
+    margin-right: 320px;
     max-width: 450px;
     padding: 20px;
     background: linear-gradient(135deg, #222121d6, #efeae75a);
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(240, 238, 235, 0.5);   
+    align-items: center;
 }
 
 /* Header */

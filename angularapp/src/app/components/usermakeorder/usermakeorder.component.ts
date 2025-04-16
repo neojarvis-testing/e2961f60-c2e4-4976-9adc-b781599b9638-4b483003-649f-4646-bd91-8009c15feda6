@@ -19,13 +19,13 @@ export class UsermakeorderComponent implements OnInit {
   totalAmount: number = 0;
   errorMessage: string = '';
 
-  orderPlaced : boolean = false;
+  orderPlaced: boolean = false;
 
-  userAddress: string = ''; 
+  userAddress: string = '';
   isAddressPopupVisible: boolean = false;
   isSuccessPopupVisible: boolean = false;
   successMessage: string = '';
-  
+
 
 
   constructor(
@@ -39,7 +39,7 @@ export class UsermakeorderComponent implements OnInit {
   ngOnInit(): void {
 
     this.userId = this.userStoreService.authUser?.userId;
-    this.activatedRoute.paramMap.subscribe(data=>{
+    this.activatedRoute.paramMap.subscribe(data => {
       this.foodId = parseInt(data.get("id"));
     })
     this.loadFoodDetails();
@@ -52,7 +52,7 @@ export class UsermakeorderComponent implements OnInit {
     this.foodService.getFoodById(this.foodId).subscribe((data) => {
       console.log(data);
       this.food = data;
-      this.totalAmount=this.food.price
+      this.totalAmount = this.food.price
     },
       (error) => {
         this.errorMessage = "Error Loading Food details";
@@ -61,7 +61,7 @@ export class UsermakeorderComponent implements OnInit {
     );
   }
 
-  
+
   decreaseQuantity() {
     if (this.quantity > 1) {
       this.quantity--;
@@ -69,8 +69,8 @@ export class UsermakeorderComponent implements OnInit {
     this.calaculateTotalCost();
   }
 
-  increaseQuantity(){
-    if(this.quantity<this.food.stockQuantity){
+  increaseQuantity() {
+    if (this.quantity < this.food.stockQuantity) {
       this.quantity++;
     }
     this.calaculateTotalCost();
@@ -107,7 +107,7 @@ export class UsermakeorderComponent implements OnInit {
       userId: this.userId,
       foodId: this.foodId,
       orderDate: new Date().toISOString(),
-      address : this.userAddress,
+      address: this.userAddress,
       user: {
         userId: this.userId,
         email: '',
@@ -115,8 +115,8 @@ export class UsermakeorderComponent implements OnInit {
         username: '',
         mobileNumber: '',
         userRole: '',
-        
-        
+
+
       },
       food: {
         foodId: this.foodId,
@@ -147,14 +147,15 @@ export class UsermakeorderComponent implements OnInit {
   }
 
 
-  closePopup(){
+  closePopup() {
     this.orderPlaced = false;
     this.router.navigate(['/user/view/orders']);
+  }
+    closeSuccessPopup() {
+      this.isSuccessPopupVisible = false; // Hide success popup
+      this.router.navigate(['/user/view/orders']); // Redirect to orders page
 
-  closeSuccessPopup() {
-    this.isSuccessPopupVisible = false; // Hide success popup
-    this.router.navigate(['/user/view/orders']); // Redirect to orders page
-
+    }
   }
 
-}
+

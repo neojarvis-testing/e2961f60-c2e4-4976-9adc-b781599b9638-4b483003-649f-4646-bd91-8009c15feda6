@@ -29,7 +29,7 @@
       <td>{{order.address}}</td>
 
       <td>{{ order.orderStatus }}</td>
-      <td>
+      <td class="action-buttons-table">
         <button class="status-btn" (click)="updatedStatus(order.orderId, 'Making Food')">Making Food</button>
         <button class="status-btn" (click)="updatedStatus(order.orderId, 'On the way')">On the way</button>
         <button class="status-btn" (click)="updatedStatus(order.orderId, 'Delivered')">Delivered</button>
@@ -46,7 +46,7 @@
 <!-- Popup for Delete Message -->
 <div *ngIf="deletePopupVisible" class="popup-modal">
   <div class="popup-content">
-    <h3>Cannot Delete Order</h3>
+    <h3 [innerText]="changeStatus==true?'Confirmation' : 'Cannot Delete Order' "></h3>
     <p>{{ deletePopupMessage }}</p>
     <button (click)="closeDeletePopup()">OK</button>
   </div>

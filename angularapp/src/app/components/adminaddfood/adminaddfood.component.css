@@ -6,7 +6,7 @@
     align-items: center;
     padding: 30px;
     background: rgba(255, 165, 0, 0.2);
-
+}
 form {
     font-family: 'Arial', sans-serif;
 }
@@ -136,7 +136,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
-
+}
 form {
     padding: 1rem 3rem;
 
@@ -204,7 +204,7 @@ form {
     color: red;
     font-size: 14px;
     margin-top: 5px;
-
+}
 /* Updated Success Message with Orange Theme */
 .success-message {
     text-align: center;

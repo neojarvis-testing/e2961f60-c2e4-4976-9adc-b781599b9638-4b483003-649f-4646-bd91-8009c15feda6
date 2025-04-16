@@ -135,3 +135,9 @@ body, html {
   margin-bottom: 5px;
   display: block;
 }
+.duplicate{
+  color: #ffcc00;
+}
+.confirmation{
+  color: whitesmoke;
+}

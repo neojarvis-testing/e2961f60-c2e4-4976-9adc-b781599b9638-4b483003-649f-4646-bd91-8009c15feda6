@@ -53,7 +53,7 @@ h2 {
 }
 
 .form-control {
-  width: 94%;
+  width: 100%;
   padding: 12px; /* Adjusted padding to match the button */
   font-size: 14px;
   border: 1px solid #ffcc00; /* Bright yellow border */
@@ -80,6 +80,8 @@ button {
   margin-top: 1rem;
 }
 input{
+  align-self: center;
+  width: 100%;
   font-weight: bold;
 }
 button:hover {

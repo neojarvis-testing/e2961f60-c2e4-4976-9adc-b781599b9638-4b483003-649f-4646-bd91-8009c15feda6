@@ -73,6 +73,8 @@ body {
 .table td {
   padding: 10px;
   border: 1px solid #f4a267;
+  vertical-align: middle;
+  
 }
 
 .table th {
@@ -295,6 +297,7 @@ table > tbody > tr > td > img {
   .table th, .table td {
     font-size: 14px; /* Adjust font size for smaller screens */
   }
+
 }
 
 @media (max-width: 480px) {

@@ -1,7 +1,7 @@
 <nav class="navbar">
     <ul class="navbar-list">
         <div class="user-section">
-            <li class="navbar-welcome">Welcome {{userName}}/{{userRole}}</li>
+            <li class="navbar-welcome" [routerLink]="['/user/profile']" >Welcome {{userName}}/{{userRole}}</li>
         </div>
         <li class="navbar-item"><a class="navbar-link" [routerLink]="['']">Home</a></li>
         <li class="navbar-item" >
