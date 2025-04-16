@@ -48,13 +48,15 @@ export class AuthService {
 
   requestPasswordReset(email: string): Observable<any> {
     const params = new HttpParams().set('email', email);
-    return this.httpClient.post(this.apiUrl+'/reset-password', null, {params} );
+    return this.httpClient.post(this.apiUrl+'/reset-password', null, {
+      params,
+       responseType: 'text' as 'json' 
+    });
   }
 
   verifyResetToken(resetPassword): Observable<any> {
-    return this.httpClient.post(this.apiUrl + "/verify-reset-token",resetPassword);
+    return this.httpClient.post(this.apiUrl + "/verify-reset-token",resetPassword,{ responseType: 'text' as 'json' });
   }
-
   
 }
 

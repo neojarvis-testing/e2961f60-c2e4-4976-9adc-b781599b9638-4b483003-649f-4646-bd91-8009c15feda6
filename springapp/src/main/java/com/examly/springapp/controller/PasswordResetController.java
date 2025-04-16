@@ -25,7 +25,7 @@ public class PasswordResetController {
     public ResponseEntity<?> resetPassword(@RequestParam String email) {
         try {
             passwordResetService.sendPasswordResetEmail(email);
-            return ResponseEntity.ok("Password reset email sent successfully.");
+            return ResponseEntity.status(200).body("Password reset email sent successfully.");
         }
         catch(EntityNotFoundException e){
             return ResponseEntity.status(404).body(e.getMessage());
