@@ -1,4 +1,4 @@
-<div *ngIf="loading" class="spinner">
+<div *ngIf="loading" class="spinner" >
   <div class="foodImages">
     <div class="food">🍎</div>
     <div class="food">🍩</div>
@@ -13,7 +13,8 @@
   Oops, no orders!
 </div>
 
-<div *ngIf="!loading">
+<div *ngIf="!loading" class="container">
+  <h1 class="text-center mt-3">Orders</h1>
   <table *ngIf="orders.length > 0" class="orders-table">
     <thead>
       <tr>
