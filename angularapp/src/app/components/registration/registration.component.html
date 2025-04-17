@@ -28,7 +28,7 @@
         <div *ngIf="registrationForm.get('email').touched && registrationForm.get('email').invalid"
           class="error-message">
           <span *ngIf="registrationForm.get('email').errors?.required">Email is required.</span>
-          <span *ngIf="registrationForm.get('email').errors?.email">Please enter a valid email address.</span>
+          <span *ngIf="registrationForm.get('email').errors?.pattern">Please enter a valid email address.</span>
         </div>
       </div>
 
@@ -63,6 +63,7 @@
         <div *ngIf="registrationForm.get('username').touched && registrationForm.get('username').invalid"
           class="error-message">
           <span *ngIf="registrationForm.get('username').errors?.required">Username is required.</span>
+          <span *ngIf="registrationForm.get('username').errors?.pattern">Username must be at least 6 characters long and cannot contain spaces.</span>
         </div>
       </div>
 
@@ -72,7 +73,7 @@
         <div *ngIf="registrationForm.get('mobileNumber').touched && registrationForm.get('mobileNumber').invalid"
           class="error-message">
           <span *ngIf="registrationForm.get('mobileNumber').errors?.required">Mobile number is required.</span>
-          <span *ngIf="registrationForm.get('mobileNumber').errors?.pattern">Please enter a valid 10-digit
+          <span *ngIf="registrationForm.get('mobileNumber').errors?.pattern">Please enter a valid 10-digit mobile 
             number.</span>
         </div>
       </div>
