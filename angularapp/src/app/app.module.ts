@@ -29,7 +29,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { LoginComponent } from './components/login/login.component';
 import { AdmineditfoodComponent } from './components/admineditfood/admineditfood.component';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { ThemeToggleComponent } from './theme-toggle/theme-toggle.component';
 

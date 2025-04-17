@@ -6,7 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.examly.springapp.exceptions.InsufficientQuantityException;
+import com.examly.springapp.model.Food;
 import com.examly.springapp.model.Orders;
+import com.examly.springapp.repository.FoodRepo;
 import com.examly.springapp.repository.OrderRepo;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -17,10 +20,24 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderRepo orderRepo;
 
+    @Autowired
+    private FoodRepo foodRepo;
+
     @Override
     public Orders addOrder(Orders order) {
-      
-        return orderRepo.save(order);
+
+        Optional<Food> opt = foodRepo.findById(order.getFood().getFoodId());
+        if(opt.isEmpty()){
+            throw new EntityNotFoundException("Food with id "+order.getFood().getFoodId()+" not found");
+        }
+        Food existingFood = opt.get();
+        if(existingFood.getStockQuantity()<order.getQuantity()){
+            throw new InsufficientQuantityException("Order less than or equal to available Stock");
+        }
+        existingFood.setStockQuantity(existingFood.getStockQuantity()-order.getQuantity());
+        foodRepo.save(existingFood);
+        Orders savedOrder = orderRepo.save(order);
+        return orderRepo.findById(savedOrder.getOrderId()).orElse(savedOrder);
     }
 
     @Override

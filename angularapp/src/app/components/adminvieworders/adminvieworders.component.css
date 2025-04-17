@@ -177,3 +177,6 @@ button:hover {
 .loading-text{
   font-family: cursive;
 }
+h1{
+  color: #FFA500; /* Orange background */
+}

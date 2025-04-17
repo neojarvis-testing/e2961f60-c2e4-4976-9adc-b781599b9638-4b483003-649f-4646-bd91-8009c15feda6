@@ -7,7 +7,7 @@
       <input type="email" class="form-control" id="email" formControlName="email">
       <div *ngIf="loginForm.get('email').touched && loginForm.get('email').invalid" class="error-message">
         <span *ngIf="loginForm.get('email').errors?.required">Email is required.</span>
-        <span *ngIf="loginForm.get('email').errors?.email">Please enter a valid email address.</span>
+        <span *ngIf="loginForm.get('email').errors?.pattern">Please enter a valid email address.</span>
       </div>
     </div>
     <!-- Password Field -->

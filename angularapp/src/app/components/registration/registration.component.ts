@@ -19,11 +19,11 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private authService: AuthService, private fb: FormBuilder, private router: Router) {
     this.registrationForm = this.fb.group({
-      email: fb.control("", [Validators.required, Validators.email]),
+      email: fb.control("", [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]),
       password: fb.control("", [Validators.required, Validators.pattern('^(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,}$')]),
       confirmPassword :fb.control("",[Validators.required,Validators.minLength(8)]),
-      username: fb.control("", Validators.required),
-      mobileNumber: fb.control("", [Validators.required, Validators.pattern('[0-9]{10}$')]),
+      username: fb.control("", Validators.pattern('^[a-zA-Z0-9]{6,}$')),
+      mobileNumber: fb.control("", [Validators.required, Validators.pattern('[6-9]{1}[0-9]{9}$')]),
       userRole: fb.control("", Validators.required)
     },{validators:this.passwordMatchValidators});
   }

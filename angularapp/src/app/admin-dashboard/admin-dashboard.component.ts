@@ -3,7 +3,6 @@ import { FeedbackService } from '../services/feedback.service';
 import { OrderService } from '../services/order.service';
 import { FoodService } from '../services/food.service';
 import { AuthService } from '../services/auth.service';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { UserStoreService } from '../helpers/user-store.service';
 
 @Component({
@@ -14,9 +13,8 @@ import { UserStoreService } from '../helpers/user-store.service';
 export class AdminDashboardComponent implements OnInit {
   isLoggedIn: boolean = false;
   userId: number;
-  userName:string = '';
+  userName: string = '';
 
-  foodImages: (string | SafeUrl)[] = [];
   testimonials: { message: string, customerName: string }[] = [];
   totalOrders: number = 0;
   pendingOrders: number = 0;
@@ -25,7 +23,7 @@ export class AdminDashboardComponent implements OnInit {
   testimonialIndex = 0;
   testimonial = [...this.testimonials];
 
-  motivationalMessages:string[]=[
+  motivationalMessages: string[] = [
     "Success is not final, failure is not fatal: it is the courage to continue that counts. -Winston Churchill",
     "Believe you can and you're halfway there. -Theodore Roosevelt",
     "Do not wait to strike till the iron is hot; but make it hot by striking. -William Butler Yeats",
@@ -40,8 +38,8 @@ export class AdminDashboardComponent implements OnInit {
     this.testimonialIndex = (this.testimonialIndex + 1) % this.testimonial.length;
   }
 
-  setMotivationalMessage(){
-    const randomIndex  = Math.floor(Math.random()*this.motivationalMessages.length);
+  setMotivationalMessage() {
+    const randomIndex = Math.floor(Math.random() * this.motivationalMessages.length);
     this.motivationalMessage = this.motivationalMessages[randomIndex];
     console.log(this.motivationalMessage)
   }
@@ -51,9 +49,7 @@ export class AdminDashboardComponent implements OnInit {
     private authService: AuthService,
     private feedbackService: FeedbackService,
     private orderService: OrderService,
-    private foodService: FoodService,
-    private sanitizer: DomSanitizer,
-    private userStoreService:UserStoreService
+    private userStoreService: UserStoreService
   ) { }
 
   ngOnInit(): void {
@@ -61,33 +57,10 @@ export class AdminDashboardComponent implements OnInit {
     this.isLoggedIn = !!this.userId; // Check if the user is logged in
     this.userName = this.userStoreService.authUser.name.toUpperCase();
 
-    // Fetch data from backend
-    this.fetchFoodImages();
+
     this.fetchTestimonials();
     this.fetchOrderStatistics();
     this.setMotivationalMessage();
-  }
-
-  fetchFoodImages(): void {
-    this.foodService.getAllFoods().subscribe(
-      (foods: any[]) => {
-        console.log('Fetched food items:', foods); // Logs the response for debugging
-
-        this.foodImages = foods.map((food) => {
-          if (food.photo) {
-            // Ensure photos are properly formatted as Base64 with the required prefix
-            return this.sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + food.photo);
-          } else {
-            console.warn(`Missing photo for food item: ${food.foodName}`);
-            return null; // Handle case where `photo` is missing
-          }
-        });
-      },
-      (error) => {
-        console.error('Error fetching food images:', error); // Logs the error
-        this.foodImages = []; // Clears the array in case of failure
-      }
-    );
   }
 
 
@@ -112,8 +85,10 @@ export class AdminDashboardComponent implements OnInit {
       (orders: any[]) => {
         console.log(orders)
         this.totalOrders = orders.length;
-        this.pendingOrders = orders.filter(order => order.orderStatus !=='Delivered').length;
-        this.totalRevenue = orders.reduce((sum, order) => sum + order.totalAmount, 0);
+        this.pendingOrders = orders.filter(order => order.orderStatus !== 'Delivered').length;
+        this.totalRevenue = orders
+          .filter(order => order.orderStatus === 'Delivered') 
+          .reduce((sum, order) => sum + order.totalAmount, 0);
       },
       (error) => {
         console.error('Error fetching order statistics:', error);

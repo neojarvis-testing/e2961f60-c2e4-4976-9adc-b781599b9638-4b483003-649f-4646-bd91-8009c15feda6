@@ -22,7 +22,8 @@ export class AdmineditfoodComponent implements OnInit {
     this.editForm = this.fb.group({
       foodName : this.fb.control("",Validators.required),
       price: this.fb.control("",[Validators.required, Validators.pattern('^[0-9]*$')]),
-      stockQuantity: this.fb.control("",[Validators.required, Validators.pattern('^[0-9]*$')])
+      stockQuantity: this.fb.control("",[Validators.required, Validators.pattern('^[0-9]*$')]),
+      photo:this.fb.control('')
     });
     
   }
