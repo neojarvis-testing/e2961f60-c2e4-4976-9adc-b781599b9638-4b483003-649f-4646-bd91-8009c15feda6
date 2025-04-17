@@ -127,25 +127,53 @@ button:hover {
   z-index: 999; /* Behind the popup but above everything else */
 }
 
-.loading-container {
+.foodImages{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
 }
 
-.spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid rgba(244, 162, 103, 0.3);
-  border-top-color: #F4A267;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+
+ .spinner {
+      display: flex;
+      gap: 10px;
+      position: fixed; /* Position it relative to the host */
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); /* Center the spinner */
+      height: auto; /* Let it fit its content */
+      width: auto;
+    }
+    .food {
+      font-size: 30px;
+      animation: jump 0.5s infinite ease-in-out;
+    }
+    .food:nth-child(1) { animation-delay: 0s; }
+    .food:nth-child(2) { animation-delay: 0.2s; }
+    .food:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes jump {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+.no-orders-message {
+  text-align: center;
+  color: white;
+  background-color: #FFA500; /* Orange background */
+  padding: 20px;
+  border-radius: 10px;
+  font-family: 'Arial', sans-serif;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  margin: 20px auto;
+  max-width: 400px;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+.action-buttons-table{
+  display: flex;
+}
+
+.loading-text{
+  font-family: cursive;
 }

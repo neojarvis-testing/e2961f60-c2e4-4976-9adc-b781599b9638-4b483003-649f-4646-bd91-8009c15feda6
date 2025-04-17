@@ -52,3 +52,7 @@
 li{
   cursor: pointer;
 }
+
+.navbar-welcome{
+  color: white !important;
+}

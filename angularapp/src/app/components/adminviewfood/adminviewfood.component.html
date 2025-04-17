@@ -7,6 +7,18 @@
         <input class="input" type="number" placeholder="Max Price" [(ngModel)]="maxPrice" (input)="filterFoods()" />
         <button class="btn-reset" (click)="resetFilters()">Reset</button>
     </div>
+
+    <div *ngIf="loading" class="spinner">
+        <div class="foodImages">
+            <div class="food">🍎</div>
+            <div class="food">🍩</div>
+            <div class="food">🍕</div>
+        </div>
+        <div class="loading-text">
+            Fetching Menu ...
+        </div>
+    </div>
+
     <table class="table">
         <thead>
             <tr>

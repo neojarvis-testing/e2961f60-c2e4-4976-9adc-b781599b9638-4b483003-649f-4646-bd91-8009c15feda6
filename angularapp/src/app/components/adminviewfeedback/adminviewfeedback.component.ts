@@ -12,12 +12,14 @@ import { FeedbackService } from 'src/app/services/feedback.service';
 })
 export class AdminviewfeedbackComponent implements OnInit {
 
-  feedbacks : Feedback[] = [];
+  feedbacks: Feedback[] = [];
   showDeletePopup: boolean = false;
   selectedFeedbackId: number | null = null;
   showLogoutPopup: boolean = false;
   filteredFeedbacks: Feedback[] = []; // For filtered data
-selectedRating: number | string = '';
+  selectedRating: number | string = '';
+
+  loading : boolean = false;
 
   constructor(
     private feedbackService: FeedbackService,
@@ -29,25 +31,27 @@ selectedRating: number | string = '';
     this.getAllFeedBacks();
   }
 
-  public getAllFeedBacks(){
-    this.feedbackService.getFeedbacks().subscribe(data=>{
-      this.feedbacks=data?data:[];
-      this.filteredFeedbacks = [...this.feedbacks]; 
+  public getAllFeedBacks() {
+    this.loading = true;
+    this.feedbackService.getFeedbacks().subscribe(data => {
+      this.feedbacks = data ? data : [];
+      this.filteredFeedbacks = [...this.feedbacks];
+      this.loading = false;
     })
   }
 
   filterByRating(): void {
     if (this.selectedRating === '' || this.selectedRating === null) {
-      this.filteredFeedbacks = [...this.feedbacks]; 
+      this.filteredFeedbacks = [...this.feedbacks];
     } else {
       this.filteredFeedbacks = this.feedbacks.filter(
-        feedback => feedback.rating === Number(this.selectedRating) 
+        feedback => feedback.rating === Number(this.selectedRating)
       );
     }
   }
-  
+
   sortByRating(): void {
-    this.filteredFeedbacks.sort((a, b) => b.rating - a.rating); 
+    this.filteredFeedbacks.sort((a, b) => b.rating - a.rating);
   }
 
   triggerDelete(feedbackId: number): void {
@@ -62,7 +66,7 @@ selectedRating: number | string = '';
           const index = this.feedbacks.findIndex(f => f.feedbackId === this.selectedFeedbackId);
           if (index !== -1) {
             this.feedbacks.splice(index, 1);
-            this.filteredFeedbacks = [...this.feedbacks]; 
+            this.filteredFeedbacks = [...this.feedbacks];
           }
           this.closeDeletePopup();
         },

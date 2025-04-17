@@ -22,6 +22,21 @@
     <button class="btn-reset" (click)="resetFilters()">Reset</button>
   </div>
 
+  <div *ngIf="loading" class="spinner">
+    <div class="foodImages">
+      <div class="food">🍎</div>
+      <div class="food">🍩</div>
+      <div class="food">🍕</div>
+    </div>
+    <div class="loading-text">
+      Fetching Menu ...
+    </div>
+  </div>
+  
+  <div *ngIf="!filterFoods && !loading" class="no-orders-message">
+    Oops, no orders!
+  </div>
+
   <!-- main body  -->
   <div class="cards" *ngIf="filteredFoods.length">
     <div *ngFor="let food of filteredFoods" class="food-items" id="menu">
