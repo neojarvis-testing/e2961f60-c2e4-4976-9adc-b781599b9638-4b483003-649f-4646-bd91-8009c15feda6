@@ -25,18 +25,18 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserRepo userRepo;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private AuthenticationManager authManager;
-
-    @Autowired
-    private JwtUtils jwtUtils;
-
+    private final UserRepo userRepo;
+    private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authManager;
+    private final JwtUtils jwtUtils;
+    
+    public UserServiceImpl(UserRepo userRepo, PasswordEncoder passwordEncoder, AuthenticationManager authManager, JwtUtils jwtUtils) {
+        this.userRepo = userRepo;
+        this.passwordEncoder = passwordEncoder;
+        this.authManager = authManager;
+        this.jwtUtils = jwtUtils;
+    }
+    
     @Override
     public User registerUser(User user) {
         Optional<User> opt = userRepo.findByEmail(user.getEmail());

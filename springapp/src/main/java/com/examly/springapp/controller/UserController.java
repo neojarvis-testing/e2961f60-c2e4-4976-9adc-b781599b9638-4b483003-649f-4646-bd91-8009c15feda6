@@ -14,10 +14,12 @@ import com.examly.springapp.service.UserService;
 @RestController
 public class UserController {
 
+    private final UserService userService;
 
-    @Autowired
-    private UserService userService;
-
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+    
     @PutMapping("/api/user/update/{id}")
     public ResponseEntity<?> updateUser(@PathVariable int id, @RequestBody User user) {
         try {

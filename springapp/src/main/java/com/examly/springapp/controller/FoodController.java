@@ -27,9 +27,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RestController
 public class FoodController {  
     
-    @Autowired
-    private FoodService foodService;
+    private final FoodService foodService;
 
+    public FoodController(FoodService foodService) {
+        this.foodService = foodService;
+    }
+    
     @PostMapping("api/food")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> addFood(@RequestPart("food") String food, @RequestPart("photo") MultipartFile photo) {

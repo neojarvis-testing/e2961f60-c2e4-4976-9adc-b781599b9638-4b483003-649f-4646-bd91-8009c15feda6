@@ -18,9 +18,12 @@ import com.examly.springapp.repository.UserRepo;
 @Component
 public class MyUserDetailsService implements UserDetailsService{
 
+    private final UserRepo userRepo;
 
-    @Autowired
-    private UserRepo userRepo;
+    public MyUserDetailsService(UserRepo userRepo) {
+        this.userRepo = userRepo;
+    }
+    
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

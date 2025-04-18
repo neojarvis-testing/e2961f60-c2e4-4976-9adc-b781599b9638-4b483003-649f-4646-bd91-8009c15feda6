@@ -22,9 +22,13 @@ import jakarta.persistence.EntityNotFoundException;
 
 @RestController
 public class OrdersController {
-    @Autowired
-    private OrderService orderService;
+    
+    private final OrderService orderService;
 
+    public OrdersController(OrderService orderService) {
+        this.orderService = orderService;
+    }
+    
     @PostMapping("/api/orders")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> addOrder(@RequestBody Orders order) {

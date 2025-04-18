@@ -21,9 +21,12 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
+    private final JwtUtils utils;
 
-    @Autowired
-    private JwtUtils utils;
+    public JwtAuthenticationFilter(JwtUtils utils) {
+        this.utils = utils;
+    }
+    
     @Autowired
     private UserDetailsService userService;
     private final String AUTHORIZATION = "Authorization";

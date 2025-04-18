@@ -20,12 +20,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Service
 public class FoodServiceImpl implements FoodService {
 
-    @Autowired
-    private FoodRepo foodRepo;
-
-    @Autowired
-    private FoodDescriptionRepo foodDescriptionRepo;
-
+    private final FoodRepo foodRepo;
+    private final FoodDescriptionRepo foodDescriptionRepo;
+    
+    public FoodServiceImpl(FoodRepo foodRepo, FoodDescriptionRepo foodDescriptionRepo) {
+        this.foodRepo = foodRepo;
+        this.foodDescriptionRepo = foodDescriptionRepo;
+    }
+    
     @Override
     public Food addFood(String foodJson, MultipartFile photo) throws Exception{
         try {
