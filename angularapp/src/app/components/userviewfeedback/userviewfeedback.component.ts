@@ -18,6 +18,7 @@ export class UserviewfeedbackComponent implements OnInit {
   filteredFeedbacks: Feedback[] = []; 
   selectedRating: number | string = '';
   showLogoutPopup: boolean = false;
+  loading : boolean = false;
 
   constructor(
     private feedbackService: FeedbackService,
@@ -32,13 +33,16 @@ export class UserviewfeedbackComponent implements OnInit {
     if (currentUser!=null) {
 
       console.log(currentUser);
+      this.loading = true;
       this.feedbackService.getAllFeedbacksByUserId(currentUser).subscribe(
         (data: Feedback[]) => {
           this.feedbacks = data ? data : [];
           this.filteredFeedbacks = [...this.feedbacks]; 
+          this.loading = false;
         },
         error => {
           console.error('Error fetching feedback:', error);
+          this.loading = false;
         }
       );
     }

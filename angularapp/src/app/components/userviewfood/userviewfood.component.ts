@@ -18,6 +18,9 @@ export class UserviewfoodComponent implements OnInit {
   popup : boolean = false;
   selectedImage : any = null;
   selectedFood : any;
+
+  loading : boolean = false;
+
   constructor(private foodService : FoodService) { }
 
   ngOnInit(): void {
@@ -26,14 +29,17 @@ export class UserviewfoodComponent implements OnInit {
 
   
   public loadFoods() {
+    this.loading = true;
     this.foodService.getAllFoods().subscribe((data) => {
       console.log(data)
         this.foods = data; 
         console.log(this.foods)
         this.filteredFoods = this.foods
+        this.loading = false;
     },
     (error) => {
       console.error('Error fetching food data:', error); 
+      this.loading = false;
     }
     );
   }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.examly.springapp.exceptions.InsufficientQuantityException;
 import com.examly.springapp.model.Orders;
 import com.examly.springapp.service.OrderService;
 
@@ -30,9 +31,17 @@ public class OrdersController {
     
     @PostMapping("/api/orders")
     @PreAuthorize("hasRole('USER')")
-    ResponseEntity<?> addOrder(@RequestBody Orders order) {
-        Orders newOrder = orderService.addOrder(order);
-        return ResponseEntity.status(201).body(newOrder);
+    public ResponseEntity<?> addOrder(@RequestBody Orders order) {
+        try {
+            Orders newOrder = orderService.addOrder(order);
+            return ResponseEntity.status(201).body(newOrder);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        } catch (InsufficientQuantityException e) {
+            return ResponseEntity.status(400).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("An unexpected error occurred.");
+        }
     }
 
     @GetMapping("/api/orders/{orderId}")
@@ -91,6 +100,5 @@ public class OrdersController {
 
         }
     }
-
 
 }

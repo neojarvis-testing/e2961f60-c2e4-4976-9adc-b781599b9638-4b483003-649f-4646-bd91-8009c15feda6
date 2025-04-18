@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   showResetLink = false;
   constructor(private fb : FormBuilder,private authService : AuthService,private router :Router,private userStore :UserStoreService) {
     this.loginForm = this.fb.group({
-      email: fb.control("",[Validators.required,Validators.email]),
+      email: fb.control("",[Validators.required,Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]),
       password : fb.control("",Validators.required)
     })
    }
