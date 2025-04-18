@@ -12,7 +12,7 @@
     </div>
   
     <label>Total Price:</label>
-    <input type="text" [value]="totalAmount | currency" disabled>
+    <input type="text" [value]="totalAmount | currency:'INR' " disabled>
   
     <div class="btn-group">
       <button class="confirm-btn" (click)="isAddressPopupVisible = true">Confirm Order</button>
