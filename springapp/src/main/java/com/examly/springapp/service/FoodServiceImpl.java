@@ -9,11 +9,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.examly.springapp.exceptions.FoodNotFoundException;
+import com.examly.springapp.exceptions.OrdersExistsException;
 import com.examly.springapp.exceptions.UserNotFoundException;
 import com.examly.springapp.model.Food;
 import com.examly.springapp.model.FoodDescription;
 import com.examly.springapp.repository.FoodDescriptionRepo;
 import com.examly.springapp.repository.FoodRepo;
+import com.examly.springapp.repository.OrderRepo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -22,10 +24,12 @@ public class FoodServiceImpl implements FoodService {
 
     private final FoodRepo foodRepo;
     private final FoodDescriptionRepo foodDescriptionRepo;
+    private final OrderRepo orderRepo;
     
-    public FoodServiceImpl(FoodRepo foodRepo, FoodDescriptionRepo foodDescriptionRepo) {
+    public FoodServiceImpl(FoodRepo foodRepo, FoodDescriptionRepo foodDescriptionRepo,OrderRepo orderRepo) {
         this.foodRepo = foodRepo;
         this.foodDescriptionRepo = foodDescriptionRepo;
+        this.orderRepo= orderRepo;
     }
     
     @Override
@@ -87,12 +91,15 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
-    public boolean deleteFood(int id) throws IllegalArgumentException, FoodNotFoundException {
+    public boolean deleteFood(int id) throws IllegalArgumentException, FoodNotFoundException , OrdersExistsException{
         if (id <= 0) {
             throw new IllegalArgumentException("Invalid food ID.");
         }
         if (!foodRepo.existsById(id)) {
             throw new FoodNotFoundException("Food with ID " + id + " not found.");
+        }
+        if(orderRepo.findOrdersByFoodId(id)){
+            throw new OrdersExistsException("Order exists for this food");
         }
         foodRepo.deleteById(id);
         return true;

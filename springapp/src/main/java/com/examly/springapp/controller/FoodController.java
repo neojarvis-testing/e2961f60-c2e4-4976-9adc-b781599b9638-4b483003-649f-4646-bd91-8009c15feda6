@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.examly.springapp.exceptions.FoodNotFoundException;
+import com.examly.springapp.exceptions.OrdersExistsException;
 import com.examly.springapp.exceptions.UserNotFoundException;
 import com.examly.springapp.model.Food;
 import com.examly.springapp.service.FoodService;
@@ -111,6 +112,9 @@ public class FoodController {
         catch(IllegalArgumentException i){
             return ResponseEntity.status(403).body(i.getMessage());
         }  
+        catch(OrdersExistsException e){
+            return ResponseEntity.status(400).body(e.getMessage());
+        }
     }
 
     @GetMapping("/api/food/user/{userId}")
