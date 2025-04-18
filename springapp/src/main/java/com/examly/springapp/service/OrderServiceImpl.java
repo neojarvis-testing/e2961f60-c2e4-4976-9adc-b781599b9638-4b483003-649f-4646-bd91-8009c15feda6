@@ -17,11 +17,15 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class OrderServiceImpl implements OrderService {
 
+
+    private final FoodRepo foodRepo;
+
     private final OrderRepo orderRepo;
 
 
-    public OrderServiceImpl(OrderRepo orderRepo) {
+    public OrderServiceImpl(OrderRepo orderRepo,FoodRepo foodRepo) {
         this.orderRepo = orderRepo;
+        this.foodRepo = foodRepo;
     }
     
 
