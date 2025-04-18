@@ -177,3 +177,6 @@ hr {
     transform: translateY(-20px);
   }
 }
+.card-body{
+  min-height: 330px;
+}

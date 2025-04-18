@@ -86,7 +86,11 @@ onConfirm(): void {
       this.showSuccessPopup = true; // Show success popup
     },
     (error) => {
+      if(error.status == 400){
+        alert("Failed to delete food item , it has current orders associated with it.")
+      }
       console.error('Error occurred while deleting food:', error);
+
       this.foods = [];
       this.filteredFoods = [];
     }
