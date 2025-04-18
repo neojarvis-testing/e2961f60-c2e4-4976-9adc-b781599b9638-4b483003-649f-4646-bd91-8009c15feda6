@@ -23,11 +23,12 @@ import jakarta.persistence.EntityNotFoundException;
 @RestController
 public class AuthController {
     
+    private final UserServiceImpl userServiceImpl;
 
-    @Autowired
-    private UserServiceImpl userServiceImpl;
-
-
+    public AuthController(UserServiceImpl userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
+    }
+    
     @PostMapping("/api/register")
     public ResponseEntity<String> registerUser(@RequestBody User user){
         try{
@@ -60,6 +61,5 @@ public class AuthController {
         }catch(InvalidCredentialsException e){
             return ResponseEntity.status(401).body(e.getMessage());
         }
-        
     }
 }

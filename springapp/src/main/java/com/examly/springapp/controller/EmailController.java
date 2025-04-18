@@ -13,8 +13,11 @@ import com.examly.springapp.service.EmailRequestService;
 @RestController
 public class EmailController {
 
-    @Autowired
-    private EmailRequestService emailRequestService;
+    private final EmailRequestService emailRequestService;
+
+    public EmailController(EmailRequestService emailRequestService) {
+        this.emailRequestService = emailRequestService;
+    }
 
     @PostMapping("/api/mail/send")
     public ResponseEntity<?> sendEmail(@RequestBody EmailRequest request) {

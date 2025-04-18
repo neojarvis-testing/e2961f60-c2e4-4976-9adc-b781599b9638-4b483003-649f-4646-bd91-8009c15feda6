@@ -16,11 +16,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class PasswordResetController {
+    private final PasswordResetService passwordResetService;
 
-    @Autowired
-    private PasswordResetService passwordResetService;
-
-    
+    public PasswordResetController(PasswordResetService passwordResetService) {
+        this.passwordResetService = passwordResetService;
+    }
+       
     @PostMapping("/api/reset-password")
     public ResponseEntity<?> resetPassword(@RequestParam String email) {
         try {

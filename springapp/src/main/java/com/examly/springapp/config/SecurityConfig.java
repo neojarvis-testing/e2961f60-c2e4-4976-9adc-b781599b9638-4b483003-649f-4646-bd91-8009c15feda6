@@ -24,11 +24,13 @@ import jakarta.persistence.criteria.CriteriaBuilder.In;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    @Autowired
-    private MyUserDetailsService userService;
-
-    @Autowired
-    private JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final MyUserDetailsService userService;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    
+    public SecurityConfig(MyUserDetailsService userService, JwtAuthenticationFilter jwtAuthenticationFilter) {
+        this.userService = userService;
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+    }    
 
    @Bean
     public PasswordEncoder passwordEncoder() {

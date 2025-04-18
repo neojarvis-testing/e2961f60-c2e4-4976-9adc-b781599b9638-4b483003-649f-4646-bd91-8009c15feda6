@@ -21,9 +21,12 @@ import jakarta.persistence.EntityNotFoundException;
 @RestController
 public class FeedbackController {
 
-    @Autowired
-    private FeedbackService feedbackService;
+    private final FeedbackService feedbackService;
 
+    public FeedbackController(FeedbackService feedbackService) {
+        this.feedbackService = feedbackService;
+    }
+    
     @PostMapping("/api/feedback")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> createFeedback(@RequestBody Feedback feedback) {
